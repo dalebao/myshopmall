@@ -11,10 +11,16 @@
 |
 */
 
-Route::get('{all}', function () {
-    return view('front.index');
-})->where('all', '.*');
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/test',function (){
+    return response()->json('1111');
+});
+
+Route::get('{all}', function () {
+    return view('front.index');
+})->where('all', '.*');
