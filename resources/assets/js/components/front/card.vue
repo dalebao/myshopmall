@@ -11,8 +11,9 @@
                     <div style="padding: 14px;">
                         <span>好吃的汉堡</span>
                         <div class="bottom clearfix">
-                            <time class="time">{{ currentDate }}</time>
-                            <el-button type="text" class="button">操作按钮</el-button>
+                            <!--<time class="time">{{ currentDate }}</time>-->
+                            <span class="iconfont icon-costincluded">10元</span>
+                            <el-button type="primary" class="button">购买商品</el-button>
                         </div>
                     </div>
                 </el-card>
@@ -35,7 +36,7 @@
     }
 
     .button {
-        padding: 0;
+        /*padding: 0;*/
         float: right;
     }
 
@@ -68,9 +69,9 @@
 
 <script>
     export default {
+        props: ['title'],
         data() {
             return {
-                title:'热门商品',
                 currentDate: new Date()
             };
         }

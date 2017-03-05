@@ -58072,7 +58072,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('div', {
     staticClass: "nav-search-btn"
-  }, [_c('button', [_vm._v("sss")])])]), _vm._v(" "), _c('el-col', {
+  }, [_c('el-button', {
+    attrs: {
+      "type": "primary",
+      "icon": "search"
+    }
+  }, [_vm._v("搜索")])], 1)]), _vm._v(" "), _c('el-col', {
     attrs: {
       "span": 6,
       "offset": 6
@@ -80388,10 +80393,59 @@ module.exports = Component.exports
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('div', {
     staticClass: "main-page-line"
-  }, [_c('carousel')], 1), _vm._v(" "), _c('div', {
+  }, [_c('carousel')], 1), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "main-page-line"
-  }, [_c('card')], 1)])
-},staticRenderFns: []}
+  }, [_c('card', {
+    attrs: {
+      "title": _vm.title
+    }
+  })], 1), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "main-page-line"
+  }, [_c('card', {
+    attrs: {
+      "title": _vm.title
+    }
+  })], 1), _vm._v(" "), _vm._m(2)])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "main-page-pic"
+  }, [_c('a', {
+    attrs: {
+      "href": ""
+    }
+  }, [_c('img', {
+    attrs: {
+      "src": "https://img.alicdn.com/tps/TB1lnWUNVXXXXbxXpXXXXXXXXXX-880-70.jpg_q90_.webp",
+      "alt": ""
+    }
+  })])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "main-page-pic"
+  }, [_c('a', {
+    attrs: {
+      "href": ""
+    }
+  }, [_c('img', {
+    attrs: {
+      "src": "https://img.alicdn.com/tps/TB1lnWUNVXXXXbxXpXXXXXXXXXX-880-70.jpg_q90_.webp",
+      "alt": ""
+    }
+  })])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "main-page-pic"
+  }, [_c('a', {
+    attrs: {
+      "href": ""
+    }
+  }, [_c('img', {
+    attrs: {
+      "src": "https://img.alicdn.com/tps/TB1lnWUNVXXXXbxXpXXXXXXXXXX-880-70.jpg_q90_.webp",
+      "alt": ""
+    }
+  })])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -80421,10 +80475,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = {
+    data: function data() {
+        return {
+            title: '热门商品 aa'
+        };
+    },
+
     components: {
         Carousel: __WEBPACK_IMPORTED_MODULE_0__carousel_vue___default.a,
         Card: __WEBPACK_IMPORTED_MODULE_1__card_vue___default.a
@@ -80577,7 +80655,7 @@ exports = module.exports = __webpack_require__(11)();
 
 
 // module
-exports.push([module.i, "\n.main-page-line {\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n", ""]);
+exports.push([module.i, "\n.main-page-line {\n    margin-top: 10px;\n    margin-bottom: 10px;\n}\n.main-page-pic {\n    text-align: center;\n    margin: 50px auto;\n}\n", ""]);
 
 // exports
 
@@ -80617,7 +80695,7 @@ exports = module.exports = __webpack_require__(11)();
 
 
 // module
-exports.push([module.i, "\n.time {\n    font-size: 13px;\n    color: #999;\n}\n.bottom {\n    margin-top: 13px;\n    line-height: 12px;\n}\n.button {\n    padding: 0;\n    float: right;\n}\n.image {\n    width: 100%;\n    display: block;\n}\n.clearfix:before,\n.clearfix:after {\n    display: table;\n    content: \"\";\n}\n.clearfix:after {\n    clear: both\n}\n.card-title {\n    margin-left: 8.33333%;\n}\n.card-body {\n    margin-top: 20px;\n    margin-right: 2%;\n    margin-left: 2%;\n}\n\n", ""]);
+exports.push([module.i, "\n.time {\n    font-size: 13px;\n    color: #999;\n}\n.bottom {\n    margin-top: 13px;\n    line-height: 12px;\n}\n.button {\n    /*padding: 0;*/\n    float: right;\n}\n.image {\n    width: 100%;\n    display: block;\n}\n.clearfix:before,\n.clearfix:after {\n    display: table;\n    content: \"\";\n}\n.clearfix:after {\n    clear: both\n}\n.card-title {\n    margin-left: 8.33333%;\n}\n.card-body {\n    margin-top: 20px;\n    margin-right: 2%;\n    margin-left: 2%;\n}\n\n", ""]);
 
 // exports
 
@@ -80690,14 +80768,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_c('span', [_vm._v("好吃的汉堡")]), _vm._v(" "), _c('div', {
       staticClass: "bottom clearfix"
-    }, [_c('time', {
-      staticClass: "time"
-    }, [_vm._v(_vm._s(_vm.currentDate))]), _vm._v(" "), _c('el-button', {
+    }, [_c('span', {
+      staticClass: "iconfont icon-costincluded"
+    }, [_vm._v("10元")]), _vm._v(" "), _c('el-button', {
       staticClass: "button",
       attrs: {
-        "type": "text"
+        "type": "primary"
       }
-    }, [_vm._v("操作按钮")])], 1)])])], 1)
+    }, [_vm._v("购买商品")])], 1)])])], 1)
   }))], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -80808,11 +80886,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
+    props: ['title'],
     data: function data() {
         return {
-            title: '热门商品',
             currentDate: new Date()
         };
     }
