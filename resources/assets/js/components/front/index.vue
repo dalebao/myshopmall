@@ -1,7 +1,14 @@
 <template>
     <div class="index">
         <menu-nav></menu-nav>
-        <carousel></carousel>
+        <el-row>
+            <p class="line"></p>
+        </el-row>
+        <router-view></router-view>
+        <el-row>
+            <p class="line"></p>
+        </el-row>
+        <index-footer></index-footer>
     </div>
 
 
@@ -11,10 +18,18 @@
 <script>
     import MenuNav from './menu.vue'
     import Carousel from './carousel.vue'
+    import IndexFooter from './index-footer.vue'
 export default {
     components:{
         MenuNav,
-        Carousel
+        Carousel,
+        IndexFooter
     }
 }
 </script>
+
+<style>
+    .line{
+        line-height:50px;
+    }
+</style>

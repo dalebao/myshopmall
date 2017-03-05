@@ -4,9 +4,13 @@
 
 import Index from '../components/front/index.vue'
 import UserLogin from '../components/utils/userLogin.vue'
+import MainPage from '../components/front/mainPage.vue'
 const routes = [
     {
-        path: '/', component: Index
+        path: '/', component: Index,
+        children:[
+            {name:'index',path:'',component:MainPage,alias:'/index'}
+        ]
     },
     {
         path: '/user-login', component: UserLogin
