@@ -22,10 +22,32 @@
             <el-col :span="6" :offset="6">
                 <div class="grid-content bg-purple">
                     <el-submenu index="4">
-                        <template slot="title">我的工作台</template>
-                        <el-menu-item index="4-1">个人管理</el-menu-item>
-                        <el-menu-item index="4-2">登录</el-menu-item>
-                        <el-menu-item index="4-3">退出</el-menu-item>
+                        <template slot="title">{{username?username:'我'}}的工作台</template>
+                        <el-menu-item index="4-1">
+                            <el-button
+                                    type="text"
+                            >个人管理
+                            </el-button>
+                        </el-menu-item>
+                        <el-menu-item index="user-login" v-if="!isLogin">
+                            <el-button
+                                    type="text"
+                            >登录
+                            </el-button>
+                        </el-menu-item>
+                        <el-menu-item index="user-register" v-if="!isLogin">
+                            <el-button
+                                    type="text"
+                            >注册
+                            </el-button>
+                        </el-menu-item>
+                        <el-menu-item index="" v-if="isLogin">
+                            <el-button
+                                    type="text"
+                                    @click="handleLogout">
+                                退出登录
+                            </el-button>
+                        </el-menu-item>
                     </el-submenu>
                     <el-menu-item index="5">订单详情</el-menu-item>
                 </div>
@@ -41,6 +63,7 @@
 
     .nav-search-btn {
         margin-top: 13px;
+        margin-left: 13px;
     }
 
     .nav-menu {
@@ -53,14 +76,49 @@
         name: 'nav-menu',
         data() {
             return {
-                input: ''
+                input: '',
+                username: '',
+                isLogin: false
             }
         },
 
         methods: {
             handleSelect(key, keyPath)
             {
-                console.log(key, keyPath);
+//                console.log(key, keyPath);
+            },
+            handleLogout(){
+                axios.post('/logout').then(res => {
+                    if (res.data.code == '200') {
+                        localStorage.clear()
+                        this.$notify({
+                            title: '退出成功',
+                            message: '感谢使用',
+                            type: 'success',
+                            duration: 2000,
+                            onClose(){
+                                location.reload()
+                            }
+                        })
+                    } else {
+                        this.$notify.error({
+                            title: '操作失败',
+                            message: '退出失败',
+                            duration: 2000,
+                            onClose(){
+                                location.reload()
+                            }
+                        })
+
+                    }
+                })
+
+            }
+        },
+        created(){
+            this.username = localStorage.getItem('user-name')
+            if (this.username) {
+                this.isLogin = true;
             }
         }
     }

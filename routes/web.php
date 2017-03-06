@@ -12,13 +12,18 @@
 */
 
 
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/test',function (){
-    return response()->json('1111');
+Route::get('/user', function () {
+    return Auth::user();
+});
+Route::get('/islogout', function () {
+    return response()->json([
+        'code' => 200,
+        'msg' => 'success'
+    ]);
 });
 
 Route::get('{all}', function () {

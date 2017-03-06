@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -14,25 +13,23 @@ require('./bootstrap');
  */
 
 import App from './App.vue'
-import VueRouter from 'vue-router';
+// import VueRouter from 'vue-router';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
-import routes from './router/router.js'
-
+import router from './router/router.js'
 
 
 Vue.use(ElementUI)
-Vue.use(VueRouter)
 
 
-const router = new VueRouter({
-    mode: 'history',
-    routes: routes
-});
+
+
+
+
 
 
 const app = new Vue({
     el: '#app',
     router,
-    render:h=>h(App)
+    render: h => h(App)
 });
