@@ -12,6 +12,11 @@ import UserRegister from '../components/utils/userRegister.vue'
 import MainPage from '../components/front/mainPage.vue'
 import Category from '../components/front/category.vue'
 import UserAdmin from '../components/frontAdmin/admin.vue'
+import BackAdmin from '../components/backendAdmin/backAdmin.vue'
+import AdminLogin from '../components/utils/adminLogin.vue'
+import AdminRegister from'../components/utils/adminRegister.vue'
+
+
 const routes = [
     {
         path: '/', component: Index,
@@ -21,7 +26,16 @@ const routes = [
         ]
     },
     {
+        path: '/haso', component: BackAdmin
+    },
+    {
         name: 'user-login', path: '/user-login', component: UserLogin
+    },
+    {
+        name: 'admin-login', path: '/admin-login', component: AdminLogin
+    },
+    {
+        name: 'admin-register', path: '/admin-register', component: AdminRegister
     },
     {
         name: 'user-register', path: '/user-register', component: UserRegister
@@ -39,19 +53,20 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+
     if ((to.meta.requireAuth)) {// 判断该路由是否需要登录权限
-        if (localStorage.getItem('user-email')) {//判断是否登录
+        if (sessionStorage.getItem('user-email')) {//判断是否登录
             next()
         } else {
-            if (to.fullPath == '/user-login') {
+            if ((to.fullPath == '/user-login') || (to.fullPath == '/user-register')) {
                 next();
             } else {
                 next({path: '/user-login'});
             }
         }
     } else {
-        if (localStorage.getItem('user-email')) {
-            if (to.fullPath == '/user-login') {
+        if (sessionStorage.getItem('user-email')) {
+            if ((to.fullPath == '/user-login') || (to.fullPath == '/user-register')) {
                 next({
                     query: {redirect: from.fullPath}
                 })
@@ -60,6 +75,7 @@ router.beforeEach((to, from, next) => {
         }
         next();
     }
+
 
 });
 
