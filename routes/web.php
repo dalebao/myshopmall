@@ -26,6 +26,13 @@ Route::get('/islogout', function () {
     ]);
 });
 
+
+
 Route::get('{all}', function () {
     return view('front.index');
 })->where('all', '.*');
+
+
+Route::get('pcx',function(){
+	return 111;
+}});
