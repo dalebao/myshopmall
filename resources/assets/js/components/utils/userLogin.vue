@@ -2,7 +2,7 @@
     <div class="user-login">
         <h1 class="userLoginTitle" @click="enterIndex">欢迎登录</h1>
         <el-form :model="userLogin" ref="userLogin" label-width="100px" class="demo-ruleForm">
-            <el-form-item label="邮箱" prop="email" :rules="[
+            <el-form-item label="email" prop="email" :rules="[
                           { required: true, message: '请输入邮箱地址', trigger: 'blur' },
                 { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' }
             ]">
@@ -42,12 +42,9 @@
                             email: this.userLogin.email,
                             password: this.userLogin.pass
                         }).then(res => {
-                            var time = new Date();
-                            sessionStorage.setItem('user-id', res.data.id)
-                            sessionStorage.setItem('user-email', res.data.email)
-                            sessionStorage.setItem('user-name', res.data.name)
-                            sessionStorage.setItem('miss-hour',time.getHours())
-                            sessionStorage.setItem('miss-minute',time.getMinutes())
+                            localStorage.setItem('user-id', res.data.id)
+                            localStorage.setItem('user-email', res.data.email)
+                            localStorage.setItem('user-name', res.data.name)
                             this.$notify({
                                 title: '登录成功',
                                 message: '欢迎登录',
@@ -70,6 +67,9 @@
             resetForm(formName) {
                 this.$refs[formName].resetFields();
             }
+        },
+        created(){
+
         }
     }
 </script>

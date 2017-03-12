@@ -41,7 +41,7 @@
                             >注册
                             </el-button>
                         </el-menu-item>
-                        <el-menu-item index="" v-if="1">
+                        <el-menu-item index="" v-if="isLogin">
                             <el-button
                                     type="text"
                                     @click="handleLogout">
@@ -90,7 +90,7 @@
             handleLogout(){
                 axios.post('/logout').then(res => {
                     if (res.data.code == '200') {
-                        sessionStorage.clear()
+                        localStorage.clear()
                         this.$notify({
                             title: '退出成功',
                             message: '感谢使用',
@@ -112,15 +112,11 @@
 
                     }
                 })
-                axios.post('/admin/logout')
 
             }
         },
         created(){
-            axios.get('/admin/info').then(res=>{
-                console.log(res)
-            })
-            this.username = sessionStorage.getItem('user-name')
+            this.username = localStorage.getItem('user-name')
             if (this.username) {
                 this.isLogin = true;
             }
