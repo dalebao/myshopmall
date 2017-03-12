@@ -33,6 +33,3 @@ Route::get('{all}', function () {
 })->where('all', '.*');
 
 
-Route::get('pcx',function(){
-	return 111;
-}});
