@@ -33,7 +33,7 @@
     export default {
         data(){
             return {
-                title: '热门商品 aa'
+                title: '热门商品 aa',
             }
         },
         components: {

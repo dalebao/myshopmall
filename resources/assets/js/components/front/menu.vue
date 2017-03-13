@@ -50,6 +50,8 @@
                         </el-menu-item>
                     </el-submenu>
                     <el-menu-item index="5">订单详情</el-menu-item>
+                    <el-menu-item index="/admin-login">我是管理员</el-menu-item>
+
                 </div>
             </el-col>
         </el-row>

@@ -21,7 +21,7 @@
 
             <el-form-item>
                 <el-button type="primary" @click="submitForm('userRegister')">提交</el-button>
-                <el-button @click="resetForm('userRegister')">重置</el-button>
+                <el-button @click="resetForm('userRegister')">重置表单</el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -128,13 +128,13 @@
         left: 0;
         right: 0;
         margin: auto;
-        height: 240px;
+        height: 300px;
         width: 35%;
     }
 
     .userRegisterTitle {
         margin-bottom: 40px;
         text-align: center;
-        margin-left: 30px;
+        margin-left: 85px;
     }
 </style>

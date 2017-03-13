@@ -1,6 +1,6 @@
 <template>
     <div class="admin-login">
-        <h1 class="adminLoginTitle" @click="enterIndex">欢迎登录</h1>
+        <h1 class="adminLoginTitle" @click="enterIndex">欢迎登录管理员后台</h1>
         <el-form :model="adminLogin" ref="adminLogin" label-width="100px" class="demo-ruleForm">
             <el-form-item label="邮箱" prop="email" :rules="[
                           { required: true, message: '请输入邮箱地址', trigger: 'blur' },
@@ -13,7 +13,7 @@
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="submitForm('adminLogin')">提交</el-button>
-                <el-button @click="resetForm('adminLogin')">重置</el-button>
+                <el-button @click="resetForm('adminLogin')">重置输入</el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -92,13 +92,13 @@
         left: 0;
         right: 0;
         margin: auto;
-        height: 240px;
+        height: 300px;
         width: 35%;
     }
 
     .adminLoginTitle {
-        margin-bottom: 40px;
+        margin-bottom: 30px;
         text-align: center;
-        margin-left: 30px;
+        margin-left: 85px;
     }
 </style>

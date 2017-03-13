@@ -23555,7 +23555,7 @@ __webpack_require__(153)
 
 var Component = __webpack_require__(1)(
   /* script */
-  null,
+  __webpack_require__(189),
   /* template */
   __webpack_require__(137),
   /* scopeId */
@@ -24871,7 +24871,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "\n.el-carousel__item h3 {\n    color: #475669;\n    font-size: 18px;\n    opacity: 0.75;\n    line-height: 300px;\n    margin: 0;\n}\n.el-carousel__item:nth-child(2n) {\n    background-color: #99a9bf;\n}\n.el-carousel__item:nth-child(2n+1) {\n    background-color: #d3dce6;\n}\n", ""]);
+exports.push([module.i, "\n.el-carousel__item h3 {\n    color: #475669;\n    font-size: 18px;\n    opacity: 0.75;\n    line-height: 300px;\n    margin: 0;\n}\n.el-carousel__item:nth-child(2n) {\n    background-color: #99a9bf;\n}\n.el-carousel__item:nth-child(2n+1) {\n    background-color: #d3dce6;\n}\n.img_class {\n    height: 100%;\n    width: 100%;\n}\n", ""]);
 
 // exports
 
@@ -24885,7 +24885,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "\n.user-login {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    margin: auto;\n    height: 240px;\n    width: 35%;\n}\n.userLoginTitle {\n    margin-bottom: 40px;\n    text-align: center;\n    margin-left: 30px;\n}\n", ""]);
+exports.push([module.i, "\n.user-login {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    margin: auto;\n    height: 300px;\n    width: 35%;\n}\n.userLoginTitle {\n    margin-bottom: 40px;\n    text-align: center;\n    margin-left: 85px;\n}\n", ""]);
 
 // exports
 
@@ -24941,7 +24941,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "\n.user-register {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    margin: auto;\n    height: 240px;\n    width: 35%;\n}\n.userRegisterTitle {\n    margin-bottom: 40px;\n    text-align: center;\n    margin-left: 30px;\n}\n", ""]);
+exports.push([module.i, "\n.user-register {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    margin: auto;\n    height: 300px;\n    width: 35%;\n}\n.userRegisterTitle {\n    margin-bottom: 40px;\n    text-align: center;\n    margin-left: 85px;\n}\n", ""]);
 
 // exports
 
@@ -24969,7 +24969,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "\n.admin-login {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    margin: auto;\n    height: 240px;\n    width: 35%;\n}\n.adminLoginTitle {\n    margin-bottom: 40px;\n    text-align: center;\n    margin-left: 30px;\n}\n", ""]);
+exports.push([module.i, "\n.admin-login {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    margin: auto;\n    height: 300px;\n    width: 35%;\n}\n.adminLoginTitle {\n    margin-bottom: 30px;\n    text-align: center;\n    margin-left: 85px;\n}\n", ""]);
 
 // exports
 
@@ -58891,8 +58891,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "arrow": "hover",
       "height": "500px"
     }
-  }, _vm._l((4), function(item) {
-    return _c('el-carousel-item', [_c('h3', [_vm._v(_vm._s(item))])])
+  }, _vm._l((_vm.picurl), function(item) {
+    return _c('el-carousel-item', {
+      directives: [{
+        name: "loading",
+        rawName: "v-loading.fullscreen.lock",
+        value: (_vm.fullscreenLoading),
+        expression: "fullscreenLoading",
+        modifiers: {
+          "fullscreen": true,
+          "lock": true
+        }
+      }]
+    }, [_c('img', {
+      staticClass: "img_class",
+      attrs: {
+        "src": item.url,
+        "alt": "item.name"
+      }
+    })])
   }))
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -58985,7 +59002,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.resetForm('userLogin')
       }
     }
-  }, [_vm._v("重置")])], 1)], 1)], 1)
+  }, [_vm._v("重置表单")])], 1)], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -59226,7 +59243,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.resetForm('userRegister')
       }
     }
-  }, [_vm._v("重置")])], 1)], 1)], 1)
+  }, [_vm._v("重置表单")])], 1)], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -59277,7 +59294,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.enterIndex
     }
-  }, [_vm._v("欢迎登录")]), _vm._v(" "), _c('el-form', {
+  }, [_vm._v("欢迎登录管理员后台")]), _vm._v(" "), _c('el-form', {
     ref: "adminLogin",
     staticClass: "demo-ruleForm",
     attrs: {
@@ -59347,7 +59364,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.resetForm('adminLogin')
       }
     }
-  }, [_vm._v("重置")])], 1)], 1)], 1)
+  }, [_vm._v("重置输入")])], 1)], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -59468,7 +59485,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "index": "5"
     }
-  }, [_vm._v("订单详情")])], 1)])], 1)], 1)
+  }, [_vm._v("订单详情")]), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "/admin-login"
+    }
+  }, [_vm._v("我是管理员")])], 1)])], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -82190,6 +82211,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
     name: 'nav-menu',
@@ -82634,9 +82657,129 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 179 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed: SyntaxError: Invalid left-hand side in assignment expression (34:28)\n\n\u001b[0m \u001b[90m 32 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m {\n \u001b[90m 33 | \u001b[39m    data() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 34 | \u001b[39m        \u001b[36mvar\u001b[39m validatePass \u001b[33m=\u001b[39m (rule\u001b[33m,\u001b[39m value\u001b[33m,\u001b[39m callback) \u001b[33m=\u001b[39m\n \u001b[90m    | \u001b[39m                            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 35 | \u001b[39m    \u001b[33m>\u001b[39m\n \u001b[90m 36 | \u001b[39m        {\n \u001b[90m 37 | \u001b[39m            \u001b[36mif\u001b[39m (value \u001b[33m===\u001b[39m \u001b[32m''\u001b[39m) {\u001b[0m\n");
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    data: function data() {
+        var _this = this;
+
+        var validatePass = function validatePass(rule, value, callback) {
+            if (value === '') {
+                callback(new Error('请输入密码'));
+            } else {
+                if (_this.userRegister.checkPass !== '') {
+                    _this.$refs.userRegister.validateField('checkPass');
+                }
+                callback();
+            }
+        };
+        var validatePass2 = function validatePass2(rule, value, callback) {
+            if (value === '') {
+                callback(new Error('请再次输入密码'));
+            } else if (value !== _this.userRegister.pass) {
+                callback(new Error('两次输入密码不一致!'));
+            } else {
+                callback();
+            }
+        };
+        return {
+            userRegister: {
+                pass: '',
+                checkPass: '',
+                username: '',
+                email: '',
+                errmsg: ""
+            },
+            rules2: {
+                pass: [{ validator: validatePass, trigger: 'blur' }],
+                checkPass: [{ validator: validatePass2, trigger: 'blur' }]
+            }
+        };
+    },
+
+    methods: {
+        enterIndex: function enterIndex() {
+            this.$router.push({ path: '/index' });
+        },
+        submitForm: function submitForm(formName) {
+            var _this2 = this;
+
+            this.$refs[formName].validate(function (valid) {
+                if (valid) {
+                    axios.post('register', {
+                        email: _this2.userRegister.email,
+                        name: _this2.userRegister.username,
+                        password: _this2.userRegister.pass,
+                        password_confirmation: _this2.userRegister.checkPass
+                    }).then(function (res) {
+                        var time = new Date();
+                        sessionStorage.setItem('user-id', res.data.id);
+                        sessionStorage.setItem('user-email', res.data.email);
+                        sessionStorage.setItem('user-name', res.data.name);
+                        sessionStorage.setItem('miss-hour', time.getHours());
+                        sessionStorage.setItem('miss-minute', time.getMinutes());
+                        _this2.$notify({
+                            title: '注册成功',
+                            message: '欢迎注册',
+                            type: 'success',
+                            duration: 2000
+                        });
+                        _this2.$router.push({ path: 'user-admin' });
+                    }).catch(function (error) {
+                        _this2.errmsg = error.response.data.email['0'];
+                        _this2.$notify.error({
+                            title: '失败',
+                            message: _this2.errmsg,
+                            duration: 3000,
+                            onClose: function onClose() {
+                                location.reload();
+                            }
+                        });
+                    });
+                } else {
+                    console.log('error submit!!');
+                    return false;
+                }
+            });
+        },
+        resetForm: function resetForm(formName) {
+            this.$refs[formName].resetFields();
+        }
+    }
+};
 
 /***/ }),
 /* 180 */
@@ -82815,6 +82958,56 @@ router.beforeEach(function (to, from, next) {
 __webpack_require__(38);
 module.exports = __webpack_require__(37);
 
+
+/***/ }),
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    data: function data() {
+        return {
+            picurl: [],
+            fullscreenLoading: true
+        };
+    },
+
+    methods: {
+        openFullScreen: function openFullScreen() {
+            var _this = this;
+
+            this.fullscreenLoading = true;
+            setTimeout(function () {
+                _this.fullscreenLoading = false;
+            }, 1000);
+        }
+    },
+    created: function created() {
+        var _this2 = this;
+
+        this.openFullScreen();
+        axios.get('api/carousel').then(function (res) {
+            _this2.picurl = res.data;
+        });
+    }
+};
 
 /***/ })
 /******/ ]);
