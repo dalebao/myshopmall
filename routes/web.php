@@ -26,6 +26,9 @@ Route::get('/islogout', function () {
     ]);
 });
 
+Route::get('/test', function () {
+    return 1111;
+});
 
 
 Route::get('{all}', function () {

@@ -42,9 +42,9 @@
                             email: this.userLogin.email,
                             password: this.userLogin.pass
                         }).then(res => {
-                            localStorage.setItem('user-id', res.data.id)
-                            localStorage.setItem('user-email', res.data.email)
-                            localStorage.setItem('user-name', res.data.name)
+                            sessionStorage.setItem('user-id', res.data.id)
+                            sessionStorage.setItem('user-email', res.data.email)
+                            sessionStorage.setItem('user-name', res.data.name)
                             this.$notify({
                                 title: '登录成功',
                                 message: '欢迎登录',

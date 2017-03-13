@@ -9,9 +9,11 @@ Vue.use(VueRouter)
 import Index from '../components/front/index.vue'
 import UserLogin from '../components/utils/userLogin.vue'
 import UserRegister from '../components/utils/userRegister.vue'
+import AdminRegister from '../components/utils/adminRegister.vue'
 import MainPage from '../components/front/mainPage.vue'
 import Category from '../components/front/category.vue'
 import UserAdmin from '../components/frontAdmin/admin.vue'
+import BackEndIndex from '../components/backend/index.vue'
 const routes = [
     {
         path: '/', component: Index,
@@ -27,7 +29,13 @@ const routes = [
         name: 'user-register', path: '/user-register', component: UserRegister
     },
     {
+        name: 'admin-register', path: '/admin-register', component: AdminRegister
+    },
+    {
         name: 'user-admin', path: '/user-admin', meta: {requireAuth: true}, component: UserAdmin
+    },
+    {
+        name: 'backend-index', path: '/haso', component: BackEndIndex
     }
 
 ];
@@ -40,7 +48,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     if ((to.meta.requireAuth)) {// 判断该路由是否需要登录权限
-        if (localStorage.getItem('user-email')) {//判断是否登录
+        if (sessionStorage.getItem('user-email')) {//判断是否登录
             next()
         } else {
             if (to.fullPath == '/user-login') {
@@ -50,7 +58,7 @@ router.beforeEach((to, from, next) => {
             }
         }
     } else {
-        if (localStorage.getItem('user-email')) {
+        if (sessionStorage.getItem('user-email')) {
             if (to.fullPath == '/user-login') {
                 next({
                     query: {redirect: from.fullPath}
