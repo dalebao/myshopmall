@@ -31,7 +31,9 @@
 
     export default {
         data() {
-            var validatePass = (rule, value, callback) => {
+            var validatePass = (rule, value, callback) =
+        >
+            {
                 if (value === '') {
                     callback(new Error('请输入密码'));
                 } else {
@@ -40,8 +42,11 @@
                     }
                     callback();
                 }
-            };
-            var validatePass2 = (rule, value, callback) => {
+            }
+            ;
+            var validatePass2 = (rule, value, callback) =
+        >
+            {
                 if (value === '') {
                     callback(new Error('请再次输入密码'));
                 } else if (value !== this.userRegister.pass) {
@@ -49,14 +54,15 @@
                 } else {
                     callback();
                 }
-            };
+            }
+            ;
             return {
                 userRegister: {
                     pass: '',
                     checkPass: '',
                     username: '',
                     email: '',
-                    errmsg: ''
+                    errmsg: ""
                 },
                 rules2: {
                     pass: [
@@ -70,7 +76,7 @@
         },
         methods: {
             enterIndex(){
-                this.$router.push({path:'/index'})
+                this.$router.push({path: '/index'})
             },
             submitForm(formName) {
 

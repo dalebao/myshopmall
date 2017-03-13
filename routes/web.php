@@ -14,11 +14,13 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
 
+//获取用户登录信息
 Route::get('/user', function () {
     return Auth::user();
 });
+
+
 Route::get('/islogout', function () {
     return response()->json([
         'code' => 200,
@@ -26,8 +28,26 @@ Route::get('/islogout', function () {
     ]);
 });
 
-Route::get('/test', function () {
-    return 1111;
+
+//管理员后台路由
+Route::group(['prefix' => 'admin'], function () {
+    //登录请求
+    Route::post('login', 'Admin\LoginController@login');
+
+//退出登录
+    Route::post('logout', 'Admin\LoginController@logout');
+
+
+//注册请求
+    Route::post('register', 'Admin\RegisterController@register');
+
+    Route::middleware('auth.admin:admin')->get('info', function () {
+        return Auth::guard('admin')->user();
+    });
+
+    Route::get('test', function () {
+        return 123;
+    });
 });
 
 

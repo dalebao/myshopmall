@@ -12,7 +12,7 @@
             }
         },
         created(){
-            axios.get('/test').then(res => {
+            axios.get('/admin/test').then(res => {
                 console.log(res)
             })
         }

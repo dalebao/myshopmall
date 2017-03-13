@@ -8,6 +8,7 @@ Vue.use(VueRouter)
 
 import Index from '../components/front/index.vue'
 import UserLogin from '../components/utils/userLogin.vue'
+import AdminLogin from '../components/utils/adminLogin.vue'
 import UserRegister from '../components/utils/userRegister.vue'
 import AdminRegister from '../components/utils/adminRegister.vue'
 import MainPage from '../components/front/mainPage.vue'
@@ -35,7 +36,10 @@ const routes = [
         name: 'user-admin', path: '/user-admin', meta: {requireAuth: true}, component: UserAdmin
     },
     {
-        name: 'backend-index', path: '/haso', component: BackEndIndex
+        name: 'backend-index', path: '/haso', meta: {requireAdminAuth: true}, component: BackEndIndex
+    },
+    {
+        name: 'admin-login', path: '/admin-login', component: AdminLogin
     }
 
 ];
@@ -47,6 +51,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+    //用户层认证判断
     if ((to.meta.requireAuth)) {// 判断该路由是否需要登录权限
         if (sessionStorage.getItem('user-email')) {//判断是否登录
             next()
@@ -63,6 +68,30 @@ router.beforeEach((to, from, next) => {
                 next({
                     query: {redirect: from.fullPath}
                 })
+            }
+
+        }
+    }
+
+    //管理层认证判断
+    if ((to.meta.requireAdminAuth)) {// 判断该路由是否需要登录权限
+        if (sessionStorage.getItem('admin-email') ) {//判断是否登录
+            next()
+        } else {
+            if (to.fullPath == '/admin-login') {
+                next();
+            } else {
+                next({path: '/admin-login'});
+            }
+        }
+    } else {
+        if (sessionStorage.getItem('admin-email')) {
+            if (to.fullPath == '/admin-login') {
+                next({
+                    query: {redirect: from.fullPath}
+                })
+            } else {
+                next();
             }
 
         }

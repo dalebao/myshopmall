@@ -112,6 +112,9 @@
 
                     }
                 })
+                axios.post('admin/logout').then(res=>{
+                    console.log(res)
+                })
 
             }
         },
