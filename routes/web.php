@@ -28,6 +28,9 @@ Route::get('/islogout', function () {
     ]);
 });
 
+Route::middleware('auth.admin:admin')->get('home',function (){
+    return Auth::guard('admin')->user();
+});
 
 //管理员后台路由
 Route::group(['prefix' => 'admin'], function () {
@@ -44,6 +47,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware('auth.admin:admin')->get('info', function () {
         return Auth::guard('admin')->user();
     });
+
+
 
     Route::get('test', function () {
         return 123;

@@ -15,6 +15,10 @@ import MainPage from '../components/front/mainPage.vue'
 import Category from '../components/front/category.vue'
 import UserAdmin from '../components/frontAdmin/admin.vue'
 import BackEndIndex from '../components/backend/index.vue'
+import Dash from '../components/backend/dash.vue'
+import ItemList from '../components/backend/itemAdd.vue'
+import ItemAdd from '../components/backend/itemAdd.vue'
+
 const routes = [
     {
         path: '/', component: Index,
@@ -36,7 +40,15 @@ const routes = [
         name: 'user-admin', path: '/user-admin', meta: {requireAuth: true}, component: UserAdmin
     },
     {
-        name: 'backend-index', path: '/haso', meta: {requireAdminAuth: true}, component: BackEndIndex
+        path: '/haso', meta: {requireAdminAuth: true}, component: BackEndIndex,
+        children: [
+            {
+                name: 'dash', path: '/', meta: {requireAdminAuth: true}, component: Dash
+            },
+            {
+                name:'item_add',path:'item_add',meta: {requireAdminAuth: true},component:ItemAdd
+            }
+        ]
     },
     {
         name: 'admin-login', path: '/admin-login', component: AdminLogin
@@ -75,7 +87,8 @@ router.beforeEach((to, from, next) => {
 
     //管理层认证判断
     if ((to.meta.requireAdminAuth)) {// 判断该路由是否需要登录权限
-        if (sessionStorage.getItem('admin-email') ) {//判断是否登录
+        var sessionAdmin = sessionStorage.getItem('admin-email')
+        if (sessionAdmin != undefined && sessionAdmin != '') {//判断是否登录
             next()
         } else {
             if (to.fullPath == '/admin-login') {
@@ -85,7 +98,7 @@ router.beforeEach((to, from, next) => {
             }
         }
     } else {
-        if (sessionStorage.getItem('admin-email')) {
+        if (sessionAdmin != undefined && sessionAdmin != '') {
             if (to.fullPath == '/admin-login') {
                 next({
                     query: {redirect: from.fullPath}

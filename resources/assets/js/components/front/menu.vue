@@ -50,7 +50,8 @@
                         </el-menu-item>
                     </el-submenu>
                     <el-menu-item index="5">订单详情</el-menu-item>
-                    <el-menu-item index="/admin-login">我是管理员</el-menu-item>
+                    <el-menu-item index="/admin-login" v-if="!admin">我是管理员</el-menu-item>
+                    <el-menu-item index="/haso" v-if="admin">进入管理员后台</el-menu-item>
 
                 </div>
             </el-col>
@@ -80,7 +81,8 @@
             return {
                 input: '',
                 username: '',
-                isLogin: false
+                isLogin: false,
+                admin:''
             }
         },
 
@@ -122,6 +124,7 @@
         },
         created(){
             this.username = sessionStorage.getItem('user-name')
+            this.admin = sessionStorage.getItem('admin-name')
             if (this.username) {
                 this.isLogin = true;
             }

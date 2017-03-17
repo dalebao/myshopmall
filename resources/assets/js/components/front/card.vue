@@ -9,7 +9,7 @@
                     <img src="https://img.alicdn.com/bao/uploaded/i3/TB18vZlKpXXXXbcXpXXXXXXXXXX_!!0-item_pic.jpg_250x250.jpg"
                          class="image">
                     <div style="padding: 14px;">
-                        <span>好吃的汉堡</span>
+                        <span>璀璨的钻石</span>
                         <div class="bottom clearfix">
                             <!--<time class="time">{{ currentDate }}</time>-->
                             <span class="iconfont icon-costincluded">10元</span>

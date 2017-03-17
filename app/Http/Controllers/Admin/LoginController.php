@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Foundation\Auth\RedirectsUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -11,7 +13,7 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    protected $redirect = '/admin/info';
+    protected $redirectTo = '/admin/info';
 
 
     public function __construct()
