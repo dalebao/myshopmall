@@ -1,7 +1,7 @@
 <template>
     <el-carousel :interval="5000" arrow="hover" height="500px">
         <el-carousel-item v-for="item in picurl" v-loading.fullscreen.lock="fullscreenLoading">
-            <img class="img_class" :src="item.url" alt="item.name">
+            <img class="img_class" :src="item.url" :alt="item.name">
         </el-carousel-item>
     </el-carousel>
 </template>
