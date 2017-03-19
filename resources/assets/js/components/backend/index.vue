@@ -63,7 +63,7 @@
     }
 
     .footer {
-        position: absolute;
+        position: relative;
         bottom: -180px;
         width: 100%;
         height: 100px;
@@ -71,10 +71,7 @@
 
     }
 
-    .admin_menu {
-        background-color: #eef1f6;
-        height: 800px;
-    }
+
 
     .router_view {
         margin: 10px;

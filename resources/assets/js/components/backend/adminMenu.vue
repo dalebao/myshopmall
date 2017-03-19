@@ -1,5 +1,4 @@
 <template>
-
         <el-col :span="6">
             <div class="admin_menu">
                 <el-menu mode="vertical" :default-active="active" class="el-menu-vertical-demo"
