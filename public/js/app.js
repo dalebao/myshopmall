@@ -70552,6 +70552,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('el-button', {
     attrs: {
       "type": "primary"
+    },
+    on: {
+      "click": _vm.handleSubmit
     }
   }, [_vm._v("保存")])], 1)])
 },staticRenderFns: []}
@@ -95708,6 +95711,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             // console.log('editor change!', editor, html, text)
             this.content = html;
+        },
+        handleSubmit: function handleSubmit() {
+            axios.get('/api/item', {
+                test: '1',
+                name: this.name,
+                cost_price: this.cost_price,
+                now_price: this.now_price,
+                description: this.content
+            });
         }
     },
     // if you need to get the current editor object, you can find the editor object like this, the $ref object is a ref attribute corresponding to the dom redefined

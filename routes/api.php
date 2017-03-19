@@ -20,3 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //carousel controller
 Route::resource('carousel', 'Front\CarouselController');
+
+
+
+Route::middleware('cors','api')->resource('item','Admin\ItemController');
+
