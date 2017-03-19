@@ -28,7 +28,7 @@ Route::get('/islogout', function () {
     ]);
 });
 
-Route::middleware('auth.admin:admin')->get('home', function () {
+Route::middleware('auth.admin:admin')->get('home',function (){
     return Auth::guard('admin')->user();
 });
 
@@ -47,11 +47,12 @@ Route::group(['prefix' => 'admin'], function () {
     Route::middleware('auth.admin:admin')->get('info', function () {
         return Auth::guard('admin')->user();
     });
-    Route::group(['middleware' => 'auth.admin:admin'], function () {
-        //item controller
-        Route::resource('item', 'Admin\ItemController');
-    });
 
+
+
+    Route::get('test', function () {
+        return 123;
+    });
 });
 
 

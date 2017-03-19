@@ -65,7 +65,7 @@
         </div>
         <hr>
         <div class="submitBtn" style="margin-top:20px">
-            <el-button type="primary" @click="handleSubmit">保存</el-button>
+            <el-button type="primary">保存</el-button>
         </div>
 
     </div>
@@ -111,15 +111,6 @@
             onEditorChange({editor, html, text}) {
                 // console.log('editor change!', editor, html, text)
                 this.content = html
-            },
-            handleSubmit(){
-                axios.get('/api/item', {
-                    test:'1',
-                    name: this.name,
-                    cost_price: this.cost_price,
-                    now_price: this.now_price,
-                    description: this.content
-                })
             }
         },
         // if you need to get the current editor object, you can find the editor object like this, the $ref object is a ref attribute corresponding to the dom redefined
