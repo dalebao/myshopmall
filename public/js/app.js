@@ -69367,40 +69367,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 131 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Component = __webpack_require__(0)(
-  /* script */
-  __webpack_require__(197),
-  /* template */
-  __webpack_require__(152),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/Users/baoxulong/Documents/Code/GitFiles/myshopmall/resources/assets/js/components/backend/addTag.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] addTag.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-37e38e04", Component.options)
-  } else {
-    hotAPI.reload("data-v-37e38e04", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
+/* 131 */,
 /* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -70244,65 +70211,7 @@ if (false) {
 }
 
 /***/ }),
-/* 152 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "tagAdd"
-  }, [_vm._l((_vm.dynamicTags), function(tag) {
-    return _c('el-tag', {
-      key: tag,
-      attrs: {
-        "closable": true,
-        "close-transition": false
-      },
-      on: {
-        "close": function($event) {
-          _vm.handleClose(tag)
-        }
-      }
-    }, [_vm._v("\n        " + _vm._s(tag) + "\n    ")])
-  }), _vm._v(" "), (_vm.inputVisible) ? _c('el-input', {
-    ref: "saveTagInput",
-    staticClass: "input-new-tag",
-    attrs: {
-      "size": "mini"
-    },
-    on: {
-      "blur": _vm.handleInputConfirm
-    },
-    nativeOn: {
-      "keyup": function($event) {
-        if (_vm._k($event.keyCode, "enter", 13)) { return null; }
-        _vm.handleInputConfirm($event)
-      }
-    },
-    model: {
-      value: (_vm.inputValue),
-      callback: function($$v) {
-        _vm.inputValue = $$v
-      }
-    }
-  }) : _c('el-button', {
-    staticClass: "button-new-tag",
-    attrs: {
-      "size": "small"
-    },
-    on: {
-      "click": _vm.showInput
-    }
-  }, [_vm._v("+ New Tag")])], 2)
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-37e38e04", module.exports)
-  }
-}
-
-/***/ }),
+/* 152 */,
 /* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -70443,117 +70352,171 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('h1', [_vm._v("添加一个商品:")]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
-    staticClass: "addName"
-  }, [_c('h3', [_vm._v("\n            添加商品名称:\n        ")]), _vm._v(" "), _c('el-input', {
+  return _c('el-form', {
+    ref: "addItemForm",
+    staticClass: "demo-addItemForm",
     attrs: {
-      "placeholder": "请输入商品名称"
-    },
+      "model": _vm.addItemForm,
+      "rules": _vm.rules,
+      "label-width": "100px"
+    }
+  }, [_c('el-form-item', {
+    attrs: {
+      "label": "商品名称",
+      "prop": "name"
+    }
+  }, [_c('el-input', {
     model: {
-      value: (_vm.name),
+      value: (_vm.addItemForm.name),
       callback: function($$v) {
-        _vm.name = $$v
+        _vm.addItemForm.name = $$v
       }
     }
-  })], 1), _vm._v(" "), _c('div', {
-    staticClass: "addDescription"
-  }, [_c('h3', [_vm._v("\n            添加商品描述:\n        ")]), _vm._v(" "), _c('quill-editor', {
-    ref: "myTextEditor",
+  })], 1), _vm._v(" "), _c('el-form-item', {
     attrs: {
-      "config": _vm.editorOption
-    },
+      "label": "商品分类",
+      "prop": "category",
+      "required": ""
+    }
+  }, [_c('chose-cate', {
     on: {
-      "blur": function($event) {
-        _vm.onEditorBlur($event)
-      },
-      "focus": function($event) {
-        _vm.onEditorFocus($event)
-      },
-      "ready": function($event) {
-        _vm.onEditorReady($event)
-      }
+      "sendCategory": _vm.handleCategory
+    }
+  })], 1), _vm._v(" "), _c('el-form-item', {
+    attrs: {
+      "label": "商品成本",
+      "prop": "cost_price",
+      "required": ""
+    }
+  }, [_c('el-input', {
+    attrs: {
+      "placeholder": "请输入成本"
     },
     model: {
-      value: (_vm.content),
+      value: (_vm.addItemForm.cost_price),
       callback: function($$v) {
-        _vm.content = $$v
-      }
-    }
-  })], 1), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
-    staticClass: "tagAdd",
-    staticStyle: {
-      "margin-top": "20px"
-    }
-  }, [_c('h5', [_vm._v("选择商品分类：")]), _vm._v(" "), _c('chose-cate'), _vm._v(" "), _c('hr'), _vm._v(" "), _c('h5', [_vm._v("增加新标签:")]), _vm._v(" "), _c('add-tag')], 1), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
-    staticClass: "addPriceNum"
-  }, [_c('el-row', {
-    attrs: {
-      "gutter": 20
-    }
-  }, [_c('el-col', {
-    attrs: {
-      "span": 8
-    }
-  }, [_c('h5', [_vm._v("输入价格：")]), _vm._v(" "), _c('el-input', {
-    attrs: {
-      "placeholder": "请输入内容"
-    },
-    model: {
-      value: (_vm.now_price),
-      callback: function($$v) {
-        _vm.now_price = $$v
+        _vm.addItemForm.cost_price = _vm._n($$v)
       }
     }
   }, [_c('template', {
     slot: "append"
-  }, [_vm._v("元")])], 2)], 1), _vm._v(" "), _c('el-col', {
+  }, [_vm._v("元")])], 2)], 1), _vm._v(" "), _c('el-form-item', {
     attrs: {
-      "span": 8
+      "label": "商品价格",
+      "prop": "now_price",
+      "required": ""
     }
-  }, [_c('h5', [_vm._v("输入成本：")]), _vm._v(" "), _c('el-input', {
+  }, [_c('el-input', {
     attrs: {
-      "placeholder": "请输入内容"
+      "placeholder": "请输入价格"
     },
     model: {
-      value: (_vm.cost_price),
+      value: (_vm.addItemForm.now_price),
       callback: function($$v) {
-        _vm.cost_price = $$v
+        _vm.addItemForm.now_price = _vm._n($$v)
       }
     }
   }, [_c('template', {
     slot: "append"
-  }, [_vm._v("元")])], 2)], 1), _vm._v(" "), _c('el-col', {
+  }, [_vm._v("元")])], 2)], 1), _vm._v(" "), _c('el-form-item', {
     attrs: {
-      "span": 8
+      "label": "商品数量",
+      "prop": "number",
+      "required": ""
     }
-  }, [_c('h5', [_vm._v("输入数量：")]), _vm._v(" "), _c('el-input', {
+  }, [_c('el-input', {
     attrs: {
-      "placeholder": "请输入内容"
+      "placeholder": "请输入数量"
     },
     model: {
-      value: (_vm.number),
+      value: (_vm.addItemForm.number),
       callback: function($$v) {
-        _vm.number = $$v
+        _vm.addItemForm.number = _vm._n($$v)
       }
     }
   }, [_c('template', {
     slot: "append"
-  }, [_vm._v("件")])], 2)], 1)], 1)], 1), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
-    staticClass: "addImg"
-  }, [_c('el-row', [_c('el-col', {
+  }, [_vm._v("件")])], 2)], 1), _vm._v(" "), _c('el-form-item', {
     attrs: {
-      "span": 12
+      "label": "是否推荐",
+      "prop": "recommend"
     }
-  }, [_c('add-image')], 1)], 1)], 1), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
-    staticClass: "submitBtn",
-    staticStyle: {
-      "margin-top": "20px"
+  }, [_c('el-switch', {
+    attrs: {
+      "on-text": "",
+      "off-text": ""
+    },
+    model: {
+      value: (_vm.addItemForm.recommend),
+      callback: function($$v) {
+        _vm.addItemForm.recommend = $$v
+      }
     }
-  }, [_c('el-button', {
+  })], 1), _vm._v(" "), _c('el-form-item', {
+    attrs: {
+      "label": "商品标签",
+      "prop": "tag"
+    }
+  }, [_c('el-checkbox-group', {
+    model: {
+      value: (_vm.addItemForm.tag),
+      callback: function($$v) {
+        _vm.addItemForm.tag = $$v
+      }
+    }
+  }, [_c('el-checkbox', {
+    attrs: {
+      "label": "美食/餐厅线上活动",
+      "name": "tag"
+    }
+  }), _vm._v(" "), _c('el-checkbox', {
+    attrs: {
+      "label": "地推活动",
+      "name": "tag"
+    }
+  }), _vm._v(" "), _c('el-checkbox', {
+    attrs: {
+      "label": "线下主题活动",
+      "name": "tag"
+    }
+  }), _vm._v(" "), _c('el-checkbox', {
+    attrs: {
+      "label": "单纯品牌曝光",
+      "name": "tag"
+    }
+  })], 1)], 1), _vm._v(" "), _c('el-form-item', {
+    attrs: {
+      "label": "商品描述",
+      "prop": "description"
+    }
+  }, [_c('quill-editor', {
+    ref: "myTextEditor",
+    model: {
+      value: (_vm.addItemForm.description),
+      callback: function($$v) {
+        _vm.addItemForm.description = $$v
+      }
+    }
+  })], 1), _vm._v(" "), _c('el-form-item', {
+    attrs: {
+      "label": "增加缩略图"
+    }
+  }, [_c('add-image')], 1), _vm._v(" "), _c('el-form-item', [_c('el-button', {
     attrs: {
       "type": "primary"
+    },
+    on: {
+      "click": function($event) {
+        _vm.submitForm('addItemForm')
+      }
     }
-  }, [_vm._v("保存")])], 1)])
+  }, [_vm._v("立即创建")]), _vm._v(" "), _c('el-button', {
+    on: {
+      "click": function($event) {
+        _vm.resetForm('addItemForm')
+      }
+    }
+  }, [_vm._v("重置")])], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -70568,16 +70531,16 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {}, [_c('span', {
-    staticClass: "demonstration"
-  }, [_vm._v("可选择任意一级菜单的选项")]), _vm._v(" "), _c('el-cascader', {
+  return _c('el-cascader', {
     attrs: {
       "placeholder": "试试搜索：指南",
       "options": _vm.options,
-      "filterable": "",
-      "change-on-select": ""
+      "filterable": ""
+    },
+    on: {
+      "change": _vm.handleChange
     }
-  })], 1)
+  })
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -71185,11 +71148,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "el-icon-message"
   }), _vm._v("新增商品")]), _vm._v(" "), _c('el-menu-item', {
     attrs: {
-      "index": "4"
+      "index": "/haso/item_list"
     }
   }, [_c('i', {
     staticClass: "el-icon-message"
-  }), _vm._v("导航四")])], 1)], 1)], 1)])
+  }), _vm._v("商品列表")])], 1)], 1)], 1)])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -95582,26 +95545,12 @@ if (!window.Quill) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_quill_editor__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_quill_editor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_quill_editor__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__addTag_vue__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__addTag_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__addTag_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__choseCategory_vue__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__choseCategory_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__choseCategory_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__addImage_vue__ = __webpack_require__(224);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__addImage_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__addImage_vue__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__choseCategory_vue__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__choseCategory_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__choseCategory_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_quill_editor__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_quill_editor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_quill_editor__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__addImage_vue__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__addImage_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__addImage_vue__);
 //
 //
 //
@@ -95670,125 +95619,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = {
+    components: {
+        ChoseCate: __WEBPACK_IMPORTED_MODULE_0__choseCategory_vue___default.a,
+        quillEditor: __WEBPACK_IMPORTED_MODULE_1_vue_quill_editor__["quillEditor"],
+        AddImage: __WEBPACK_IMPORTED_MODULE_2__addImage_vue___default.a
+    },
+
     data: function data() {
         return {
-            name: '',
-            cost_price: '',
-            now_price: '',
-            number: '',
-            content: '<h2>I am Example</h2>',
-            editorOption: {
-                // something config
+            addItemForm: {
+                name: '',
+                category: '',
+                cost_price: 0,
+                now_price: 0,
+                number: 0,
+                recommend: false,
+                tag: [],
+                resource: '',
+                description: '<h1>this is example</h1>'
+            },
+            rules: {
+                name: [{ required: true, message: '请输入商品名称', trigger: 'blur' }, { min: 3, max: 15, message: '长度在 3 到 15 个字符', trigger: 'blur' }],
+                category: [{ required: true, message: '请选择商品类型', trigger: 'blur' }],
+                cost_price: [{ type: 'number', message: '请输入数字', trigger: 'blur' }],
+                now_price: [{ type: 'number', message: '请输入数字', trigger: 'blur' }],
+                number: [{ type: 'number', message: '请输入数字', trigger: 'blur' }],
+                tag: [{ type: 'array', required: true, message: '请至少选择一个标签', trigger: 'change' }],
+                description: [{ required: true, message: '请填写商品描述', trigger: 'blur' }]
             }
         };
     },
 
-    components: {
-        quillEditor: __WEBPACK_IMPORTED_MODULE_0_vue_quill_editor__["quillEditor"],
-        AddTag: __WEBPACK_IMPORTED_MODULE_1__addTag_vue___default.a,
-        ChoseCate: __WEBPACK_IMPORTED_MODULE_2__choseCategory_vue___default.a,
-        AddImage: __WEBPACK_IMPORTED_MODULE_3__addImage_vue___default.a
-    },
-    // if you need to manually control the data synchronization, parent component needs to explicitly emit an event instead of relying on implicit binding
-    // 如果需要手动控制数据同步，父组件需要显式地处理changed事件
     methods: {
-        onEditorBlur: function onEditorBlur(editor) {
-            console.log('editor blur!', editor);
-        },
-        onEditorFocus: function onEditorFocus(editor) {
-            console.log('editor focus!', editor);
-        },
-        onEditorReady: function onEditorReady(editor) {
-            console.log('editor ready!', editor);
-        },
-        onEditorChange: function onEditorChange(_ref) {
-            var editor = _ref.editor,
-                html = _ref.html,
-                text = _ref.text;
-
-            // console.log('editor change!', editor, html, text)
-            this.content = html;
-        }
-    },
-    // if you need to get the current editor object, you can find the editor object like this, the $ref object is a ref attribute corresponding to the dom redefined
-    // 如果你需要得到当前的editor对象来做一些事情，你可以像下面这样定义一个方法属性来获取当前的editor对象，实际上这里的$refs对应的是当前组件内所有关联了ref属性的组件元素对象
-    computed: {
-        editor: function editor() {
-            return this.$refs.myTextEditor.quillEditor;
-        }
-    },
-    mounted: function mounted() {
-        // you can use current editor object to do something(editor methods)
-        console.log('this is my editor', this.editor);
-        // this.editor to do something...
-    }
-};
-
-/***/ }),
-/* 197 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = {
-    data: function data() {
-        return {
-            dynamicTags: ['标签一', '标签二', '标签三'],
-            inputVisible: false,
-            inputValue: ''
-        };
-    },
-
-    methods: {
-        handleClose: function handleClose(tag) {
-            this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
-        },
-        showInput: function showInput() {
-            var _this = this;
-
-            this.inputVisible = true;
-            this.$nextTick(function (_) {
-                _this.$refs.saveTagInput.$refs.input.focus();
+        submitForm: function submitForm(formName) {
+            this.$refs[formName].validate(function (valid) {
+                if (valid) {
+                    alert('submit!');
+                } else {
+                    console.log('error submit!!');
+                    return false;
+                }
             });
         },
-        handleInputConfirm: function handleInputConfirm() {
-            var inputValue = this.inputValue;
-            if (inputValue) {
-                this.dynamicTags.push(inputValue);
-            }
-            this.inputVisible = false;
-            this.inputValue = '';
+        resetForm: function resetForm(formName) {
+            this.$refs[formName].resetFields();
+        },
+        handleCategory: function handleCategory(data) {
+            console.log(data);
         }
     }
 };
 
 /***/ }),
+/* 197 */,
 /* 198 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -95851,9 +95734,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = {
     data: function data() {
@@ -95895,6 +95775,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }]
             }]
         };
+    },
+
+    methods: {
+        handleChange: function handleChange(value) {
+            this.$emit('sendCategory', {
+                category_fa: value['0'],
+                category_son: value['1']
+            });
+        }
     }
 };
 
@@ -97109,8 +96998,10 @@ window.axios.defaults.headers.common = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_backend_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_backend_index_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_backend_dash_vue__ = __webpack_require__(134);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_backend_dash_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_backend_dash_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_backend_itemAdd_vue__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_backend_itemAdd_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_backend_itemAdd_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_backend_listItem_vue__ = __webpack_require__(229);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_backend_listItem_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_backend_listItem_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_backend_itemAdd_vue__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_backend_itemAdd_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_backend_itemAdd_vue__);
 /**
  * Created by baoxulong on 2017/3/3.
  */
@@ -97148,7 +97039,9 @@ var routes = [{
     children: [{
         name: 'dash', path: '/', meta: { requireAdminAuth: true }, component: __WEBPACK_IMPORTED_MODULE_11__components_backend_dash_vue___default.a
     }, {
-        name: 'item_add', path: 'item_add', meta: { requireAdminAuth: true }, component: __WEBPACK_IMPORTED_MODULE_12__components_backend_itemAdd_vue___default.a
+        name: 'item_add', path: 'item_add', meta: { requireAdminAuth: true }, component: __WEBPACK_IMPORTED_MODULE_13__components_backend_itemAdd_vue___default.a
+    }, {
+        name: 'item_list', path: 'item_list', meta: { requireAdminAuth: true }, component: __WEBPACK_IMPORTED_MODULE_12__components_backend_listItem_vue___default.a
     }]
 }, {
     name: 'admin-login', path: '/admin-login', component: __WEBPACK_IMPORTED_MODULE_4__components_utils_adminLogin_vue___default.a
@@ -97231,6 +97124,10 @@ module.exports = __webpack_require__(40);
 /* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
+
+/* styles */
+__webpack_require__(228)
+
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(226),
@@ -97267,34 +97164,20 @@ module.exports = Component.exports
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('el-upload', {
-    ref: "upload",
     staticClass: "upload-demo",
     attrs: {
       "action": "//jsonplaceholder.typicode.com/posts/",
-      "list-type": "picture",
       "on-preview": _vm.handlePreview,
       "on-remove": _vm.handleRemove,
       "file-list": _vm.fileList,
-      "auto-upload": false
+      "list-type": "picture"
     }
   }, [_c('el-button', {
     attrs: {
       "size": "small",
       "type": "primary"
-    },
-    slot: "trigger"
-  }, [_vm._v("选取文件")]), _vm._v(" "), _c('el-button', {
-    staticStyle: {
-      "margin-left": "10px"
-    },
-    attrs: {
-      "size": "small",
-      "type": "success"
-    },
-    on: {
-      "click": _vm.submitUpload
     }
-  }, [_vm._v("上传到服务器")]), _vm._v(" "), _c('div', {
+  }, [_vm._v("点击上传")]), _vm._v(" "), _c('div', {
     staticClass: "el-upload__tip",
     slot: "tip"
   }, [_vm._v("只能上传jpg/png文件，且不超过500kb")])], 1)
@@ -97313,9 +97196,6 @@ if (false) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
 //
 //
 //
@@ -97351,6 +97231,375 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log(file);
         },
         submitUpload: function submitUpload() {}
+    }
+};
+
+/***/ }),
+/* 227 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.el-upload__input{\n    display: none;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(227);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("05db0151", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/.0.26.2@css-loader/index.js!../../../../../node_modules/.10.3.0@vue-loader/lib/style-rewriter.js?id=data-v-885ed182!../../../../../node_modules/.10.3.0@vue-loader/lib/selector.js?type=styles&index=0!./addImage.vue", function() {
+     var newContent = require("!!../../../../../node_modules/.0.26.2@css-loader/index.js!../../../../../node_modules/.10.3.0@vue-loader/lib/style-rewriter.js?id=data-v-885ed182!../../../../../node_modules/.10.3.0@vue-loader/lib/selector.js?type=styles&index=0!./addImage.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 229 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(234),
+  /* template */
+  __webpack_require__(230),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/baoxulong/Documents/Code/GitFiles/myshopmall/resources/assets/js/components/backend/listItem.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] listItem.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7f299756", Component.options)
+  } else {
+    hotAPI.reload("data-v-7f299756", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 230 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('el-tabs', {
+    attrs: {
+      "type": "border-card",
+      "active-name": "info"
+    }
+  }, [_c('el-tab-pane', {
+    attrs: {
+      "name": "info",
+      "label": "商品信息列表"
+    }
+  }, [_c('item-table'), _vm._v(" "), _c('hr'), _vm._v(" "), _c('paginate')], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-7f299756", module.exports)
+  }
+}
+
+/***/ }),
+/* 231 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(233),
+  /* template */
+  __webpack_require__(232),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/baoxulong/Documents/Code/GitFiles/myshopmall/resources/assets/js/components/backend/itemTable.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] itemTable.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2857bac6", Component.options)
+  } else {
+    hotAPI.reload("data-v-2857bac6", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('el-table', {
+    staticStyle: {
+      "width": "100%"
+    },
+    attrs: {
+      "data": _vm.tableData3,
+      "border": "",
+      "height": "250"
+    }
+  }, [_c('el-table-column', {
+    attrs: {
+      "fixed": "",
+      "prop": "date",
+      "label": "日期",
+      "width": "150"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "name",
+      "label": "姓名",
+      "width": "120"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "province",
+      "label": "省份",
+      "width": "120"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "city",
+      "label": "市区",
+      "width": "120"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "address",
+      "label": "地址",
+      "width": "300"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "zip",
+      "label": "邮编",
+      "width": "120"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "fixed": "right",
+      "label": "操作",
+      "width": "150"
+    },
+    scopedSlots: _vm._u([
+      ["default", function(scope) {
+        return [_c('el-button', {
+          attrs: {
+            "type": "text",
+            "size": "small"
+          },
+          on: {
+            "click": _vm.handleClick
+          }
+        }, [_vm._v("查看")]), _vm._v(" "), _c('el-button', {
+          attrs: {
+            "type": "text",
+            "size": "small"
+          }
+        }, [_vm._v("编辑")]), _vm._v(" "), _c('el-button', {
+          attrs: {
+            "type": "text",
+            "size": "small"
+          }
+        }, [_vm._v("删除")])]
+      }]
+    ])
+  })], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-2857bac6", module.exports)
+  }
+}
+
+/***/ }),
+/* 233 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    data: function data() {
+        return {
+            tableData3: [{
+                date: '2016-05-03',
+                name: '王小虎',
+                province: '上海',
+                city: '普陀区',
+                address: '上海市普陀区金沙江路 1518 弄',
+                zip: 200333
+            }, {
+                date: '2016-05-02',
+                name: '王小虎',
+                province: '上海',
+                city: '普陀区',
+                address: '上海市普陀区金沙江路 1518 弄',
+                zip: 200333
+            }, {
+                date: '2016-05-04',
+                name: '王小虎',
+                province: '上海',
+                city: '普陀区',
+                address: '上海市普陀区金沙江路 1518 弄',
+                zip: 200333
+            }, {
+                date: '2016-05-01',
+                name: '王小虎',
+                province: '上海',
+                city: '普陀区',
+                address: '上海市普陀区金沙江路 1518 弄',
+                zip: 200333
+            }, {
+                date: '2016-05-08',
+                name: '王小虎',
+                province: '上海',
+                city: '普陀区',
+                address: '上海市普陀区金沙江路 1518 弄',
+                zip: 200333
+            }, {
+                date: '2016-05-06',
+                name: '王小虎',
+                province: '上海',
+                city: '普陀区',
+                address: '上海市普陀区金沙江路 1518 弄',
+                zip: 200333
+            }, {
+                date: '2016-05-07',
+                name: '王小虎',
+                province: '上海',
+                city: '普陀区',
+                address: '上海市普陀区金沙江路 1518 弄',
+                zip: 200333
+            }]
+        };
+    }
+};
+
+/***/ }),
+/* 234 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__itemTable_vue__ = __webpack_require__(231);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__itemTable_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__itemTable_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_paginate_vue__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_paginate_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__utils_paginate_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    components: {
+        ItemTable: __WEBPACK_IMPORTED_MODULE_0__itemTable_vue___default.a,
+        Paginate: __WEBPACK_IMPORTED_MODULE_1__utils_paginate_vue___default.a
     }
 };
 

@@ -21,16 +21,6 @@ Route::get('/user', function () {
 });
 
 
-Route::get('/islogout', function () {
-    return response()->json([
-        'code' => 200,
-        'msg' => 'success'
-    ]);
-});
-
-Route::middleware('auth.admin:admin')->get('home',function (){
-    return Auth::guard('admin')->user();
-});
 
 //管理员后台路由
 Route::group(['prefix' => 'admin'], function () {
@@ -44,16 +34,22 @@ Route::group(['prefix' => 'admin'], function () {
 //注册请求
     Route::post('register', 'Admin\RegisterController@register');
 
-    Route::middleware('auth.admin:admin')->get('info', function () {
+    Route::middleware('auth:admin')->get('info', function () {
         return Auth::guard('admin')->user();
     });
 
 
-
-    Route::get('test', function () {
-        return 123;
-    });
 });
+
+
+
+
+//api
+Route::group(['middleware'=>'auth:admin','prefix'=>'api'],function (){
+    //item controller
+    Route::resource('item','Admin\ItemController');
+});
+
 
 
 Route::get('{all}', function () {

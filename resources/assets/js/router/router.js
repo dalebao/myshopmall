@@ -16,7 +16,7 @@ import Category from '../components/front/category.vue'
 import UserAdmin from '../components/frontAdmin/admin.vue'
 import BackEndIndex from '../components/backend/index.vue'
 import Dash from '../components/backend/dash.vue'
-import ItemList from '../components/backend/itemAdd.vue'
+import ItemList from '../components/backend/listItem.vue'
 import ItemAdd from '../components/backend/itemAdd.vue'
 
 const routes = [
@@ -47,6 +47,9 @@ const routes = [
             },
             {
                 name:'item_add',path:'item_add',meta: {requireAdminAuth: true},component:ItemAdd
+            },
+            {
+                name:'item_list',path:'item_list',meta: {requireAdminAuth: true},component:ItemList
             }
         ]
     },

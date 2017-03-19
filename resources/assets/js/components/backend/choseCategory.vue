@@ -1,13 +1,10 @@
 <template>
-    <div class="">
-        <span class="demonstration">可选择任意一级菜单的选项</span>
-        <el-cascader
-                placeholder="试试搜索：指南"
-                :options="options"
-                filterable
-                change-on-select
-        ></el-cascader>
-    </div>
+    <el-cascader
+            placeholder="试试搜索：指南"
+            :options="options"
+            filterable
+            @change="handleChange"
+    ></el-cascader>
 </template>
 
 
@@ -32,25 +29,33 @@
                     value: 'ssss',
                     label: 'sssss',
                     children: [{
-                            value: 'form',
-                            label: 'Form'
-                        }, {
-                            value: 'data',
-                            label: 'Data'
-                        }, {
-                            value: 'notice',
-                            label: 'Notice'
-                        }, {
-                            value: 'navigation',
-                            label: 'Navigation'
-                        }, {
-                            value: 'others',
-                            label: 'Others'
-                        }, {
-                            value: 'ziyuan',
-                            label: '资源'
-                        }]
+                        value: 'form',
+                        label: 'Form'
+                    }, {
+                        value: 'data',
+                        label: 'Data'
+                    }, {
+                        value: 'notice',
+                        label: 'Notice'
+                    }, {
+                        value: 'navigation',
+                        label: 'Navigation'
+                    }, {
+                        value: 'others',
+                        label: 'Others'
+                    }, {
+                        value: 'ziyuan',
+                        label: '资源'
+                    }]
                 }]
+            }
+        },
+        methods: {
+            handleChange(value){
+                this.$emit('sendCategory',{
+                    category_fa:value['0'],
+                    category_son:value['1']
+                })
             }
         }
     }
