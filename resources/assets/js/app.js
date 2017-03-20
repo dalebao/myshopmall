@@ -18,11 +18,13 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-default/index.css';
 import router from './router/router.js'
 
+import iView from 'iview'
+import 'iview/dist/styles/iview.css';
 
 Vue.use(ElementUI)
 
 
-
+Vue.use(iView)
 
 
 

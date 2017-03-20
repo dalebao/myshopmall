@@ -13,6 +13,7 @@
                     <el-menu-item-group title="商品">
                         <el-menu-item index="/haso/item_add"><i class="el-icon-message"></i>新增商品</el-menu-item>
                         <el-menu-item index="/haso/item_list"><i class="el-icon-message"></i>商品列表</el-menu-item>
+                        <el-menu-item index="/haso/item_edit"><i class="el-icon-message"></i>商品编辑</el-menu-item>
                     </el-menu-item-group>
                 </el-menu>
             </div>

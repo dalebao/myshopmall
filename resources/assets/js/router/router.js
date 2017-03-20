@@ -18,6 +18,8 @@ import BackEndIndex from '../components/backend/index.vue'
 import Dash from '../components/backend/dash.vue'
 import ItemList from '../components/backend/listItem.vue'
 import ItemAdd from '../components/backend/itemAdd.vue'
+import ItemEdit from '../components/backend/itemEdit.vue'
+
 
 const routes = [
     {
@@ -46,10 +48,13 @@ const routes = [
                 name: 'dash', path: '/', meta: {requireAdminAuth: true}, component: Dash
             },
             {
-                name:'item_add',path:'item_add',meta: {requireAdminAuth: true},component:ItemAdd
+                name: 'item_add', path: 'item_add', meta: {requireAdminAuth: true}, component: ItemAdd
             },
             {
-                name:'item_list',path:'item_list',meta: {requireAdminAuth: true},component:ItemList
+                name: 'item_list', path: 'item_list', meta: {requireAdminAuth: true}, component: ItemList
+            },
+            {
+                name: 'item_edit', path: 'item_edit', meta: {requireAdminAuth: true}, component: ItemEdit
             }
         ]
     },

@@ -3,7 +3,7 @@
             :data="tableData3"
             border
             style="width: 100%"
-            height="250">
+            height="450">
         <el-table-column
                 fixed
                 prop="date"
@@ -51,7 +51,11 @@
 
 <script>
     export default {
+        methods:{
+           handleClick(){
 
+           }
+        },
         data() {
             return {
                 tableData3: [{

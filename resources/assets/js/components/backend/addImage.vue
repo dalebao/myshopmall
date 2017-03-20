@@ -1,46 +1,75 @@
+<!--<template>-->
+    <!--<el-upload-->
+            <!--class="upload-demo"-->
+            <!--action="//jsonplaceholder.typicode.com/posts/"-->
+            <!--:on-preview="handlePreview"-->
+            <!--:on-remove="handleRemove"-->
+            <!--:file-list="fileList"-->
+            <!--list-type="picture">-->
+        <!--<el-button size="small" type="primary">点击上传</el-button>-->
+        <!--<div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>-->
+    <!--</el-upload>-->
+<!--</template>-->
+
+<!--<script>-->
+    <!--export default {-->
+        <!--data() {-->
+            <!--return {-->
+                <!--fileList: [{-->
+                    <!--name: 'food.jpeg',-->
+                    <!--url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'-->
+                <!--}, {-->
+                    <!--name: 'food2.jpeg',-->
+                    <!--url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'-->
+                <!--}]-->
+            <!--};-->
+        <!--},-->
+        <!--methods: {-->
+            <!--handleRemove(file, fileList) {-->
+                <!--console.log(file, fileList);-->
+            <!--},-->
+            <!--handlePreview(file) {-->
+                <!--console.log(file);-->
+            <!--},-->
+            <!--submitUpload(){-->
+
+            <!--}-->
+        <!--}-->
+    <!--}-->
+<!--</script>-->
+
+
+<!--<style>-->
+    <!--.el-upload__input{-->
+        <!--display: none;-->
+    <!--}-->
+<!--</style>-->
+
 <template>
-    <el-upload
-            class="upload-demo"
-            action="//jsonplaceholder.typicode.com/posts/"
-            :on-preview="handlePreview"
-            :on-remove="handleRemove"
-            :file-list="fileList"
-            list-type="picture">
-        <el-button size="small" type="primary">点击上传</el-button>
-        <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-    </el-upload>
+    <div>
+        <Upload action="//jsonplaceholder.typicode.com/posts/" :before-upload="handleBeforeUpload" ref="file">
+            <i-button type="ghost" icon="ios-cloud-upload-outline">选择文件</i-button>
+        </Upload>
+        <i-button @click.native="handleUpload">上传</i-button>
+    </div>
 </template>
+
 
 <script>
     export default {
-        data() {
+        data () {
             return {
-                fileList: [{
-                    name: 'food.jpeg',
-                    url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
-                }, {
-                    name: 'food2.jpeg',
-                    url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
-                }]
-            };
+                file: null
+            }
         },
         methods: {
-            handleRemove(file, fileList) {
-                console.log(file, fileList);
+            handleBeforeUpload (file) {
+                this.file = file;
+                return false;
             },
-            handlePreview(file) {
-                console.log(file);
-            },
-            submitUpload(){
-
+            handleUpload () {
+                this.$refs.file.post(this.file);
             }
         }
     }
 </script>
-
-
-<style>
-    .el-upload__input{
-        display: none;
-    }
-</style>
