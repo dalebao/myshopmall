@@ -69786,9 +69786,13 @@ module.exports = Component.exports
 /* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
+
+/* styles */
+__webpack_require__(252)
+
 var Component = __webpack_require__(0)(
   /* script */
-  null,
+  __webpack_require__(250),
   /* template */
   __webpack_require__(171),
   /* scopeId */
@@ -71311,7 +71315,51 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_vm._v("\n    sss admin user\n")])
+  return _c('div', {
+    staticClass: "main_admin"
+  }, [_c('div', {
+    staticClass: "admin_nav"
+  }, [_c('el-menu', {
+    staticClass: "el-menu-demo",
+    attrs: {
+      "theme": "dark",
+      "mode": "horizontal"
+    }
+  }, [_c('el-submenu', {
+    attrs: {
+      "index": "2"
+    }
+  }, [_c('template', {
+    slot: "title"
+  }, [_c('span', {
+    staticClass: "iconfont icon-wxbbiaowang"
+  }), _vm._v(" " + _vm._s(_vm.admin) + " 的工作台")]), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "2-1"
+    }
+  }, [_vm._v("设置")]), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "2-2"
+    }
+  }, [_vm._v("选项2")]), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": ""
+    }
+  }, [_vm._v("退出")])], 2)], 1)], 1), _vm._v(" "), _c('div', {
+    staticClass: "admin_body"
+  }, [_c('el-row', {
+    staticClass: "admin_body"
+  }, [_c('admin-menu'), _vm._v(" "), _c('el-col', {
+    attrs: {
+      "span": 18
+    }
+  }, [_c('div', {
+    staticClass: "router_view"
+  }, [_c('transition', [_c('router-view')], 1)], 1)])], 1)], 1), _vm._v(" "), _c('el-row', {
+    staticClass: "footer"
+  }, [_c('p', {
+    staticClass: "footerMsg"
+  }, [_vm._v("Copyright © 2017 baoxulong.当前呈现版本 1.0.0;2017级本科毕业设计题目")])])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -97145,6 +97193,10 @@ module.exports = __webpack_require__(40);
 /* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
+
+/* styles */
+__webpack_require__(228)
+
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(226),
@@ -97180,24 +97232,84 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('Upload', {
-    ref: "file",
-    attrs: {
-      "action": "//jsonplaceholder.typicode.com/posts/",
-      "before-upload": _vm.handleBeforeUpload
-    }
-  }, [_c('i-button', {
-    attrs: {
-      "type": "ghost",
-      "icon": "ios-cloud-upload-outline"
-    }
-  }, [_vm._v("选择文件")])], 1), _vm._v(" "), _c('i-button', {
-    nativeOn: {
-      "click": function($event) {
-        _vm.handleUpload($event)
+  return _c('div', {
+    staticClass: "addImage"
+  }, [_vm._l((_vm.uploadList), function(item) {
+    return _c('div', {
+      staticClass: "demo-upload-list"
+    }, [(item.status === 'finished') ? [_c('img', {
+      attrs: {
+        "src": item.url
       }
+    }), _vm._v(" "), _c('div', {
+      staticClass: "demo-upload-list-cover"
+    }, [_c('Icon', {
+      attrs: {
+        "type": "ios-eye-outline"
+      },
+      on: {
+        "click": function($event) {
+          _vm.handleView(item.name)
+        }
+      }
+    }), _vm._v(" "), _c('Icon', {
+      attrs: {
+        "type": "ios-trash-outline"
+      },
+      on: {
+        "click": function($event) {
+          _vm.handleRemove(item)
+        }
+      }
+    })], 1)] : [(item.showProgress) ? _c('Progress', {
+      attrs: {
+        "percent": item.percentage,
+        "hide-info": ""
+      }
+    }) : _vm._e()]], 2)
+  }), _vm._v(" "), _c('Upload', {
+    staticStyle: {
+      "display": "inline-block",
+      "width": "58px"
+    },
+    attrs: {
+      "ref:upload": "",
+      "show-upload-list": false,
+      "default-file-list": _vm.defaultList,
+      "on-success": _vm.handleSuccess,
+      "format": ['jpg', 'jpeg', 'png'],
+      "max-size": 2048,
+      "on-format-error": _vm.handleFormatError,
+      "on-exceeded-size": _vm.handleMaxSize,
+      "before-upload": _vm.handleBeforeUpload,
+      "multiple": "",
+      "type": "drag",
+      "action": "//jsonplaceholder.typicode.com/posts/"
     }
-  }, [_vm._v("上传")])], 1)
+  }, [_c('div', {
+    staticStyle: {
+      "width": "58px",
+      "height": "58px",
+      "line-height": "58px"
+    }
+  }, [_c('Icon', {
+    attrs: {
+      "type": "camera",
+      "size": "20"
+    }
+  })], 1)]), _vm._v(" "), _c('Modal', {
+    attrs: {
+      "title": "查看图片",
+      "visible": _vm.visible
+    }
+  }, [(_vm.visible) ? _c('img', {
+    staticStyle: {
+      "width": "100%"
+    },
+    attrs: {
+      "src": 'https://o5wwk8baw.qnssl.com/' + _vm.imgName + '/large'
+    }
+  }) : _vm._e()])], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -97250,48 +97362,109 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = {
+    name: 'imageAdd',
     data: function data() {
         return {
-            file: null
+            defaultList: [{
+                'name': 'a42bdcc1178e62b4694c830f028db5c0',
+                'url': 'https://o5wwk8baw.qnssl.com/a42bdcc1178e62b4694c830f028db5c0/avatar'
+            }, {
+                'name': 'bc7521e033abdd1e92222d733590f104',
+                'url': 'https://o5wwk8baw.qnssl.com/bc7521e033abdd1e92222d733590f104/avatar'
+            }],
+
+            imgName: '',
+            visible: false
         };
     },
 
+    computed: {
+        uploadList: function uploadList() {
+            return this.$refs.upload ? this.$refs.upload.fileList : [];
+        }
+    },
     methods: {
-        handleBeforeUpload: function handleBeforeUpload(file) {
-            this.file = file;
-            return false;
+        handleView: function handleView(name) {
+            this.imgName = name;
+            this.visible = true;
         },
-        handleUpload: function handleUpload() {
-            this.$refs.file.post(this.file);
+        handleRemove: function handleRemove(file) {
+            // 从 upload 实例删除数据
+            var fileList = this.$refs.upload.fileList;
+            this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
+        },
+        handleSuccess: function handleSuccess(res, file) {
+            // 因为上传过程为实例，这里模拟添加 url
+            file.url = 'https://o5wwk8baw.qnssl.com/7eb99afb9d5f317c912f08b5212fd69a/avatar';
+            file.name = '7eb99afb9d5f317c912f08b5212fd69a';
+        },
+        handleFormatError: function handleFormatError(file) {
+            this.$Notice.warning({
+                title: '文件格式不正确',
+                desc: '文件 ' + file.name + ' 格式不正确，请上传 jpg 或 png 格式的图片。'
+            });
+        },
+        handleMaxSize: function handleMaxSize(file) {
+            this.$Notice.warning({
+                title: '超出文件大小限制',
+                desc: '文件 ' + file.name + ' 太大，不能超过 2M。'
+            });
+        },
+        handleBeforeUpload: function handleBeforeUpload() {
+            var check = this.uploadList.length < 5;
+            if (!check) {
+                this.$Notice.warning({
+                    title: '最多只能上传 5 张图片。'
+                });
+            }
+            return check;
         }
     }
 };
 
 /***/ }),
-/* 227 */,
-/* 228 */,
+/* 227 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.demo-upload-list {\n    display: inline-block;\n    width: 60px;\n    height: 60px;\n    text-align: center;\n    line-height: 60px;\n    border: 1px solid transparent;\n    border-radius: 4px;\n    overflow: hidden;\n    background: #fff;\n    position: relative;\n    box-shadow: 0 1px 1px rgba(0, 0, 0, .2);\n    margin-right: 4px;\n}\n.demo-upload-list img {\n    width: 100%;\n    height: 100%;\n}\n.demo-upload-list-cover {\n    display: none;\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n    background: rgba(0, 0, 0, .6);\n}\n.demo-upload-list:hover .demo-upload-list-cover {\n    display: block;\n}\n.demo-upload-list-cover i {\n    color: #fff;\n    font-size: 20px;\n    cursor: pointer;\n    margin: 0 2px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(227);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("05db0151", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/.0.26.2@css-loader/index.js!../../../../../node_modules/.10.3.0@vue-loader/lib/style-rewriter.js?id=data-v-885ed182!../../../../../node_modules/.10.3.0@vue-loader/lib/selector.js?type=styles&index=0!./addImage.vue", function() {
+     var newContent = require("!!../../../../../node_modules/.0.26.2@css-loader/index.js!../../../../../node_modules/.10.3.0@vue-loader/lib/style-rewriter.js?id=data-v-885ed182!../../../../../node_modules/.10.3.0@vue-loader/lib/selector.js?type=styles&index=0!./addImage.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
 /* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -123557,7 +123730,7 @@ module.exports = (0, _assign2.default)(iview, { install: install });
 
 var Component = __webpack_require__(0)(
   /* script */
-  null,
+  __webpack_require__(247),
   /* template */
   __webpack_require__(243),
   /* scopeId */
@@ -123600,7 +123773,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "name": "info",
       "label": "商品信息编辑"
     }
-  })], 1)
+  }, [_c('edit-item')], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -123609,6 +123782,635 @@ if (false) {
      require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-7d52bc42", module.exports)
   }
 }
+
+/***/ }),
+/* 244 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(246),
+  /* template */
+  __webpack_require__(245),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/baoxulong/Documents/Code/GitFiles/myshopmall/resources/assets/js/components/backend/editItem.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] editItem.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-540fae7c", Component.options)
+  } else {
+    hotAPI.reload("data-v-540fae7c", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 245 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('el-form', {
+    ref: "addItemForm",
+    staticClass: "demo-addItemForm",
+    attrs: {
+      "model": _vm.addItemForm,
+      "rules": _vm.rules,
+      "label-width": "100px"
+    }
+  }, [_c('el-form-item', {
+    attrs: {
+      "label": "商品名称",
+      "prop": "name"
+    }
+  }, [_c('el-input', {
+    model: {
+      value: (_vm.addItemForm.name),
+      callback: function($$v) {
+        _vm.addItemForm.name = $$v
+      }
+    }
+  })], 1), _vm._v(" "), _c('el-form-item', {
+    attrs: {
+      "label": "商品分类",
+      "prop": "category",
+      "required": ""
+    }
+  }, [_c('chose-cate', {
+    on: {
+      "sendCategory": _vm.handleCategory
+    }
+  })], 1), _vm._v(" "), _c('el-form-item', {
+    attrs: {
+      "label": "商品成本",
+      "prop": "cost_price",
+      "required": ""
+    }
+  }, [_c('el-input', {
+    attrs: {
+      "placeholder": "请输入成本"
+    },
+    model: {
+      value: (_vm.addItemForm.cost_price),
+      callback: function($$v) {
+        _vm.addItemForm.cost_price = _vm._n($$v)
+      }
+    }
+  }, [_c('template', {
+    slot: "append"
+  }, [_vm._v("元")])], 2)], 1), _vm._v(" "), _c('el-form-item', {
+    attrs: {
+      "label": "商品价格",
+      "prop": "now_price",
+      "required": ""
+    }
+  }, [_c('el-input', {
+    attrs: {
+      "placeholder": "请输入价格"
+    },
+    model: {
+      value: (_vm.addItemForm.now_price),
+      callback: function($$v) {
+        _vm.addItemForm.now_price = _vm._n($$v)
+      }
+    }
+  }, [_c('template', {
+    slot: "append"
+  }, [_vm._v("元")])], 2)], 1), _vm._v(" "), _c('el-form-item', {
+    attrs: {
+      "label": "商品数量",
+      "prop": "number",
+      "required": ""
+    }
+  }, [_c('el-input', {
+    attrs: {
+      "placeholder": "请输入数量"
+    },
+    model: {
+      value: (_vm.addItemForm.number),
+      callback: function($$v) {
+        _vm.addItemForm.number = _vm._n($$v)
+      }
+    }
+  }, [_c('template', {
+    slot: "append"
+  }, [_vm._v("件")])], 2)], 1), _vm._v(" "), _c('el-form-item', {
+    attrs: {
+      "label": "是否推荐",
+      "prop": "recommend"
+    }
+  }, [_c('el-switch', {
+    attrs: {
+      "on-text": "",
+      "off-text": ""
+    },
+    model: {
+      value: (_vm.addItemForm.recommend),
+      callback: function($$v) {
+        _vm.addItemForm.recommend = $$v
+      }
+    }
+  })], 1), _vm._v(" "), _c('el-form-item', {
+    attrs: {
+      "label": "商品标签",
+      "prop": "tag"
+    }
+  }, [_c('el-checkbox-group', {
+    model: {
+      value: (_vm.addItemForm.tag),
+      callback: function($$v) {
+        _vm.addItemForm.tag = $$v
+      }
+    }
+  }, [_c('el-checkbox', {
+    attrs: {
+      "label": "美食/餐厅线上活动",
+      "name": "tag"
+    }
+  }), _vm._v(" "), _c('el-checkbox', {
+    attrs: {
+      "label": "地推活动",
+      "name": "tag"
+    }
+  }), _vm._v(" "), _c('el-checkbox', {
+    attrs: {
+      "label": "线下主题活动",
+      "name": "tag"
+    }
+  }), _vm._v(" "), _c('el-checkbox', {
+    attrs: {
+      "label": "单纯品牌曝光",
+      "name": "tag"
+    }
+  })], 1)], 1), _vm._v(" "), _c('el-form-item', {
+    attrs: {
+      "label": "商品描述",
+      "prop": "description"
+    }
+  }, [_c('quill-editor', {
+    ref: "myTextEditor",
+    model: {
+      value: (_vm.addItemForm.description),
+      callback: function($$v) {
+        _vm.addItemForm.description = $$v
+      }
+    }
+  })], 1), _vm._v(" "), _c('el-form-item', {
+    attrs: {
+      "label": "增加缩略图"
+    }
+  }, [_c('add-image')], 1), _vm._v(" "), _c('el-form-item', [_c('el-button', {
+    attrs: {
+      "type": "primary"
+    },
+    on: {
+      "click": function($event) {
+        _vm.submitForm('addItemForm')
+      }
+    }
+  }, [_vm._v("立即创建")]), _vm._v(" "), _c('el-button', {
+    on: {
+      "click": function($event) {
+        _vm.resetForm('addItemForm')
+      }
+    }
+  }, [_vm._v("重置")])], 1)], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-540fae7c", module.exports)
+  }
+}
+
+/***/ }),
+/* 246 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__choseCategory_vue__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__choseCategory_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__choseCategory_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_quill_editor__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_quill_editor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_quill_editor__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__addImage_vue__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__addImage_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__addImage_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    components: {
+        ChoseCate: __WEBPACK_IMPORTED_MODULE_0__choseCategory_vue___default.a,
+        quillEditor: __WEBPACK_IMPORTED_MODULE_1_vue_quill_editor__["quillEditor"],
+        AddImage: __WEBPACK_IMPORTED_MODULE_2__addImage_vue___default.a
+    },
+
+    data: function data() {
+        return {
+            addItemForm: {
+                name: '',
+                category: '',
+                cost_price: 0,
+                now_price: 0,
+                number: 0,
+                recommend: false,
+                tag: [],
+                resource: '',
+                description: '<h1>this is example</h1>'
+            },
+            rules: {
+                name: [{ required: true, message: '请输入商品名称', trigger: 'blur' }, { min: 3, max: 15, message: '长度在 3 到 15 个字符', trigger: 'blur' }],
+                category: [{ required: true, message: '请选择商品类型', trigger: 'blur' }],
+                cost_price: [{ type: 'number', message: '请输入数字', trigger: 'blur' }],
+                now_price: [{ type: 'number', message: '请输入数字', trigger: 'blur' }],
+                number: [{ type: 'number', message: '请输入数字', trigger: 'blur' }],
+                tag: [{ type: 'array', required: true, message: '请至少选择一个标签', trigger: 'change' }],
+                description: [{ required: true, message: '请填写商品描述', trigger: 'blur' }]
+            }
+        };
+    },
+
+    methods: {
+        submitForm: function submitForm(formName) {
+            this.$refs[formName].validate(function (valid) {
+                if (valid) {
+                    alert('submit!');
+                } else {
+                    console.log('error submit!!');
+                    return false;
+                }
+            });
+        },
+        resetForm: function resetForm(formName) {
+            this.$refs[formName].resetFields();
+        },
+        handleCategory: function handleCategory(data) {
+            console.log(data);
+        }
+    }
+};
+
+/***/ }),
+/* 247 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editItem_vue__ = __webpack_require__(244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editItem_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__editItem_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    components: {
+        EditItem: __WEBPACK_IMPORTED_MODULE_0__editItem_vue___default.a
+    }
+};
+
+/***/ }),
+/* 248 */,
+/* 249 */,
+/* 250 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__userAdminMenu_vue__ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__userAdminMenu_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__userAdminMenu_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    data: function data() {
+        return {
+            admin: ''
+        };
+    },
+
+    components: {
+        AdminMenu: __WEBPACK_IMPORTED_MODULE_0__userAdminMenu_vue___default.a
+    },
+    created: function created() {
+        this.admin = sessionStorage.getItem('admin-name');
+    }
+};
+
+/***/ }),
+/* 251 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.el-row {\n    margin-bottom: 20px;\n&\n:last-child {\n    margin-bottom: 0;\n}\n}\n.el-col {\n    border-radius: 4px;\n}\n.footer {\n    position: relative;\n    bottom: -180px;\n    width: 100%;\n    height: 100px;\n    background-color: #ffc0cb;\n}\n.router_view {\n    margin: 10px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 252 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(251);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("48ee468c", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/.0.26.2@css-loader/index.js!../../../../../node_modules/.10.3.0@vue-loader/lib/style-rewriter.js?id=data-v-d6a539e0!../../../../../node_modules/.10.3.0@vue-loader/lib/selector.js?type=styles&index=0!./admin.vue", function() {
+     var newContent = require("!!../../../../../node_modules/.0.26.2@css-loader/index.js!../../../../../node_modules/.10.3.0@vue-loader/lib/style-rewriter.js?id=data-v-d6a539e0!../../../../../node_modules/.10.3.0@vue-loader/lib/selector.js?type=styles&index=0!./admin.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 253 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(255),
+  /* template */
+  __webpack_require__(254),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/baoxulong/Documents/Code/GitFiles/myshopmall/resources/assets/js/components/frontAdmin/userAdminMenu.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] userAdminMenu.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-12cce284", Component.options)
+  } else {
+    hotAPI.reload("data-v-12cce284", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 254 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('el-col', {
+    attrs: {
+      "span": 6
+    }
+  }, [_c('div', {
+    staticClass: "admin_menu"
+  }, [_c('el-menu', {
+    staticClass: "el-menu-vertical-demo",
+    attrs: {
+      "mode": "vertical",
+      "default-active": _vm.active
+    },
+    on: {
+      "select": _vm.handleSelect
+    }
+  }, [_c('el-menu-item-group', {
+    attrs: {
+      "title": "Dash"
+    }
+  }, [_c('el-menu-item', {
+    attrs: {
+      "index": "/haso"
+    }
+  }, [_c('i', {
+    staticClass: "el-icon-message"
+  }), _vm._v("DashBoard")])], 1), _vm._v(" "), _c('el-menu-item-group', {
+    attrs: {
+      "title": "订单"
+    }
+  }, [_c('el-menu-item', {
+    attrs: {
+      "index": "1"
+    }
+  }, [_c('i', {
+    staticClass: "el-icon-message"
+  }), _vm._v("导航一")]), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "2"
+    }
+  }, [_c('i', {
+    staticClass: "el-icon-message"
+  }), _vm._v("导航二")])], 1), _vm._v(" "), _c('el-menu-item-group', {
+    attrs: {
+      "title": "商品"
+    }
+  }, [_c('el-menu-item', {
+    attrs: {
+      "index": "/haso/item_add"
+    }
+  }, [_c('i', {
+    staticClass: "el-icon-message"
+  }), _vm._v("新增商品")]), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "/haso/item_list"
+    }
+  }, [_c('i', {
+    staticClass: "el-icon-message"
+  }), _vm._v("商品列表")]), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "/haso/item_edit"
+    }
+  }, [_c('i', {
+    staticClass: "el-icon-message"
+  }), _vm._v("商品编辑")])], 1)], 1)], 1)])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-12cce284", module.exports)
+  }
+}
+
+/***/ }),
+/* 255 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    data: function data() {
+        return {
+            active: "1"
+        };
+    },
+
+    methods: {
+        handleSelect: function handleSelect(key, path) {
+            this.active = key;
+            this.$router.push({ path: path['0'] });
+        }
+    },
+    created: function created() {
+        this.active = this.$route.fullPath;
+    }
+};
 
 /***/ })
 /******/ ]);
