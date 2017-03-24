@@ -21,7 +21,6 @@ Route::get('/user', function () {
 });
 
 
-
 //管理员后台路由
 Route::group(['prefix' => 'admin'], function () {
     //登录请求
@@ -42,14 +41,18 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
+//api
+Route::group(['middleware' => 'auth:admin', 'prefix' => 'api'], function () {
+    //item controller
+    Route::resource('item', 'Admin\ItemController');
+});
 
 
 //api
-Route::group(['middleware'=>'auth:admin','prefix'=>'api'],function (){
-    //item controller
-    Route::resource('item','Admin\ItemController');
+Route::group(['prefix' => 'api/front'], function () {
+    //index
+    Route::resource('item', 'Api\Front\ItemController');
 });
-
 
 
 Route::get('{all}', function () {

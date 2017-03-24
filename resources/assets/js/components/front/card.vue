@@ -1,18 +1,19 @@
 <template>
     <div>
         <div>
-            <h1 class="card-title">{{title}}</h1>
+            <h1 class="card-title">title</h1>
         </div>
         <el-row>
-            <el-col :span="7" v-for="o in 6" class="card-body">
+            <el-col :span="7" v-for="item in items" class="card-body">
                 <el-card :body-style="{ padding: '0px' }">
                     <img src="https://img.alicdn.com/bao/uploaded/i3/TB18vZlKpXXXXbcXpXXXXXXXXXX_!!0-item_pic.jpg_250x250.jpg"
                          class="image">
                     <div style="padding: 14px;">
-                        <span>璀璨的钻石</span>
+                        <p class="item_title">{{item.name}}</p>
                         <div class="bottom clearfix">
                             <!--<time class="time">{{ currentDate }}</time>-->
-                            <span class="iconfont icon-costincluded">10元</span>
+                            <span class="iconfont icon-costincluded">{{item.now_price}}元</span>
+                            <span class="iconfont icon-costincluded">{{item.now_price}}元</span>
                             <el-button type="primary" class="button">购买商品</el-button>
                         </div>
                     </div>
@@ -64,12 +65,17 @@
         margin-right: 2%;
         margin-left: 2%;
     }
+    .item_title{
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+    }
 
 </style>
 
 <script>
     export default {
-        props: ['title'],
+        props: ['items'],
         data() {
             return {
                 currentDate: new Date()

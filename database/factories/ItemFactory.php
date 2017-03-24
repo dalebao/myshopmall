@@ -9,6 +9,7 @@ $factory->define(App\Models\Item::class, function (Faker\Generator $faker) {
         'number' => mt_rand('1', '1000'),
         'cost_price' => mt_rand('1', '20'),
         'now_price' => mt_rand('1', '20'),
+        'is_show' => mt_rand('0', '1'),
         'created_at' => $faker->dateTimeBetween('-2 weeks', '+20 days'),
         'updated_at' => $faker->dateTimeBetween('-1 month', '+30 days')
     ];

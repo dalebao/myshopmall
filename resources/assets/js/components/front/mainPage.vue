@@ -9,7 +9,7 @@
             </a>
         </div>
         <div class="main-page-line">
-            <card :title="title"></card>
+            <card :items="item_one"></card>
         </div>
         <div class="main-page-pic">
             <a href="">
@@ -17,7 +17,7 @@
             </a>
         </div>
         <div class="main-page-line">
-            <card :title="title"></card>
+            <card :items="item_one"></card>
         </div>
         <div class="main-page-pic">
             <a href="">
@@ -33,12 +33,20 @@
     export default {
         data(){
             return {
-                title: '热门商品 aa',
+                item_one: '',
             }
         },
         components: {
             Carousel,
             Card
+        },
+        created(){
+            axios.get('/api/front/item', {
+                params: {}
+            }).then(res => {
+                this.item_one = res.data
+            });
+
         }
     }
 </script>

@@ -35832,7 +35832,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -35930,7 +35930,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "\n.time {\n    font-size: 13px;\n    color: #999;\n}\n.bottom {\n    margin-top: 13px;\n    line-height: 12px;\n}\n.button {\n    /*padding: 0;*/\n    float: right;\n}\n.image {\n    width: 100%;\n    display: block;\n}\n.clearfix:before,\n.clearfix:after {\n    display: table;\n    content: \"\";\n}\n.clearfix:after {\n    clear: both\n}\n.card-title {\n    margin-left: 8.33333%;\n}\n.card-body {\n    margin-top: 20px;\n    margin-right: 2%;\n    margin-left: 2%;\n}\n\n", ""]);
+exports.push([module.i, "\n.time {\n    font-size: 13px;\n    color: #999;\n}\n.bottom {\n    margin-top: 13px;\n    line-height: 12px;\n}\n.button {\n    /*padding: 0;*/\n    float: right;\n}\n.image {\n    width: 100%;\n    display: block;\n}\n.clearfix:before,\n.clearfix:after {\n    display: table;\n    content: \"\";\n}\n.clearfix:after {\n    clear: both\n}\n.card-title {\n    margin-left: 8.33333%;\n}\n.card-body {\n    margin-top: 20px;\n    margin-right: 2%;\n    margin-left: 2%;\n}\n.item_title{\n    overflow: hidden;\n    text-overflow:ellipsis;\n    white-space: nowrap;\n}\n\n", ""]);
 
 // exports
 
@@ -70213,7 +70213,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "span": 16
     }
-  }, [_c('card'), _vm._v(" "), _c('paginate')], 1)], 1)], 1)
+  }, [_c('card', {
+    attrs: {
+      "items": _vm.items
+    }
+  }), _vm._v(" "), _c('paginate')], 1)], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -70235,13 +70239,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "main-page-line"
   }, [_c('card', {
     attrs: {
-      "title": _vm.title
+      "items": _vm.item_one
     }
   })], 1), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
     staticClass: "main-page-line"
   }, [_c('card', {
     attrs: {
-      "title": _vm.title
+      "items": _vm.item_one
     }
   })], 1), _vm._v(" "), _vm._m(2)])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -70740,9 +70744,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('div', [_c('h1', {
-    staticClass: "card-title"
-  }, [_vm._v(_vm._s(_vm.title))])]), _vm._v(" "), _c('el-row', _vm._l((6), function(o) {
+  return _c('div', [_vm._m(0), _vm._v(" "), _c('el-row', _vm._l((_vm.items), function(item) {
     return _c('el-col', {
       staticClass: "card-body",
       attrs: {
@@ -70763,18 +70765,26 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticStyle: {
         "padding": "14px"
       }
-    }, [_c('span', [_vm._v("璀璨的钻石")]), _vm._v(" "), _c('div', {
+    }, [_c('p', {
+      staticClass: "item_title"
+    }, [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('div', {
       staticClass: "bottom clearfix"
     }, [_c('span', {
       staticClass: "iconfont icon-costincluded"
-    }, [_vm._v("10元")]), _vm._v(" "), _c('el-button', {
+    }, [_vm._v(_vm._s(item.now_price) + "元")]), _vm._v(" "), _c('span', {
+      staticClass: "iconfont icon-costincluded"
+    }, [_vm._v(_vm._s(item.now_price) + "元")]), _vm._v(" "), _c('el-button', {
       staticClass: "button",
       attrs: {
         "type": "primary"
       }
     }, [_vm._v("购买商品")])], 1)])])], 1)
   }))], 1)
-},staticRenderFns: []}
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('h1', {
+    staticClass: "card-title"
+  }, [_vm._v("title")])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -96011,9 +96021,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
-    props: ['title'],
+    props: ['items'],
     data: function data() {
         return {
             currentDate: new Date()
@@ -96187,11 +96203,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = {
+    data: function data() {
+        return {
+            items: ''
+        };
+    },
+
     components: {
         Card: __WEBPACK_IMPORTED_MODULE_0__card_vue___default.a,
         CategoryBar: __WEBPACK_IMPORTED_MODULE_1__category_bar_vue___default.a,
         FeedBackBar: __WEBPACK_IMPORTED_MODULE_2__feedback_bar_vue___default.a,
         Paginate: __WEBPACK_IMPORTED_MODULE_3__utils_paginate_vue___default.a
+    },
+    created: function created() {
+        var _this = this;
+
+        axios.get('/api/front/item', {
+            params: {
+                cate: 1,
+                page_size: 20
+            }
+        }).then(function (res) {
+            _this.items = res.data.data;
+        });
     }
 };
 
@@ -96320,13 +96354,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = {
     data: function data() {
         return {
-            title: '热门商品 aa'
+            item_one: ''
         };
     },
 
     components: {
         Carousel: __WEBPACK_IMPORTED_MODULE_0__carousel_vue___default.a,
         Card: __WEBPACK_IMPORTED_MODULE_1__card_vue___default.a
+    },
+    created: function created() {
+        var _this = this;
+
+        axios.get('/api/front/item', {
+            params: {}
+        }).then(function (res) {
+            _this.item_one = res.data;
+        });
     }
 };
 

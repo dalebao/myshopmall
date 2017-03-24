@@ -11,7 +11,7 @@
                 </div>
             </el-col>
             <el-col :span="16">
-                <card></card>
+                <card :items="items"></card>
                 <paginate></paginate>
             </el-col>
         </el-row>
@@ -27,11 +27,26 @@
     import FeedBackBar from './feedback-bar.vue'
     import Paginate from '../utils/paginate.vue'
     export default {
+        data(){
+            return {
+                items: ''
+            }
+        },
         components: {
             Card,
             CategoryBar,
             FeedBackBar,
             Paginate
+        },
+        created(){
+            axios.get('/api/front/item', {
+                params: {
+                    cate: 1,
+                    page_size: 20
+                }
+            }).then(res => {
+                this.items = res.data.data
+            })
         }
     }
 </script>
