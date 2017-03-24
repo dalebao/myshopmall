@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Repo\ModelTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Carousel extends Model
+class Tag extends Model
 {
     use ModelTrait;
     protected $guarded = [];
