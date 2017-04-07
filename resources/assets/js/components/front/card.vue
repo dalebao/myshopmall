@@ -14,7 +14,7 @@
                             <!--<time class="time">{{ currentDate }}</time>-->
                             <span class="iconfont icon-costincluded">{{item.now_price}}元</span>
                             <span class="iconfont icon-costincluded">{{item.now_price}}元</span>
-                            <el-button type="primary" class="button">购买商品</el-button>
+                            <el-button type="primary" v-on:click="showDetail(item.id)" class="button">购买商品</el-button>
                         </div>
                     </div>
                 </el-card>
@@ -65,9 +65,10 @@
         margin-right: 2%;
         margin-left: 2%;
     }
-    .item_title{
+
+    .item_title {
         overflow: hidden;
-        text-overflow:ellipsis;
+        text-overflow: ellipsis;
         white-space: nowrap;
     }
 
@@ -80,6 +81,12 @@
             return {
                 currentDate: new Date()
             };
+        },
+        methods: {
+            showDetail(itemId){
+                this.$router.push({name: 'detail', params: {itemId: itemId}})
+            }
         }
+
     }
 </script>

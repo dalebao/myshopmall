@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div     v-loading.fullscreen.lock="loading">
         <div class="main-page-line">
             <carousel></carousel>
         </div>
@@ -34,6 +34,7 @@
         data(){
             return {
                 item_one: '',
+                loading:true
             }
         },
         components: {
@@ -45,6 +46,7 @@
                 params: {}
             }).then(res => {
                 this.item_one = res.data
+                this.loading = false
             });
 
         }

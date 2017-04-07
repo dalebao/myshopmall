@@ -7,6 +7,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import Index from '../components/front/index.vue'
+import Detail from '../components/front/detail.vue'
 import UserLogin from '../components/utils/userLogin.vue'
 import AdminLogin from '../components/utils/adminLogin.vue'
 import UserRegister from '../components/utils/userRegister.vue'
@@ -26,7 +27,8 @@ const routes = [
         path: '/', component: Index,
         children: [
             {name: 'index', path: '', component: MainPage, alias: '/index'},
-            {name: 'category', path: 'category', component: Category}
+            {name: 'category', path: 'category', component: Category},
+            {name: 'detail', path: 'detail/:itemId', component: Detail}
         ]
     },
     {
@@ -41,6 +43,7 @@ const routes = [
     {
         name: 'user-admin', path: '/user-admin', meta: {requireAuth: true}, component: UserAdmin
     },
+    //haso route
     {
         path: '/haso', meta: {requireAdminAuth: true}, component: BackEndIndex,
         children: [
@@ -58,6 +61,7 @@ const routes = [
             }
         ]
     },
+    //admin login page
     {
         name: 'admin-login', path: '/admin-login', component: AdminLogin
     }

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 class ItemController extends Controller
 {
+    //fron end index page
     public function index(Request $request)
     {
         $params = $request->all();
@@ -16,9 +17,17 @@ class ItemController extends Controller
 
 
         if (empty($params['cate'])) {
-            return Item::select('name', 'now_price')->where('is_show', '1')->take($params['page_size'])->get();
+            return Item::select('id', 'name', 'now_price')->where('is_show', '1')->take($params['page_size'])->get();
         } else {
-            return Item::select('name', 'now_price')->skip($params['page_size'] * ($params['page'] - 1))->paginate($params['page_size']);
+            return Item::select('id', 'name', 'now_price')->skip($params['page_size'] * ($params['page'] - 1))->paginate($params['page_size']);
         }
     }
+
+    //front end show detail page
+    public function show($id, Request $request)
+    {
+        return Item::select()->where('id', $id)->first();
+    }
+
+
 }

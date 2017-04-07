@@ -3,9 +3,9 @@
         <el-row>
             <el-col :span="6">
                 <div class="grid-content bg-purple">
-                    <el-menu-item index="index">商城首页</el-menu-item>
-                    <el-menu-item index="category">商品分类</el-menu-item>
-                    <el-menu-item index="3">商品分类</el-menu-item>
+                    <el-menu-item index="/index">商城首页</el-menu-item>
+                    <el-menu-item index="/category">商品分类</el-menu-item>
+                    <el-menu-item index="/3">商品分类</el-menu-item>
                 </div>
             </el-col>
 

@@ -12,7 +12,9 @@ class ItemController extends Controller
         return $request->all();
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         dd($request->all());
     }
+  
 }
