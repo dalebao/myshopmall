@@ -1,11 +1,7 @@
 <template>
     <el-row>
         <el-col :span="8">
-            <el-card class="box-card">
-                <div v-for="o in 4" class="text item">
-                    {{'列表内容 ' + o }}
-                </div>
-            </el-card>
+        <high-score></high-score>
         </el-col>
         <el-col :span="16">
             <el-tabs type="border-card" style="margin-right:10px;margin-left: 10px;"
@@ -19,20 +15,31 @@
                             <div style="display:block;">
                                 <el-card class="box-card">
                                     <div slot="header" class="text item">
-                                        <h1>price</h1>
+                                        <div style="margin-bottom: 20px;">
+                                            <h1>价格：<span>{{item.now_price}}元</span></h1>
+                                        </div>
                                         <hr>
-                                        <h1>number</h1>
-                                        <Input-number :max="item.number" :min="1" v-model="number"></Input-number>
+                                        <div style="margin: 20px 0;">
+                                            <div style="float: left;">
+                                                <h1>数量：</h1>
+                                            </div>
+                                            <Input-number :max="item.number" :min="1" v-model="number"></Input-number>
+                                        </div>
                                     </div>
                                     <div class="clearfix">
-                                        <span style="line-height: 36px;">总价：{{total}}</span>
+                                        <span style="line-height: 36px;">总价：{{item.now_price*number}}</span>
                                         <el-button style="float: right;" type="primary">生成订单</el-button>
                                     </div>
                                 </el-card>
                             </div>
                         </el-col>
                     </el-row>
-                    {{item}}
+                    <Tabs value="name1">
+                        <Tab-pane label="商品详情" name="item-description"><p class="item-description">
+                            {{item.description}}</p>
+                        </Tab-pane>
+                        <Tab-pane label="商品评价" name="item-comment">标签二的内容</Tab-pane>
+                    </Tabs>
                 </el-tab-pane>
             </el-tabs>
         </el-col>
@@ -40,7 +47,9 @@
 </template>
 
 <script>
+    import HighScore from './highScore.vue'
     export default{
+        components: {HighScore},
         data() {
             return {
                 item: [],
@@ -108,6 +117,14 @@
 
     .box-card {
         width: 100%;
+    }
+
+    .item-description {
+        font-size: 16px; /*字体大小*/
+        text-indent: 2em; /*首行缩进两个单位*/
+        line-height: 1.5em; /*行距为1.5个单位*/
+        padding: 10px; /*用内边距代替外边距来设置段间距*/
+        margin: 0; /*去掉默认的段间距*/
     }
 
 </style>
