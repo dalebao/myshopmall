@@ -23,7 +23,7 @@
                 <div class="grid-content bg-purple">
                     <el-submenu index="4">
                         <template slot="title">{{username?username:'我'}}的工作台</template>
-                        <el-menu-item index="4-1">
+                        <el-menu-item index="/user-admin">
                             <el-button
                                     type="text"
                             >个人管理

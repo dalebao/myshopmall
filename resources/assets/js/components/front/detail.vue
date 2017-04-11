@@ -28,7 +28,7 @@
                                     </div>
                                     <div class="clearfix">
                                         <span style="line-height: 36px;">总价：{{item.now_price*number}}</span>
-                                        <el-button style="float: right;" type="primary">生成订单</el-button>
+                                        <el-button style="float: right;" type="primary" @click="newOrder">生成订单</el-button>
                                     </div>
                                 </el-card>
                             </div>
@@ -81,6 +81,9 @@
                 console.log(this.number)
                 this.total = this.number * price;
                 console.log(this.total)
+            },
+            newOrder(){
+                this.$router.push({name:'newOrder',params:{itemId:this.$route.params.itemId}})
             }
         }
     }
