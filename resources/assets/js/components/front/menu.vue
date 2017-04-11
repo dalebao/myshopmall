@@ -29,13 +29,13 @@
                             >个人管理
                             </el-button>
                         </el-menu-item>
-                        <el-menu-item index="user-login" v-if="!isLogin">
+                        <el-menu-item index="/user-login" v-if="!isLogin">
                             <el-button
                                     type="text"
                             >登录
                             </el-button>
                         </el-menu-item>
-                        <el-menu-item index="user-register" v-if="!isLogin">
+                        <el-menu-item index="/user-register" v-if="!isLogin">
                             <el-button
                                     type="text"
                             >注册

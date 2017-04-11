@@ -20,6 +20,7 @@ class CreateItemTable extends Migration
                 $table->integer('number');
                 $table->decimal('cost_price',8,2);
                 $table->decimal('now_price',8,2);
+                $table->integer('cate_id');
                 $table->timestamp('deleted_at')->nullable();
                 $table->timestamps();
         });

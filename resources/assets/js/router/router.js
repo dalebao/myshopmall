@@ -15,6 +15,7 @@ import AdminRegister from '../components/utils/adminRegister.vue'
 import MainPage from '../components/front/mainPage.vue'
 import Category from '../components/front/category.vue'
 import UserAdmin from '../components/frontAdmin/admin.vue'
+import UserSetting from '../components/frontAdmin/UserSetting.vue'
 import BackEndIndex from '../components/backend/index.vue'
 import Dash from '../components/backend/dash.vue'
 import ItemList from '../components/backend/listItem.vue'
@@ -40,8 +41,12 @@ const routes = [
     {
         name: 'admin-register', path: '/admin-register', component: AdminRegister
     },
+    //user admin end route
     {
-        name: 'user-admin', path: '/user-admin', meta: {requireAuth: true}, component: UserAdmin
+        name: 'user-admin', path: '/user-admin', meta: {requireAuth: true}, component: UserAdmin,
+        children: [
+            {name:'user-admin-setting',path:'',component:UserSetting,alias:'/user-admin/index'}
+        ]
     },
     //haso route
     {
