@@ -4,7 +4,7 @@
         <el-col :span="2">
             <el-button type="primary" icon="edit" size="mini" @click="saveChange"></el-button>
         </el-col>
-        <el-col :span="22">
+        <el-col :span="20">
             <el-row :gutter='20' class='address'>
                 <el-col :span='5'>
                     <el-form-item prop='province'>
@@ -33,7 +33,7 @@
                 </el-col>
 
                 <el-col :span='12'>
-                    <el-form-item prop='detail' >
+                    <el-form-item prop='detail'>
 
                         <el-input
                                 placeholder='请填写详细地址'
@@ -42,10 +42,13 @@
                                 :disabled="disabled">
                         </el-input>
                     </el-form-item>
-
                 </el-col>
 
+
             </el-row>
+        </el-col>
+        <el-col :span="2">
+            <el-button type="primary" icon="check" size="mini" v-if="!disabled" @click="postAddress"></el-button>
         </el-col>
     </el-form>
 </template>
@@ -478,7 +481,7 @@
     }
     export default {
         name: 'address',
-        props: ['province', 'city', 'detail'],
+//        props: ['province', 'city', 'detail'],
         data: function () {
             return {
                 rules: {
@@ -487,9 +490,9 @@
                     detail: [{required: true, message: '请填写详细地址', trigger: 'change'}]
                 },
                 form: {
-                    province: this.province,
-                    city: this.city,
-                    detail: this.detail
+                    province: '浙江省',
+                    city: '杭州市',
+                    detail: ''
                 },
                 provinces: formatData(addressData),
                 disabled: true
@@ -503,6 +506,15 @@
                 deep: true
             }
         },
+        created(){
+            axios.get('/api/user/address')
+                .then(res => {
+                    console.log(res.data.province)
+                    this.form.province = res.data.province
+                    this.form.city = res.data.city
+                    this.form.detail = res.data.detail
+                })
+        },
         computed: {
             citys: function () {
                 return formatData(addressData[this.form.province])
@@ -510,7 +522,7 @@
         },
         methods: {
             saveChange(){
-               this.disabled = !this.disabled
+                this.disabled = !this.disabled
             },
             proChange: function (val, oldVal) {
                 if (oldVal) {
@@ -530,6 +542,34 @@
             },
             detailChange: function (val) {
                 console.log(val);
+            },
+            postAddress(){
+                axios.post('/api/user/address', {
+                    province: this.form.province,
+                    city: this.form.city,
+                    detail: this.form.detail
+                }).then(res => {
+                    if (res.data.code == '200') {
+                        this.$notify({
+                            title: '更新成功',
+                            message: '收获地址更新成功',
+                            type: 'success'
+                        });
+                        this.disabled = true
+                    }else if(res.data.code !== '200'){
+                        this.$notify({
+                            title: '更新失败',
+                            message: res.data.err_msg,
+                            type: 'error'
+                        });
+                    }
+                }).catch(err => {
+                    this.$notify({
+                        title: '更新失败',
+                        message: '收获地址更新失败',
+                        type: 'error'
+                    });
+                })
             }
         }
     }

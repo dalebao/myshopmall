@@ -41,17 +41,26 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
-//api
+//api for admin
 Route::group(['middleware' => 'auth:admin', 'prefix' => 'api'], function () {
     //item controller
     Route::resource('item', 'Admin\ItemController');
+
 });
 
 
-//api
+//api for front end
 Route::group(['prefix' => 'api/front'], function () {
     //index
     Route::resource('item', 'Api\Front\ItemController');
+});
+
+//api for user
+Route::group(['prefix'=>'api/user','middleware'=>'auth'],function (){
+    //user's address
+    Route::resource('address','Api\Front\AddressController');
+    //user's info
+    Route::resource('user_info','Api\Front\UserInfoController');
 });
 
 

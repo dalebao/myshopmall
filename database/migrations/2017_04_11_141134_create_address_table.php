@@ -16,7 +16,9 @@ class CreateAddressTable extends Migration
         Schema::create('address',function (Blueprint $table){
             $table->increments('id');
             $table->integer('user_id');
-            $table->string('address');
+            $table->string('province');
+            $table->string('city');
+            $table->string('detail');
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });

@@ -50,7 +50,7 @@ const routes = [
             {
                 name: 'user-admin-setting',
                 path: '',
-                component: UserSetting, /*meta: {requireAuth: true},*/
+                component: UserSetting, meta: {requireAuth: true},
                 alias: '/user-admin/index'
             }
         ]
