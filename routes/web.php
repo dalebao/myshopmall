@@ -61,6 +61,8 @@ Route::group(['prefix'=>'api/user','middleware'=>'auth'],function (){
     Route::resource('address','Api\Front\AddressController');
     //user's info
     Route::resource('user_info','Api\Front\UserInfoController');
+    //new order
+    Route::resource('new_order','Api\Front\OrderController');
 });
 
 

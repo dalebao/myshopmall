@@ -83,7 +83,7 @@
                 console.log(this.total)
             },
             newOrder(){
-                this.$router.push({name:'newOrder',params:{itemId:this.$route.params.itemId}})
+                this.$router.push({name:'newOrder',params:{itemId:this.$route.params.itemId,itemNum:this.number}})
             }
         }
     }

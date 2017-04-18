@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <h1 class="card-title">title</h1>
+            <h1 class="card-title">商品分类一</h1>
         </div>
         <el-row>
             <el-col :span="7" v-for="item in items" class="card-body">

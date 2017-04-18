@@ -35,4 +35,8 @@ class User extends Authenticatable
     public function userInfo(){
         return $this->hasMany('App\Models\UserInfo');
     }
+
+    public function userOrder(){
+        return $this->hasMany('App\Models\Order');
+    }
 }

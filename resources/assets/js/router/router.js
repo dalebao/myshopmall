@@ -31,7 +31,7 @@ const routes = [
             {name: 'index', path: '', component: MainPage, alias: '/index'},
             {name: 'category', path: 'category', component: Category},
             {name: 'detail', path: 'detail/:itemId', component: Detail},
-            {name: 'newOrder', path: 'neworder/:itemId',meta: {requireAuth: true}, component: NewOrder}
+            {name: 'newOrder', path: 'neworder/:itemId/:itemNum',meta: {requireAuth: true}, component: NewOrder}
         ]
     },
     {
