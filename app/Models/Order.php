@@ -13,6 +13,11 @@ class Order extends Model
 
     //item
     public function getMaxNumAttribute(){
-        return $this->hasMany(Item::class,'id','item_id')->select('number','now_price')->first();
+        return $this->hasMany(Item::class,'id','item_id')->select('name','number','now_price')->first();
     }
+
+    public function Item(){
+        return $this->hasMany(Item::class,'id','item_id');
+    }
+
 }

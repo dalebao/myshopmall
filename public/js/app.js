@@ -72867,7 +72867,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": function($event) {
         _vm.$router.push({
-          path: '/user-admin/index1'
+          path: '/user-admin/show_orders'
         })
       }
     }
@@ -126240,16 +126240,18 @@ window.axios.defaults.headers.common = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_frontAdmin_admin_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_frontAdmin_admin_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_frontAdmin_UserSetting_vue__ = __webpack_require__(161);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_frontAdmin_UserSetting_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_frontAdmin_UserSetting_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_backend_index_vue__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_backend_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_backend_index_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_backend_dash_vue__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_backend_dash_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__components_backend_dash_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_backend_listItem_vue__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_backend_listItem_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__components_backend_listItem_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_backend_itemAdd_vue__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_backend_itemAdd_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__components_backend_itemAdd_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_backend_itemEdit_vue__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_backend_itemEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__components_backend_itemEdit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_frontAdmin_showOrders_vue__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_frontAdmin_showOrders_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_frontAdmin_showOrders_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_backend_index_vue__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_backend_index_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__components_backend_index_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_backend_dash_vue__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_backend_dash_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__components_backend_dash_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_backend_listItem_vue__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_backend_listItem_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__components_backend_listItem_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_backend_itemAdd_vue__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_backend_itemAdd_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__components_backend_itemAdd_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_backend_itemEdit_vue__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_backend_itemEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__components_backend_itemEdit_vue__);
 /**
  * Created by baoxulong on 2017/3/3.
  */
@@ -126257,6 +126259,7 @@ window.axios.defaults.headers.common = {
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
+
 
 
 
@@ -126293,19 +126296,24 @@ var routes = [{
         path: '',
         component: __WEBPACK_IMPORTED_MODULE_12__components_frontAdmin_UserSetting_vue___default.a, meta: { requireAuth: true },
         alias: '/user-admin/index'
+    }, {
+        name: 'user-admin-showOrders',
+        path: 'show_orders',
+        component: __WEBPACK_IMPORTED_MODULE_13__components_frontAdmin_showOrders_vue___default.a, meta: { requireAuth: true },
+        alias: '/user-admin/show-orders'
     }]
 },
 //haso route
 {
-    path: '/haso', meta: { requireAdminAuth: true }, component: __WEBPACK_IMPORTED_MODULE_13__components_backend_index_vue___default.a,
+    path: '/haso', meta: { requireAdminAuth: true }, component: __WEBPACK_IMPORTED_MODULE_14__components_backend_index_vue___default.a,
     children: [{
-        name: 'dash', path: '/', meta: { requireAdminAuth: true }, component: __WEBPACK_IMPORTED_MODULE_14__components_backend_dash_vue___default.a
+        name: 'dash', path: '/', meta: { requireAdminAuth: true }, component: __WEBPACK_IMPORTED_MODULE_15__components_backend_dash_vue___default.a
     }, {
-        name: 'item_add', path: 'item_add', meta: { requireAdminAuth: true }, component: __WEBPACK_IMPORTED_MODULE_16__components_backend_itemAdd_vue___default.a
+        name: 'item_add', path: 'item_add', meta: { requireAdminAuth: true }, component: __WEBPACK_IMPORTED_MODULE_17__components_backend_itemAdd_vue___default.a
     }, {
-        name: 'item_list', path: 'item_list', meta: { requireAdminAuth: true }, component: __WEBPACK_IMPORTED_MODULE_15__components_backend_listItem_vue___default.a
+        name: 'item_list', path: 'item_list', meta: { requireAdminAuth: true }, component: __WEBPACK_IMPORTED_MODULE_16__components_backend_listItem_vue___default.a
     }, {
-        name: 'item_edit', path: 'item_edit', meta: { requireAdminAuth: true }, component: __WEBPACK_IMPORTED_MODULE_17__components_backend_itemEdit_vue___default.a
+        name: 'item_edit', path: 'item_edit', meta: { requireAdminAuth: true }, component: __WEBPACK_IMPORTED_MODULE_18__components_backend_itemEdit_vue___default.a
     }]
 },
 //admin login page
@@ -126379,6 +126387,501 @@ router.beforeEach(function (to, from, next) {
 __webpack_require__(47);
 module.exports = __webpack_require__(46);
 
+
+/***/ }),
+/* 264 */,
+/* 265 */,
+/* 266 */,
+/* 267 */,
+/* 268 */,
+/* 269 */,
+/* 270 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(272),
+  /* template */
+  __webpack_require__(271),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/baoxulong/Documents/Code/GitFiles/myshopmall/resources/assets/js/components/frontAdmin/showOrders.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] showOrders.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-77b98ed1", Component.options)
+  } else {
+    hotAPI.reload("data-v-77b98ed1", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 271 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('el-table', {
+    staticStyle: {
+      "width": "100%"
+    },
+    attrs: {
+      "data": _vm.data.data,
+      "border": "",
+      "max-height": "800"
+    }
+  }, [_c('el-table-column', {
+    attrs: {
+      "fixed": "",
+      "prop": "order_id",
+      "label": "订单ID",
+      "width": "150"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "max_num.name",
+      "label": "商品民",
+      "width": "120"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "item_number",
+      "label": "商品数量",
+      "width": "120"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "total_price",
+      "label": "商品总价",
+      "width": "120"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "kd_company",
+      "label": "快递公司",
+      "width": "300"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "kd_code",
+      "label": "快递单号",
+      "width": "120"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "new_status",
+      "label": "状态",
+      "width": "120"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "fixed": "right",
+      "label": "操作",
+      "width": "240"
+    },
+    scopedSlots: _vm._u([
+      ["default", function(scope) {
+        return [_c('el-button', {
+          attrs: {
+            "type": "text",
+            "size": "small"
+          },
+          nativeOn: {
+            "click": function($event) {
+              $event.preventDefault();
+              _vm.deleteRow(scope.$index, _vm.data.data)
+            }
+          }
+        }, [_vm._v("\n                    移除\n                ")]), _vm._v(" "), _c('el-button', {
+          attrs: {
+            "type": "text",
+            "size": "small"
+          },
+          nativeOn: {
+            "click": function($event) {
+              $event.preventDefault();
+              _vm.cancelOrder(scope.$index, _vm.data.data)
+            }
+          }
+        }, [_vm._v("\n                    取消订单\n                ")]), _vm._v(" "), _c('el-popover', {
+          ref: "popover4",
+          attrs: {
+            "placement": "right",
+            "width": "400",
+            "trigger": "click"
+          }
+        }, [_c('el-table', {
+          attrs: {
+            "data": _vm.gridData
+          }
+        }, [_c('el-table-column', {
+          attrs: {
+            "width": "150",
+            "property": "date",
+            "label": "日期"
+          }
+        }), _vm._v(" "), _c('el-table-column', {
+          attrs: {
+            "width": "100",
+            "property": "name",
+            "label": "姓名"
+          }
+        }), _vm._v(" "), _c('el-table-column', {
+          attrs: {
+            "width": "300",
+            "property": "address",
+            "label": "地址"
+          }
+        })], 1)], 1), _vm._v(" "), _c('el-button', {
+          directives: [{
+            name: "popover",
+            rawName: "v-popover:popover4",
+            arg: "popover4"
+          }],
+          attrs: {
+            "type": "text",
+            "size": "small"
+          }
+        }, [_vm._v("\n                    查看物流\n                ")]), _vm._v(" "), _c('el-button', {
+          attrs: {
+            "type": "text",
+            "size": "small"
+          },
+          on: {
+            "click": function($event) {
+              _vm.payMoney(scope.$index, _vm.data.data)
+            }
+          }
+        }, [_vm._v("\n                    付款\n                ")])]
+      }]
+    ])
+  })], 1), _vm._v(" "), _c('el-pagination', {
+    attrs: {
+      "current-page": _vm.data.current_page,
+      "layout": "total, prev, pager, next, jumper",
+      "total": _vm.data.total
+    },
+    on: {
+      "current-change": _vm.handleCurrentChange
+    }
+  }), _vm._v(" "), _c('el-button', {
+    attrs: {
+      "type": "primary"
+    },
+    on: {
+      "click": _vm.notShowNew
+    }
+  }, [_vm._v("\n        不显示为下单订单\n    ")])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-77b98ed1", module.exports)
+  }
+}
+
+/***/ }),
+/* 272 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    methods: {
+        deleteRow: function deleteRow(index, rows) {
+            var _this = this;
+
+            this.$confirm('此操作将永久删除该订单, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(function () {
+                axios.delete('/api/user/new_order/' + _this.data.data[index].order_id).then(function (res) {
+                    _this.$notify({
+                        title: '移除成功',
+                        message: '订单移除成功',
+                        type: 'success'
+                    });
+                    rows.splice(index, 1);
+                }).catch(function (err) {
+                    _this.$notify({
+                        title: '移除失败',
+                        message: res.data.err_msg,
+                        type: 'error'
+                    });
+                });
+            }).catch(function () {
+                _this.$message({
+                    type: 'info',
+                    message: '已取消删除'
+                });
+            });
+        },
+        cancelOrder: function cancelOrder(index, rows) {
+            var _this2 = this;
+
+            this.$confirm('此操作将取消订单, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(function () {
+                axios.put('/api/user/new_order/' + _this2.data.data[index].order_id + '?status=cancel').then(function (res) {
+                    _this2.data = res.data;
+                    if (res.code == 200) {
+                        _this2.$message({
+                            type: 'success',
+                            message: '取消订单成功!'
+                        });
+                    } else {
+                        _this2.$message({
+                            type: 'error',
+                            message: res.data.err_msg
+                        });
+                    }
+                });
+            }).catch(function () {
+                _this2.$message({
+                    type: 'info',
+                    message: '已取消操作'
+                });
+            });
+        },
+        showKD: function showKD(index, rows) {
+            var _this3 = this;
+
+            this.$alert('这是一段内容', '标题名称', {
+                confirmButtonText: '确定',
+                callback: function callback(action) {
+                    _this3.$message({
+                        type: 'info',
+                        message: 'action: ' + action
+                    });
+                }
+            });
+        },
+        notShowNew: function notShowNew() {
+            var _this4 = this;
+
+            axios.get('/api/user/new_order', {
+                params: {
+                    page: this.data.current_page,
+                    page_size: this.data.per_page,
+                    not_show_new: true
+                }
+            }).then(function (res) {
+                _this4.data = res.data;
+            });
+        },
+        handleSizeChange: function handleSizeChange(val) {
+            var _this5 = this;
+
+            axios.get('/api/user/new_order', {
+                params: {
+                    page_size: val
+                }
+            }).then(function (res) {
+                _this5.data = res.data;
+            });
+            console.log(this.data);
+        },
+        handleCurrentChange: function handleCurrentChange(val) {
+            var _this6 = this;
+
+            axios.get('/api/user/new_order', {
+                params: {
+                    page: val,
+                    page_size: this.data.per_page
+                }
+            }).then(function (res) {
+                _this6.data = res.data;
+            });
+            console.log('\u5F53\u524D\u9875: ' + val);
+        },
+        payMoney: function payMoney(index, rows) {
+            var _this7 = this;
+
+            this.$confirm('您将全额支付，是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(function () {
+                axios.put('/api/user/new_order/' + _this7.data.data[index].order_id + "?status=payed").then(function (res) {
+                    if (res.code == 200) {
+                        _this7.$notify({
+                            title: '支付成功',
+                            message: '订单支付成功',
+                            type: 'success'
+                        });
+                    } else {
+                        _this7.$notify({
+                            title: '支付失败',
+                            message: res.data.err_msg,
+                            type: 'error'
+                        });
+                    }
+                }).catch(function (err) {
+                    _this7.$notify({
+                        title: '支付失败',
+                        message: res.data.err_msg,
+                        type: 'error'
+                    });
+                });
+            }).catch(function () {
+                _this7.$message({
+                    type: 'info',
+                    message: '已取消支付'
+                });
+            });
+        }
+    },
+    data: function data() {
+        return {
+            data: [],
+            gridData: [{
+                date: '2016-05-02',
+                name: '王小虎',
+                address: '上海市普陀区金沙江路 1518 弄'
+            }, {
+                date: '2016-05-04',
+                name: '王小虎',
+                address: '上海市普陀区金沙江路 1518 弄'
+            }, {
+                date: '2016-05-01',
+                name: '王小虎',
+                address: '上海市普陀区金沙江路 1518 弄'
+            }, {
+                date: '2016-05-03',
+                name: '王小虎',
+                address: '上海市普陀区金沙江路 1518 弄'
+            }]
+        };
+    },
+    created: function created() {
+        var _this8 = this;
+
+        axios.get('/api/user/new_order').then(function (res) {
+            _this8.data = res.data;
+        });
+    }
+};
 
 /***/ })
 /******/ ]);

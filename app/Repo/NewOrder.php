@@ -29,4 +29,8 @@ class NewOrder
             'order_id' => $order_id
         ]);
     }
+
+    public static function changeStatus($data){
+
+    }
 }

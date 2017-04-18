@@ -17,6 +17,7 @@ import MainPage from '../components/front/mainPage.vue'
 import Category from '../components/front/category.vue'
 import UserAdmin from '../components/frontAdmin/admin.vue'
 import UserSetting from '../components/frontAdmin/UserSetting.vue'
+import ShowOrders from '../components/frontAdmin/showOrders.vue'
 import BackEndIndex from '../components/backend/index.vue'
 import Dash from '../components/backend/dash.vue'
 import ItemList from '../components/backend/listItem.vue'
@@ -31,7 +32,7 @@ const routes = [
             {name: 'index', path: '', component: MainPage, alias: '/index'},
             {name: 'category', path: 'category', component: Category},
             {name: 'detail', path: 'detail/:itemId', component: Detail},
-            {name: 'newOrder', path: 'neworder/:itemId/:itemNum',meta: {requireAuth: true}, component: NewOrder}
+            {name: 'newOrder', path: 'neworder/:itemId/:itemNum', meta: {requireAuth: true}, component: NewOrder}
         ]
     },
     {
@@ -52,6 +53,12 @@ const routes = [
                 path: '',
                 component: UserSetting, meta: {requireAuth: true},
                 alias: '/user-admin/index'
+            },
+            {
+                name: 'user-admin-showOrders',
+                path: 'show_orders',
+                component: ShowOrders, meta: {requireAuth: true},
+                alias:'/user-admin/show-orders'
             }
         ]
     },

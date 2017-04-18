@@ -71,7 +71,7 @@
                     </Menu-item>
                     <Menu-item name="2">
                         <Icon type="ios-keypad" :size="iconSize"></Icon>
-                        <span class="layout-text" v-on:click="$router.push({path:'/user-admin/index1'})">查看订单</span>
+                        <span class="layout-text" v-on:click="$router.push({path:'/user-admin/show_orders'})">查看订单</span>
                     </Menu-item>
                     <Menu-item name="3">
                         <Icon type="ios-analytics" :size="iconSize"></Icon>
