@@ -19,7 +19,7 @@ class OrderController extends Controller
         $itemId = $request->item_id;
         $page_size = empty($request->page_size) ? 10 : $request->page_size;
         $page = empty($request->page) ? 0 : $request->page;
-        if (!empty($number) && empty($itemId)) {
+        if (!empty($number) && !empty($itemId)) {
             $orderId = time() . "_" . $itemId . "_" . $number;
             NewOrder::newOrder($user_id, $itemId, $number, $orderId);
             return User::select()->where('id', $user_id)->with(['userInfo', 'address'])
@@ -29,7 +29,6 @@ class OrderController extends Controller
         } else {
 
                 $data = Order::select()->where('status', '!=', 'new')->skip($page_size * ($page - 1))->paginate($page_size);
-
             foreach ($data as &$item) {
                 //修改订单状态
                 if ($item['status'] == 'new') {
@@ -40,6 +39,12 @@ class OrderController extends Controller
                 };
                 if ($item['status'] == 'cancel') {
                     $item['new_status'] = '订单已取消';
+                };
+                if ($item['status'] == 'send') {
+                    $item['new_status'] = '已发货';
+                };
+                if ($item['status'] == 'kd_code') {
+                    $item['new_status'] = '物流已揽货';
                 };
                 if ($item['status'] == 'payed') {
                     $item['new_status'] = '订单已支付';
@@ -57,7 +62,6 @@ class OrderController extends Controller
                 if ($item['kd_company'] == 'HTKY') {
                     $item['kd_company'] = '百世快递';
                 }
-
             }
             return $data;
         }

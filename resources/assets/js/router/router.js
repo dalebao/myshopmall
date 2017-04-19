@@ -21,6 +21,7 @@ import ShowOrders from '../components/frontAdmin/showOrders.vue'
 import BackEndIndex from '../components/backend/index.vue'
 import Dash from '../components/backend/dash.vue'
 import ItemList from '../components/backend/listItem.vue'
+import OrderList from '../components/backend/orderList.vue'
 import ItemAdd from '../components/backend/itemAdd.vue'
 import ItemEdit from '../components/backend/itemEdit.vue'
 
@@ -60,6 +61,7 @@ const routes = [
                 component: ShowOrders, meta: {requireAuth: true},
                 alias:'/user-admin/show-orders'
             }
+
         ]
     },
     //haso route
@@ -77,6 +79,9 @@ const routes = [
             },
             {
                 name: 'item_edit', path: 'item_edit', meta: {requireAdminAuth: true}, component: ItemEdit
+            },
+            {
+                name:'order_list',path:'order_list',meta: {requireAdminAuth: true},component:OrderList
             }
         ]
     },

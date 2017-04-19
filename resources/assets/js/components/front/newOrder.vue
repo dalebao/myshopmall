@@ -93,7 +93,9 @@
                             title: '下单成功',
                             message: '恭喜您，下单成功。',
                             type: 'success'
-                        })
+                        }).then(
+                            this.$router.push('/user-admin/show_orders')
+                        )
                     }
                 }).catch(err => {
                     this.$notify({

@@ -45,6 +45,8 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['middleware' => 'auth:admin', 'prefix' => 'api'], function () {
     //item controller
     Route::resource('item', 'Admin\ItemController');
+    //order controller
+    Route::resource('order','Api\Admin\OrderController');
 
 });
 

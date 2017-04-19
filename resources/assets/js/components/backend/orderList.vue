@@ -13,9 +13,24 @@
                     width="150">
             </el-table-column>
             <el-table-column
-                    prop="max_num.name"
-                    label="商品民"
+                    prop="user.0.id"
+                    label="用户ID"
                     width="120">
+            </el-table-column>
+            <el-table-column
+                    prop="user.0.name"
+                    label="用户名"
+                    width="120">
+            </el-table-column>
+            <el-table-column
+                    prop="address.0.address"
+                    label="快递地址"
+                    width="240">
+            </el-table-column>
+            <el-table-column
+                    prop="max_num.name"
+                    label="商品名"
+                    width="240">
             </el-table-column>
             <el-table-column
                     prop="item_number"
@@ -30,7 +45,7 @@
             <el-table-column
                     prop="kd_company"
                     label="快递公司"
-                    width="300">
+                    width="120">
             </el-table-column>
             <el-table-column
                     prop="kd_code"
@@ -54,34 +69,16 @@
                         移除
                     </el-button>
                     <el-button
-                            @click.native.prevent="cancelOrder(scope.$index, data.data)"
+                            @click="enterKdCode(scope.$index, data.data)"
                             type="text"
                             size="small">
-                        取消订单
-                    </el-button>
-                    <el-popover
-                            ref="popover4"
-                            placement="right"
-                            width="400"
-                            trigger="click">
-                        <el-table :data="gridData">
-                            <el-table-column width="150" property="date" label="日期"></el-table-column>
-                            <el-table-column width="100" property="name" label="姓名"></el-table-column>
-                            <el-table-column width="300" property="address" label="地址"></el-table-column>
-                        </el-table>
-                    </el-popover>
-
-                    <el-button
-                            v-popover:popover4
-                            type="text"
-                            size="small">
-                        查看物流
+                        输入快递单号
                     </el-button>
                     <el-button
-                            @click="payMoney(scope.$index, data.data)"
+                            @click="Consignment(scope.$index, data.data)"
                             type="text"
                             size="small">
-                        付款
+                        发货
                     </el-button>
                 </template>
             </el-table-column>
@@ -111,7 +108,7 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    axios.delete('/api/user/new_order/' +
+                    axios.delete('/api/order/' +
                         this.data.data[index].order_id).then(res => {
                         this.$notify({
                             title: '移除成功',
@@ -134,50 +131,44 @@
                 });
 
             },
-            cancelOrder(index, rows){
-                this.$confirm('此操作将取消订单, 是否继续?', '提示', {
+            enterKdCode(index, rows){
+                this.$prompt('请输入快递单号', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                    axios.put('/api/user/new_order/' +
-                        this.data.data[index].order_id + '?status=cancel')
-                        .then(res => {
-                            this.data = res.data
-                            if (res.code==200){
-                                this.$message({
-                                    type: 'success',
-                                    message: '取消订单成功!'
-                                });
-                            }else {
-                                this.$message({
-                                    type: 'error',
-                                    message: res.data.err_msg
-                                });
-                            }
-
+                }).then(({value}) => {
+                        axios.put('/api/order/' + this.data.data[index].order_id + "?kd_code=" + value + "&status=kd_code")
+                            .then(res => {
+                                console.log(res.data.code)
+                                if (res.data.code != 0) {
+                                    this.$message({
+                                        type: 'success',
+                                        message: '快递单号是: ' + value
+                                    })
+                                } else if(res.data.code == 0) {
+                                    this.$notify({
+                                        title: '失败',
+                                        message: res.data.err_msg,
+                                        type: 'error'
+                                    });
+                                }
+                            }).catch(err => {
+                            this.$notify({
+                                title: '失败',
+                                message: res.data.err_msg,
+                                type: 'error'
+                            });
                         })
-
-                }).catch(() => {
+                    }
+                ).catch(() => {
                     this.$message({
                         type: 'info',
-                        message: '已取消操作'
+                        message: '取消输入'
                     });
                 });
             },
-            showKD(index, rows){
-                this.$alert('这是一段内容', '标题名称', {
-                    confirmButtonText: '确定',
-                    callback: action => {
-                        this.$message({
-                            type: 'info',
-                            message: `action: ${ action }`
-                        });
-                    }
-                });
-            },
-            notShowNew(){
-                axios.get('/api/user/new_order', {
+            notShowNew()
+            {
+                axios.get('/api/order', {
                     params: {
                         page: this.data.current_page,
                         page_size: this.data.per_page,
@@ -186,19 +177,22 @@
                 }).then(res => {
                     this.data = res.data
                 })
-            },
-            handleSizeChange(val) {
-                axios.get('/api/user/new_order', {
+            }
+            ,
+            handleSizeChange(val)
+            {
+                axios.get('/api/order', {
                     params: {
                         page_size: val
                     }
                 }).then(res => {
                     this.data = res.data
                 })
-                console.log(this.data);
-            },
-            handleCurrentChange(val) {
-                axios.get('/api/user/new_order', {
+            }
+            ,
+            handleCurrentChange(val)
+            {
+                axios.get('/api/order', {
                     params: {
                         page: val,
                         page_size: this.data.per_page
@@ -206,33 +200,36 @@
                 }).then(res => {
                     this.data = res.data
                 })
-                console.log(`当前页: ${val}`);
-            },
-            payMoney(index, rows) {
-                this.$confirm('您将全额支付，是否继续?', '提示', {
+            }
+            ,
+            //done
+            Consignment(index, rows)
+            {
+                this.$confirm('请确认用户已付款?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    axios.put('/api/user/new_order/' +
-                        this.data.data[index].order_id + "?status=payed").then(res => {
-                        if (res.code != 0) {
-                            this.data = res.data
+                    axios.put('/api/order/' +
+                        this.data.data[index].order_id + "?status=send").then(res => {
+                        if (res.data.code == '0') {
                             this.$notify({
-                                title: '支付成功',
-                                message: '订单支付成功',
-                                type: 'success'
-                            });
-                        } else {
-                            this.$notify({
-                                title: '支付失败',
+                                title: '发货失败',
                                 message: res.data.err_msg,
                                 type: 'error'
                             });
+                        } else {
+                            this.data = res.data
+                            this.$notify({
+                                title: '发货成功',
+                                message: '订单发货成功',
+                                type: 'success'
+                            });
+
                         }
                     }).catch(err => {
                         this.$notify({
-                            title: '支付失败',
+                            title: '发货失败',
                             message: res.data.err_msg,
                             type: 'error'
                         });
@@ -240,14 +237,14 @@
                 }).catch(() => {
                     this.$message({
                         type: 'info',
-                        message: '已取消支付'
+                        message: '已取消'
                     });
                 });
 
             },
-
         },
-        data() {
+        data()
+        {
             return {
                 data: [],
                 gridData: [{
@@ -268,9 +265,11 @@
                     address: '上海市普陀区金沙江路 1518 弄'
                 }]
             }
-        },
-        created(){
-            axios.get('/api/user/new_order').then(res => {
+        }
+        ,
+        created()
+        {
+            axios.get('/api/order').then(res => {
                 this.data = res.data
             })
         }
