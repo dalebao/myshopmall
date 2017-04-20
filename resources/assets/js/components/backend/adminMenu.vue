@@ -8,12 +8,11 @@
                     </el-menu-item-group>
                     <el-menu-item-group title="订单">
                         <el-menu-item index="/haso/order_list"><i class="el-icon-message"></i>订单列表</el-menu-item>
-                        <el-menu-item index="2"><i class="el-icon-message"></i>导航二</el-menu-item>
+                        <el-menu-item index="/haso/order_profit"><i class="el-icon-message"></i>订单盈利</el-menu-item>
                     </el-menu-item-group>
                     <el-menu-item-group title="商品">
                         <el-menu-item index="/haso/item_add"><i class="el-icon-message"></i>新增商品</el-menu-item>
                         <el-menu-item index="/haso/item_list"><i class="el-icon-message"></i>商品列表</el-menu-item>
-                        <el-menu-item index="/haso/item_edit"><i class="el-icon-message"></i>商品编辑</el-menu-item>
                     </el-menu-item-group>
                 </el-menu>
             </div>

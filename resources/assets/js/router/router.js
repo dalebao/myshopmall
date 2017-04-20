@@ -78,7 +78,7 @@ const routes = [
                 name: 'item_list', path: 'item_list', meta: {requireAdminAuth: true}, component: ItemList
             },
             {
-                name: 'item_edit', path: 'item_edit', meta: {requireAdminAuth: true}, component: ItemEdit
+                name: 'item_edit', path: 'item_edit/:itemId', meta: {requireAdminAuth: true}, component: ItemEdit
             },
             {
                 name:'order_list',path:'order_list',meta: {requireAdminAuth: true},component:OrderList

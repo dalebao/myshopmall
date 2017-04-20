@@ -43,10 +43,11 @@ Route::group(['prefix' => 'admin'], function () {
 
 //api for admin
 Route::group(['middleware' => 'auth:admin', 'prefix' => 'api'], function () {
-    //item controller
-    Route::resource('item', 'Admin\ItemController');
     //order controller
-    Route::resource('order','Api\Admin\OrderController');
+    //order controller
+    Route::resource('order', 'Api\Admin\OrderController');
+    //item api controller
+    Route::resource('item', 'Api\Admin\ItemController');
 
 });
 
@@ -55,18 +56,24 @@ Route::group(['middleware' => 'auth:admin', 'prefix' => 'api'], function () {
 Route::group(['prefix' => 'api/front'], function () {
     //index
     Route::resource('item', 'Api\Front\ItemController');
+    //comment
+    Route::resource('comment', 'Front\CommentController');
+    //high score
+    Route::resource('high_score','Front\HighScoreController');
 });
 
 //api for user
-Route::group(['prefix'=>'api/user','middleware'=>'auth'],function (){
+Route::group(['prefix' => 'api/user', 'middleware' => 'auth'], function () {
     //user's address
-    Route::resource('address','Api\Front\AddressController');
+    Route::resource('address', 'Api\Front\AddressController');
     //user's info
-    Route::resource('user_info','Api\Front\UserInfoController');
+    Route::resource('user_info', 'Api\Front\UserInfoController');
     //new order
-    Route::resource('new_order','Api\Front\OrderController');
+    Route::resource('new_order', 'Api\Front\OrderController');
     //user-admin order
-    Route::resource('order','Api\Admin\OrderController');
+//    Route::resource('order','Api\Admin\OrderController');
+    //comment controller
+    Route::resource('comment', 'Api\Front\CommentController');
 });
 
 

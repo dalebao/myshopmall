@@ -34,11 +34,14 @@
                             </div>
                         </el-col>
                     </el-row>
-                    <Tabs value="name1">
-                        <Tab-pane label="商品详情" name="item-description"><p class="item-description">
-                            {{item.description}}</p>
+                    <Tabs value="item-description">
+                        <Tab-pane label="商品详情" name="item-description">
+                            <div class="item-description"  v-html="item.description">
+                            </div>
                         </Tab-pane>
-                        <Tab-pane label="商品评价" name="item-comment">标签二的内容</Tab-pane>
+                        <Tab-pane label="商品评价" name="item-comment">
+                            <comment></comment>
+                        </Tab-pane>
                     </Tabs>
                 </el-tab-pane>
             </el-tabs>
@@ -48,8 +51,9 @@
 
 <script>
     import HighScore from './highScore.vue'
+    import Comment from './comment.vue'
     export default{
-        components: {HighScore},
+        components: {HighScore,Comment},
         data() {
             return {
                 item: [],

@@ -29,18 +29,18 @@
         </el-form-item>
 
 
-        <el-form-item label="是否推荐" prop="recommend">
-            <el-switch on-text="" off-text="" v-model="addItemForm.recommend"></el-switch>
+        <el-form-item label="是否推荐" prop="is_show">
+            <el-switch on-text="" off-text="" v-model="addItemForm.is_show"></el-switch>
         </el-form-item>
 
-        <el-form-item label="商品标签" prop="tag">
-            <el-checkbox-group v-model="addItemForm.tag">
-                <el-checkbox label="美食/餐厅线上活动" name="tag"></el-checkbox>
-                <el-checkbox label="地推活动" name="tag"></el-checkbox>
-                <el-checkbox label="线下主题活动" name="tag"></el-checkbox>
-                <el-checkbox label="单纯品牌曝光" name="tag"></el-checkbox>
-            </el-checkbox-group>
-        </el-form-item>
+        <!--<el-form-item label="商品标签" prop="tag">-->
+            <!--<el-checkbox-group v-model="addItemForm.tag">-->
+                <!--<el-checkbox label="美食/餐厅线上活动" name="tag"></el-checkbox>-->
+                <!--<el-checkbox label="地推活动" name="tag"></el-checkbox>-->
+                <!--<el-checkbox label="线下主题活动" name="tag"></el-checkbox>-->
+                <!--<el-checkbox label="单纯品牌曝光" name="tag"></el-checkbox>-->
+            <!--</el-checkbox-group>-->
+        <!--</el-form-item>-->
 
         <el-form-item label="商品描述" prop="description">
             <quill-editor ref="myTextEditor"
@@ -80,7 +80,7 @@
                     cost_price:0 ,
                     now_price: 0,
                     number: 0,
-                    recommend: false,
+                    is_show: false,
                     tag: [],
                     resource: '',
                     description: '<h1>this is example</h1>'
@@ -88,10 +88,7 @@
                 rules: {
                     name: [
                         {required: true, message: '请输入商品名称', trigger: 'blur'},
-                        {min: 3, max: 15, message: '长度在 3 到 15 个字符', trigger: 'blur'}
-                    ],
-                    category: [
-                        {required: true, message: '请选择商品类型', trigger: 'blur'}
+                        {min: 3, max: 150, message: '长度在 3 到 150 个字符', trigger: 'blur'}
                     ],
                     cost_price: [
                         {type: 'number', message: '请输入数字', trigger: 'blur'}
@@ -102,9 +99,9 @@
                     number: [
                         {type: 'number', message: '请输入数字', trigger: 'blur'}
                     ],
-                    tag: [
-                        {type: 'array', required: true, message: '请至少选择一个标签', trigger: 'change'}
-                    ],
+//                    tag: [
+//                        {type: 'array', required: true, message: '请至少选择一个标签', trigger: 'change'}
+//                    ],
                     description: [
                         {required: true, message: '请填写商品描述', trigger: 'blur'}
                     ]
@@ -115,9 +112,10 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        alert('submit!');
+                        axios.put('/api/item/'+this.$route.params.itemId,{
+                                data:this.addItemForm
+                        })
                     } else {
-                        console.log('error submit!!');
                         return false;
                     }
                 });
@@ -128,6 +126,11 @@
             handleCategory(data){
                 console.log(data)
             }
+        },
+        created(){
+            axios.get('/api/item/'+this.$route.params.itemId).then(res=>{
+                this.addItemForm = res.data
+            })
         }
     }
 </script>
