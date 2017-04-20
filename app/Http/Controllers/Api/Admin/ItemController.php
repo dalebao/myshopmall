@@ -12,23 +12,23 @@ class ItemController extends Controller
     {
         $page_size = empty($request->page_size) ? 10 : $request->page_size;
         $page = empty($request->page) ? 0 : $request->page;
-        $data =  Item::select()->skip($page_size * ($page - 1))->paginate($page_size);
-        foreach ($data as &$item){
-            if ($item['is_show']){
+        $data = Item::select()->skip($page_size * ($page - 1))->paginate($page_size);
+        foreach ($data as &$item) {
+            if ($item['is_show']) {
                 $item['is_show'] = true;
-            }else{
+            } else {
                 $item['is_show'] = true;
             }
         }
         return $data;
     }
 
-    public function destroy($id,Request $request)
+    public function destroy($id, Request $request)
     {
         $s = Item::where('id', $id)->delete();
         if ($s) {
             return $this->index($request);
-        }else{
+        } else {
             return response()->json([
                 'code' => 0,
                 'err_msg' => '删除失败'
@@ -36,18 +36,46 @@ class ItemController extends Controller
         }
     }
 
-    public function show(Request $request,$id){
-        $item = Item::select()->where('id',$id)->first();
-        if ($item['is_show']){
+    public function show(Request $request, $id)
+    {
+        $item = Item::select()->where('id', $id)->first();
+        if ($item['is_show']) {
             $item['is_show'] = true;
-        }else{
+        } else {
             $item['is_show'] = true;
         }
         return $item;
     }
 
-    public function update(Request $request,$id){
+    public function update(Request $request, $id)
+    {
         $data = $request->data;
-        Item::where('id',$id)->update($data);
+        Item::where('id', $id)->update($data);
+    }
+
+    public function store(Request $request)
+    {
+        $name = $request->data['name'];
+        $description = $request->data['description'];
+        $number = $request->data['number'];
+        $now_price = $request->data['now_price'];
+        $cost_price = $request->data['cost_price'];
+        $category = json_encode($request->data['category']);
+        $tag = json_encode($request->data['tag']);
+        $is_show = $request->data['recommend'];
+//        $description = $request->data['description'];
+
+       return Item::updateOrCreate([
+            'name' => $name,
+        ], [
+            'description' => $description,
+            'number' => $number,
+            'now_price' => $now_price,
+            'cost_price' => $cost_price,
+            'cate' => $category,
+            'tag' => $tag,
+        ]);
+
+
     }
 }

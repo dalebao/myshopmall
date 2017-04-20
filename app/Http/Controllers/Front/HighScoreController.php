@@ -13,17 +13,17 @@ class HighScoreController extends Controller
     {
         $highScore = $this->getHighScore();
         $item_id = $this->scoreFunc($highScore);
-        return $item_id;
+//        dd($highScore);
         $data = [];
         $item = Item::select()->whereIn('id', $item_id)->get();
         foreach ($item as $value) {
             $data[] = [
-                'name'=>$value['name'],
-                ''
+                'name' => $value['name'],
+                'url' => 'http://shopmall.app/detail/' . $value['id'],
+                'rate' => $highScore[$value['id']]['avg'],
             ];
         }
-
-        return $item;
+        return response()->json($data);
     }
 
     public function getHighScore()
@@ -42,7 +42,7 @@ class HighScoreController extends Controller
                 $score[$item_id] = [
                     'score' => $high_score[$item_id],
                     'num' => $num,
-                    'avg' => ceil($high_score[$item_id] / $num),
+                    'avg' => number_format($high_score[$item_id] / $num,2),
                 ];
             }
         }
@@ -57,7 +57,6 @@ class HighScoreController extends Controller
                 $item_id[] = $key;
             }
         }
-//        dd($item_id);
         return $item_id;
     }
 

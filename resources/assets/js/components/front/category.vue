@@ -7,7 +7,7 @@
                     <category-bar></category-bar>
                 </div>
                 <div class="feedback-bar">
-                    <FeedBackBar></FeedBackBar>
+                    <high-score></high-score>
                 </div>
             </el-col>
             <el-col :span="16">
@@ -26,6 +26,7 @@
     import CategoryBar from './category-bar.vue'
     import FeedBackBar from './feedback-bar.vue'
     import Paginate from '../utils/paginate.vue'
+    import HighScore from './highScore.vue'
     export default {
         data(){
             return {
@@ -36,7 +37,8 @@
             Card,
             CategoryBar,
             FeedBackBar,
-            Paginate
+            Paginate,
+            HighScore
         },
         created(){
             axios.get('/api/front/item', {

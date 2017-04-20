@@ -35,10 +35,10 @@
 
         <el-form-item label="商品标签" prop="tag">
             <el-checkbox-group v-model="addItemForm.tag">
-                <el-checkbox label="美食/餐厅线上活动" name="tag"></el-checkbox>
-                <el-checkbox label="地推活动" name="tag"></el-checkbox>
-                <el-checkbox label="线下主题活动" name="tag"></el-checkbox>
-                <el-checkbox label="单纯品牌曝光" name="tag"></el-checkbox>
+                <el-checkbox label="热门商品" name="tag"></el-checkbox>
+                <el-checkbox label="性价比超群" name="tag"></el-checkbox>
+                <el-checkbox label="价格优惠" name="tag"></el-checkbox>
+                <el-checkbox label="好评如潮" name="tag"></el-checkbox>
             </el-checkbox-group>
         </el-form-item>
 
@@ -82,22 +82,12 @@
                     number: 0,
                     recommend: false,
                     tag: [],
-                    resource: '',
                     description: '<h1>this is example</h1>'
                 },
                 rules: {
                     name: [
                         {required: true, message: '请输入商品名称', trigger: 'blur'},
                         {min: 3, max: 15, message: '长度在 3 到 15 个字符', trigger: 'blur'}
-                    ],
-                    category: [
-                        {required: true, message: '请选择商品类型', trigger: 'blur'}
-                    ],
-                    cost_price: [
-                        {type: 'number', message: '请输入数字', trigger: 'blur'}
-                    ],
-                    now_price: [
-                        {type: 'number', message: '请输入数字', trigger: 'blur'}
                     ],
                     number: [
                         {type: 'number', message: '请输入数字', trigger: 'blur'}
@@ -115,7 +105,9 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        alert('submit!');
+                        axios.post('/api/item',{
+                            data:this.addItemForm
+                        })
                     } else {
                         console.log('error submit!!');
                         return false;
@@ -126,7 +118,7 @@
                 this.$refs[formName].resetFields();
             },
             handleCategory(data){
-                console.log(data)
+                this.addItemForm.category = data
             }
         }
     }

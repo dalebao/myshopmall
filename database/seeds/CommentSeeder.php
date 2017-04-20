@@ -12,6 +12,6 @@ class CommentSeeder extends Seeder
     public function run()
     {
         \App\Models\Comment::truncate();
-        factory(\App\Models\Comment::class,200)->create();
+        factory(\App\Models\Comment::class,600)->create();
     }
 }

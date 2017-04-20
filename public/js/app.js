@@ -61613,7 +61613,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -70885,6 +70885,15 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('Card', {
+    directives: [{
+      name: "loading",
+      rawName: "v-loading.body",
+      value: (_vm.loading),
+      expression: "loading",
+      modifiers: {
+        "body": true
+      }
+    }],
     staticStyle: {
       "width": "350px"
     }
@@ -70894,7 +70903,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "ios-film-outline"
     }
-  }), _vm._v("\n        经典电影\n    ")], 1), _vm._v(" "), _c('a', {
+  }), _vm._v("\n        高分商品\n    ")], 1), _vm._v(" "), _c('a', {
     attrs: {
       "href": "#"
     },
@@ -70922,7 +70931,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           "type": "ios-star"
         }
       })
-    }), (item.rate >= 9.5) ? _c('Icon', {
+    }), (item.rate >= 5) ? _c('Icon', {
       attrs: {
         "type": "ios-star"
       }
@@ -71524,7 +71533,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('div', [_c('category-bar')], 1), _vm._v(" "), _c('div', {
     staticClass: "feedback-bar"
-  }, [_c('FeedBackBar')], 1)]), _vm._v(" "), _c('el-col', {
+  }, [_c('high-score')], 1)]), _vm._v(" "), _c('el-col', {
     attrs: {
       "span": 16
     }
@@ -72108,22 +72117,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('el-checkbox', {
     attrs: {
-      "label": "美食/餐厅线上活动",
+      "label": "热门商品",
       "name": "tag"
     }
   }), _vm._v(" "), _c('el-checkbox', {
     attrs: {
-      "label": "地推活动",
+      "label": "性价比超群",
       "name": "tag"
     }
   }), _vm._v(" "), _c('el-checkbox', {
     attrs: {
-      "label": "线下主题活动",
+      "label": "价格优惠",
       "name": "tag"
     }
   }), _vm._v(" "), _c('el-checkbox', {
     attrs: {
-      "label": "单纯品牌曝光",
+      "label": "好评如潮",
       "name": "tag"
     }
   })], 1)], 1), _vm._v(" "), _c('el-form-item', {
@@ -72318,7 +72327,7 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('el-cascader', {
     attrs: {
-      "placeholder": "试试搜索：指南",
+      "placeholder": "试试搜索：鞋子",
       "options": _vm.options,
       "filterable": ""
     },
@@ -72379,13 +72388,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           "lock": true
         }
       }]
+    }, [_c('a', {
+      attrs: {
+        "href": item.item_url
+      }
     }, [_c('img', {
       staticClass: "img_class",
       attrs: {
         "src": item.url,
         "alt": item.name
       }
-    })])
+    })])])
   }))
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -124018,14 +124031,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 number: 0,
                 recommend: false,
                 tag: [],
-                resource: '',
                 description: '<h1>this is example</h1>'
             },
             rules: {
                 name: [{ required: true, message: '请输入商品名称', trigger: 'blur' }, { min: 3, max: 15, message: '长度在 3 到 15 个字符', trigger: 'blur' }],
-                category: [{ required: true, message: '请选择商品类型', trigger: 'blur' }],
-                cost_price: [{ type: 'number', message: '请输入数字', trigger: 'blur' }],
-                now_price: [{ type: 'number', message: '请输入数字', trigger: 'blur' }],
                 number: [{ type: 'number', message: '请输入数字', trigger: 'blur' }],
                 tag: [{ type: 'array', required: true, message: '请至少选择一个标签', trigger: 'change' }],
                 description: [{ required: true, message: '请填写商品描述', trigger: 'blur' }]
@@ -124035,9 +124044,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         submitForm: function submitForm(formName) {
+            var _this = this;
+
             this.$refs[formName].validate(function (valid) {
                 if (valid) {
-                    alert('submit!');
+                    axios.post('/api/item', {
+                        data: _this.addItemForm
+                    });
                 } else {
                     console.log('error submit!!');
                     return false;
@@ -124048,7 +124061,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$refs[formName].resetFields();
         },
         handleCategory: function handleCategory(data) {
-            console.log(data);
+            this.addItemForm.category = data;
         }
     }
 };
@@ -124121,39 +124134,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             options: [{
-                value: 'zhinan',
-                label: '指南',
+                value: 'mobile',
+                label: '手机',
                 children: [{
-                    value: 'shejiyuanze',
-                    label: '设计原则'
+                    value: 'xiaomi',
+                    label: '小米'
                 }, {
-                    value: 'daohang',
-                    label: '导航'
+                    value: 'iphone',
+                    label: 'iPhone'
                 }, {
-                    value: 'zujian',
-                    label: '组件'
+                    value: 'huawei',
+                    label: '华为'
                 }]
             }, {
-                value: 'ssss',
-                label: 'sssss',
+                value: 'cloth',
+                label: '服装',
                 children: [{
-                    value: 'form',
-                    label: 'Form'
+                    value: 'man',
+                    label: '男装'
                 }, {
-                    value: 'data',
-                    label: 'Data'
+                    value: 'male',
+                    label: '女装'
                 }, {
-                    value: 'notice',
-                    label: 'Notice'
+                    value: 'child',
+                    label: '童装'
+                }]
+            }, {
+                value: 'shoes',
+                label: '鞋子',
+                children: [{
+                    value: 'man',
+                    label: '男鞋'
                 }, {
-                    value: 'navigation',
-                    label: 'Navigation'
+                    value: 'male',
+                    label: '女鞋'
                 }, {
-                    value: 'others',
-                    label: 'Others'
-                }, {
-                    value: 'ziyuan',
-                    label: '资源'
+                    value: 'child',
+                    label: '儿童鞋'
                 }]
             }]
         };
@@ -125141,6 +125158,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__feedback_bar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__feedback_bar_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_paginate_vue__ = __webpack_require__(172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_paginate_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__utils_paginate_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__highScore_vue__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__highScore_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__highScore_vue__);
 //
 //
 //
@@ -125164,6 +125183,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -125180,7 +125200,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         Card: __WEBPACK_IMPORTED_MODULE_0__card_vue___default.a,
         CategoryBar: __WEBPACK_IMPORTED_MODULE_1__category_bar_vue___default.a,
         FeedBackBar: __WEBPACK_IMPORTED_MODULE_2__feedback_bar_vue___default.a,
-        Paginate: __WEBPACK_IMPORTED_MODULE_3__utils_paginate_vue___default.a
+        Paginate: __WEBPACK_IMPORTED_MODULE_3__utils_paginate_vue___default.a,
+        HighScore: __WEBPACK_IMPORTED_MODULE_4__highScore_vue___default.a
     },
     created: function created() {
         var _this = this;
@@ -125529,53 +125550,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = {
     data: function data() {
         return {
-            movieList: [{
-                name: '肖申克的救赎',
-                url: 'https://movie.douban.com/subject/1292052/',
-                rate: 9.6
-            }, {
-                name: '这个杀手不太冷',
-                url: 'https://movie.douban.com/subject/1295644/',
-                rate: 9.4
-            }, {
-                name: '霸王别姬',
-                url: 'https://movie.douban.com/subject/1291546/',
-                rate: 9.5
-            }, {
-                name: '阿甘正传',
-                url: 'https://movie.douban.com/subject/1292720/',
-                rate: 9.4
-            }, {
-                name: '美丽人生',
-                url: 'https://movie.douban.com/subject/1292063/',
-                rate: 9.5
-            }, {
-                name: '千与千寻',
-                url: 'https://movie.douban.com/subject/1291561/',
-                rate: 9.2
-            }, {
-                name: '辛德勒的名单',
-                url: 'https://movie.douban.com/subject/1295124/',
-                rate: 9.4
-            }, {
-                name: '海上钢琴师',
-                url: 'https://movie.douban.com/subject/1292001/',
-                rate: 5
-            }, {
-                name: '机器人总动员',
-                url: 'https://movie.douban.com/subject/2131459/',
-                rate: 9.3
-            }, {
-                name: '盗梦空间',
-                url: 'https://movie.douban.com/subject/3541415/',
-                rate: 9.2
-            }],
-            randomMovieList: []
+            movieList: [],
+            randomMovieList: [],
+            loading: true
         };
     },
 
     methods: {
         changeLimit: function changeLimit() {
+            this.randomMovieList = getArrayItems(this.movieList, 10);
             function getArrayItems(arr, num) {
                 var temp_array = [];
                 for (var index in arr) {
@@ -125593,12 +125576,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
                 return return_array;
             }
-
-            this.randomMovieList = getArrayItems(this.movieList, 10);
         }
     },
     mounted: function mounted() {
         this.changeLimit();
+    },
+    created: function created() {
+        var _this = this;
+
+        axios.get('/api/front/high_score').then(function (res) {
+            _this.movieList = res.data;
+            _this.changeLimit();
+            _this.loading = false;
+        });
     }
 };
 

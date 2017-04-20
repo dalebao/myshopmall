@@ -1,6 +1,6 @@
 <template>
     <el-cascader
-            placeholder="试试搜索：指南"
+            placeholder="试试搜索：鞋子"
             :options="options"
             filterable
             @change="handleChange"
@@ -13,39 +13,43 @@
         data() {
             return {
                 options: [{
-                    value: 'zhinan',
-                    label: '指南',
+                    value: 'mobile',
+                    label: '手机',
                     children: [{
-                        value: 'shejiyuanze',
-                        label: '设计原则'
+                        value: 'xiaomi',
+                        label: '小米'
                     }, {
-                        value: 'daohang',
-                        label: '导航'
+                        value: 'iphone',
+                        label: 'iPhone'
                     }, {
-                        value: 'zujian',
-                        label: '组件'
+                        value: 'huawei',
+                        label: '华为'
                     }]
                 }, {
-                    value: 'ssss',
-                    label: 'sssss',
+                    value: 'cloth',
+                    label: '服装',
                     children: [{
-                        value: 'form',
-                        label: 'Form'
+                        value: 'man',
+                        label: '男装'
                     }, {
-                        value: 'data',
-                        label: 'Data'
+                        value: 'male',
+                        label: '女装'
                     }, {
-                        value: 'notice',
-                        label: 'Notice'
+                        value: 'child',
+                        label: '童装'
+                    }]
+                },{
+                    value: 'shoes',
+                    label: '鞋子',
+                    children: [{
+                        value: 'man',
+                        label: '男鞋'
                     }, {
-                        value: 'navigation',
-                        label: 'Navigation'
+                        value: 'male',
+                        label: '女鞋'
                     }, {
-                        value: 'others',
-                        label: 'Others'
-                    }, {
-                        value: 'ziyuan',
-                        label: '资源'
+                        value: 'child',
+                        label: '儿童鞋'
                     }]
                 }]
             }

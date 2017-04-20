@@ -10,7 +10,10 @@ class CarouselController extends Controller
 {
     public function index()
     {
-        return Carousel::all();
-
+        $data = Carousel::all();
+        foreach ($data as &$item) {
+            $item['item_url'] = "http://shopmall.app/detail/".$item['item_id'];
+        }
+        return $data;
     }
 }
