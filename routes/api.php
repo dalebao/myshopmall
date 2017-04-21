@@ -17,7 +17,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::resource('/upload','Api\Admin\ImageController');
 
 //carousel controller
 Route::resource('carousel', 'Front\CarouselController');
+
+Route::get('base',function (){
+    return dirname(__DIR__);
+});
 

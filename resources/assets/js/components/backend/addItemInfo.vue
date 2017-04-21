@@ -50,7 +50,7 @@
         </el-form-item>
 
         <el-form-item label="增加缩略图">
-            <add-image></add-image>
+            <add-image v-on:sendPath="handleSendPath"></add-image>
         </el-form-item>
 
         <el-form-item>
@@ -77,13 +77,14 @@
                 addItemForm: {
                     name: '',
                     category: '',
-                    cost_price:0 ,
+                    cost_price: 0,
                     now_price: 0,
                     number: 0,
                     recommend: false,
                     tag: [],
                     description: '<h1>this is example</h1>'
                 },
+                url: '',
                 rules: {
                     name: [
                         {required: true, message: '请输入商品名称', trigger: 'blur'},
@@ -105,8 +106,32 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        axios.post('/api/item',{
-                            data:this.addItemForm
+                        axios.post('/api/item', {
+                            data: this.addItemForm,
+                            url: this.url
+                        }).then(res => {
+                            if (res.data.code == '200') {
+                                this.$notify({
+                                    title: '保存成功',
+                                    message: '新增商品成功',
+                                    type: 'success',
+                                    duration: 2000,
+                                    onClose(){
+                                        location.reload()
+                                    }
+                                });
+                            } else if (res.data.code !== '200') {
+                                this.$notify({
+                                    title: '保存失败',
+                                    message: res.data.err_msg,
+                                    type: 'error',
+
+                                    duration: 2000,
+                                    onClose(){
+                                        location.reload()
+                                    }
+                                });
+                            }
                         })
                     } else {
                         console.log('error submit!!');
@@ -119,6 +144,9 @@
             },
             handleCategory(data){
                 this.addItemForm.category = data
+            },
+            handleSendPath(data){
+                this.url = data.url_path
             }
         }
     }

@@ -1,11 +1,11 @@
 <template>
-    <div class="addImage">
+    <div>
         <div class="demo-upload-list" v-for="item in uploadList">
             <template v-if="item.status === 'finished'">
                 <img :src="item.url">
                 <div class="demo-upload-list-cover">
-                    <Icon type="ios-eye-outline" @click="handleView(item.name)"></Icon>
-                    <Icon type="ios-trash-outline" @click="handleRemove(item)"></Icon>
+                    <Icon type="ios-eye-outline" @click.native="handleView(item.name)"></Icon>
+                    <Icon type="ios-trash-outline" @click.native="handleRemove(item)"></Icon>
                 </div>
             </template>
             <template v-else>
@@ -13,7 +13,8 @@
             </template>
         </div>
         <Upload
-                ref:upload
+                name="img"
+                ref="upload"
                 :show-upload-list="false"
                 :default-file-list="defaultList"
                 :on-success="handleSuccess"
@@ -22,42 +23,29 @@
                 :on-format-error="handleFormatError"
                 :on-exceeded-size="handleMaxSize"
                 :before-upload="handleBeforeUpload"
-                multiple
+
                 type="drag"
-                action="//jsonplaceholder.typicode.com/posts/"
+                action="/api/upload"
                 style="display: inline-block;width:58px;">
             <div style="width: 58px;height:58px;line-height: 58px;">
                 <Icon type="camera" size="20"></Icon>
             </div>
         </Upload>
-        <Modal title="查看图片" :visible.sync="visible">
-            <img :src="'https://o5wwk8baw.qnssl.com/' + imgName + '/large'" v-if="visible" style="width: 100%">
+        <Modal title="查看图片" v-model="visible">
+            <img :src="'http://shopmall.app/upload/' + imgName" v-if="visible" style="width: 100%">
         </Modal>
     </div>
 </template>
 <script>
     export default {
-        name:'imageAdd',
         data () {
             return {
                 defaultList: [
-                    {
-                        'name': 'a42bdcc1178e62b4694c830f028db5c0',
-                        'url': 'https://o5wwk8baw.qnssl.com/a42bdcc1178e62b4694c830f028db5c0/avatar'
-                    },
-                    {
-                        'name': 'bc7521e033abdd1e92222d733590f104',
-                        'url': 'https://o5wwk8baw.qnssl.com/bc7521e033abdd1e92222d733590f104/avatar'
-                    }
-                ],
 
+                ],
                 imgName: '',
-                visible: false
-            }
-        },
-        computed: {
-            uploadList () {
-                return this.$refs.upload ? this.$refs.upload.fileList : [];
+                visible: false,
+                uploadList: []
             }
         },
         methods: {
@@ -72,8 +60,11 @@
             },
             handleSuccess (res, file) {
                 // 因为上传过程为实例，这里模拟添加 url
-                file.url = 'https://o5wwk8baw.qnssl.com/7eb99afb9d5f317c912f08b5212fd69a/avatar';
-                file.name = '7eb99afb9d5f317c912f08b5212fd69a';
+                file.url = 'http://shopmall.app/upload/'+res;
+                file.name = res;
+                this.$emit('sendPath',{
+                    url_path : file.name
+                })
             },
             handleFormatError (file) {
                 this.$Notice.warning({
@@ -88,14 +79,17 @@
                 });
             },
             handleBeforeUpload () {
-                const check = this.uploadList.length < 5;
+                const check = this.uploadList.length < 1;
                 if (!check) {
                     this.$Notice.warning({
-                        title: '最多只能上传 5 张图片。'
+                        title: '最多只能上传 1 张图片。'
                     });
                 }
                 return check;
             }
+        },
+        mounted () {
+            this.uploadList = this.$refs.upload.fileList;
         }
     }
 </script>

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
+use App\Models\Image;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class ItemController extends Controller
 {
@@ -64,18 +66,41 @@ class ItemController extends Controller
         $tag = json_encode($request->data['tag']);
         $is_show = $request->data['recommend'];
 //        $description = $request->data['description'];
+        $url = $request->url;
+        $path_arr = explode('/', $url);
+        $url_name = $path_arr['1'];
+        try {
+            DB::beginTransaction();
+            $new_item_id = Item::updateOrCreate([
+                'name' => $name,
+            ], [
+                'description' => $description,
+                'number' => $number,
+                'now_price' => $now_price,
+                'cost_price' => $cost_price,
+                'cate' => $category,
+                'tag' => $tag,
+            ])->id;
 
-       return Item::updateOrCreate([
-            'name' => $name,
-        ], [
-            'description' => $description,
-            'number' => $number,
-            'now_price' => $now_price,
-            'cost_price' => $cost_price,
-            'cate' => $category,
-            'tag' => $tag,
+            Image::updateOrCreate([
+                'url' => $url,
+                'item_id' => $new_item_id
+            ], [
+                'url' => $url,
+                'name' => $url_name,
+                'item_id' => $new_item_id,
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'code' => 0,
+                'err_msg' => $e->getMessage(),
+            ]);
+        }
+        DB::commit();
+        return response()->json([
+            'code' => 200,
+            'msg' => 'success'
         ]);
-
-
     }
 }
