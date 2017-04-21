@@ -88,7 +88,7 @@
                 rules: {
                     name: [
                         {required: true, message: '请输入商品名称', trigger: 'blur'},
-                        {min: 3, max: 15, message: '长度在 3 到 15 个字符', trigger: 'blur'}
+                        {min: 3, max: 36, message: '长度在 3 到 36 个字符', trigger: 'blur'}
                     ],
                     number: [
                         {type: 'number', message: '请输入数字', trigger: 'blur'}

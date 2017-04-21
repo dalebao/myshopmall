@@ -14,4 +14,8 @@ class Item extends Model
     public function comment(){
         return   $this->hasMany(Comment::class,'item_id','id');
     }
+
+    public function image(){
+        return $this->hasMany(Image::class,'item_id','id');
+    }
 }

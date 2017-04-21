@@ -49,6 +49,8 @@ Route::group(['middleware' => 'auth:admin', 'prefix' => 'api'], function () {
     //item api controller
     Route::resource('item', 'Api\Admin\ItemController');
 
+
+
 });
 
 

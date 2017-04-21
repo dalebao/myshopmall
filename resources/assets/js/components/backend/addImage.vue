@@ -26,7 +26,8 @@
 
                 type="drag"
                 action="/api/upload"
-                style="display: inline-block;width:58px;">
+                style="display: inline-block;width:58px;"
+        v-loading.body="loading">
             <div style="width: 58px;height:58px;line-height: 58px;">
                 <Icon type="camera" size="20"></Icon>
             </div>
@@ -40,12 +41,11 @@
     export default {
         data () {
             return {
-                defaultList: [
-
-                ],
+                defaultList: [],
                 imgName: '',
                 visible: false,
-                uploadList: []
+                uploadList: [],
+                loading:true
             }
         },
         methods: {
@@ -60,10 +60,10 @@
             },
             handleSuccess (res, file) {
                 // 因为上传过程为实例，这里模拟添加 url
-                file.url = 'http://shopmall.app/upload/'+res;
+                file.url = 'http://shopmall.app/upload/' + res;
                 file.name = res;
-                this.$emit('sendPath',{
-                    url_path : file.name
+                this.$emit('sendPath', {
+                    url_path: file.name
                 })
             },
             handleFormatError (file) {
@@ -90,6 +90,15 @@
         },
         mounted () {
             this.uploadList = this.$refs.upload.fileList;
+        },
+        created(){
+            if (this.$route.params.itemId != undefined) {
+                axios.get('/api/img/' + this.$route.params.itemId).then(res => {
+                this.defaultList['url'] = res.data.url
+                this.defaultList['name'] = res.data.name
+                    this.loading=false
+                })
+            }
         }
     }
 </script>

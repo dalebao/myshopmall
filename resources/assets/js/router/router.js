@@ -47,7 +47,7 @@ const routes = [
     },
     //user admin end route
     {
-        name: 'user-admin', path: '/user-admin', meta: {requireAuth: true}, component: UserAdmin,
+         path: '/user-admin', meta: {requireAuth: true}, component: UserAdmin,
         children: [
             {
                 name: 'user-admin-setting',

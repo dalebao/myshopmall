@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
+use App\Models\Image;
 use App\Repo\Upload;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,6 +18,16 @@ class ImageController extends Controller
         $path = $request->file('img')->store('img');
 
         return $path;
+    }
+
+    public function showImg($id){
+//        dd(1);
+        $data = Image::select()->where('item_id',$id)->first();
+        $img = [
+            'name'=>$data['name'],
+            'url'=>"http:shopmall.app/upload/".$data['url']
+        ];
+        return response()->json($img);
     }
 
 }

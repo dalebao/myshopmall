@@ -71943,6 +71943,38 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })], 1), _vm._v(" "), _c('el-form-item', {
     attrs: {
+      "label": "商品标签",
+      "prop": "tag"
+    }
+  }, [_c('el-checkbox-group', {
+    model: {
+      value: (_vm.addItemForm.tag),
+      callback: function($$v) {
+        _vm.addItemForm.tag = $$v
+      }
+    }
+  }, [_c('el-checkbox', {
+    attrs: {
+      "label": "热门商品",
+      "name": "tag"
+    }
+  }), _vm._v(" "), _c('el-checkbox', {
+    attrs: {
+      "label": "性价比超群",
+      "name": "tag"
+    }
+  }), _vm._v(" "), _c('el-checkbox', {
+    attrs: {
+      "label": "价格优惠",
+      "name": "tag"
+    }
+  }), _vm._v(" "), _c('el-checkbox', {
+    attrs: {
+      "label": "好评如潮",
+      "name": "tag"
+    }
+  })], 1)], 1), _vm._v(" "), _c('el-form-item', {
+    attrs: {
       "label": "商品描述",
       "prop": "description"
     }
@@ -71958,7 +71990,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "label": "增加缩略图"
     }
-  }, [_c('add-image')], 1), _vm._v(" "), _c('el-form-item', [_c('el-button', {
+  }, [_c('add-image', {
+    on: {
+      "sendPath": _vm.handleSendPath
+    }
+  })], 1), _vm._v(" "), _c('el-form-item', [_c('el-button', {
     attrs: {
       "type": "primary"
     },
@@ -72337,6 +72373,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     on: {
       "change": _vm.handleChange
+    },
+    model: {
+      value: (_vm.category),
+      callback: function($$v) {
+        _vm.category = $$v
+      }
     }
   })
 },staticRenderFns: []}
@@ -73011,6 +73053,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }) : _vm._e()]], 2)
   }), _vm._v(" "), _c('Upload', {
+    directives: [{
+      name: "loading",
+      rawName: "v-loading.body",
+      value: (_vm.loading),
+      expression: "loading",
+      modifiers: {
+        "body": true
+      }
+    }],
     ref: "upload",
     staticStyle: {
       "display": "inline-block",
@@ -123881,6 +123932,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
     data: function data() {
@@ -123888,7 +123940,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             defaultList: [],
             imgName: '',
             visible: false,
-            uploadList: []
+            uploadList: [],
+            loading: true
         };
     },
 
@@ -123934,6 +123987,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     mounted: function mounted() {
         this.uploadList = this.$refs.upload.fileList;
+    },
+    created: function created() {
+        var _this = this;
+
+        if (this.$route.params.itemId != undefined) {
+            axios.get('/api/img/' + this.$route.params.itemId).then(function (res) {
+                _this.defaultList['url'] = res.data.url;
+                _this.defaultList['name'] = res.data.name;
+                _this.loading = false;
+            });
+        }
     }
 };
 
@@ -124037,7 +124101,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             url: '',
             rules: {
-                name: [{ required: true, message: '请输入商品名称', trigger: 'blur' }, { min: 3, max: 15, message: '长度在 3 到 15 个字符', trigger: 'blur' }],
+                name: [{ required: true, message: '请输入商品名称', trigger: 'blur' }, { min: 3, max: 36, message: '长度在 3 到 36 个字符', trigger: 'blur' }],
                 number: [{ type: 'number', message: '请输入数字', trigger: 'blur' }],
                 tag: [{ type: 'array', required: true, message: '请至少选择一个标签', trigger: 'change' }],
                 description: [{ required: true, message: '请填写商品描述', trigger: 'blur' }]
@@ -124159,10 +124223,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
     data: function data() {
         return {
+            item_id: 'false',
+            category: ['mobile', 'iphone'],
             options: [{
                 value: 'mobile',
                 label: '手机',
@@ -124208,9 +124275,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         handleChange: function handleChange(value) {
+            console.log(value);
             this.$emit('sendCategory', {
                 category_fa: value['0'],
                 category_son: value['1']
+            });
+        }
+    },
+
+    created: function created() {
+        var _this = this;
+
+        if (this.$route.params.itemId != undefined) {
+            axios.get('/api/item/' + this.$route.params.itemId).then(function (res) {
+                _this.category = res.data.category;
             });
         }
     }
@@ -124306,23 +124384,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             addItemForm: {
                 name: '',
-                category: '',
+                category: [],
                 cost_price: 0,
                 now_price: 0,
                 number: 0,
-                is_show: false,
+                recommend: false,
                 tag: [],
-                resource: '',
                 description: '<h1>this is example</h1>'
             },
+            url: '',
             rules: {
-                name: [{ required: true, message: '请输入商品名称', trigger: 'blur' }, { min: 3, max: 150, message: '长度在 3 到 150 个字符', trigger: 'blur' }],
-                cost_price: [{ type: 'number', message: '请输入数字', trigger: 'blur' }],
-                now_price: [{ type: 'number', message: '请输入数字', trigger: 'blur' }],
+                name: [{ required: true, message: '请输入商品名称', trigger: 'blur' }, { min: 3, max: 36, message: '长度在 3 到 36 个字符', trigger: 'blur' }],
                 number: [{ type: 'number', message: '请输入数字', trigger: 'blur' }],
-                //                    tag: [
-                //                        {type: 'array', required: true, message: '请至少选择一个标签', trigger: 'change'}
-                //                    ],
+                tag: [{ type: 'array', required: true, message: '请至少选择一个标签', trigger: 'change' }],
                 description: [{ required: true, message: '请填写商品描述', trigger: 'blur' }]
             }
         };
@@ -124335,7 +124409,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$refs[formName].validate(function (valid) {
                 if (valid) {
                     axios.put('/api/item/' + _this.$route.params.itemId, {
-                        data: _this.addItemForm
+                        data: _this.addItemForm,
+                        url: _this.url
+                    }).then(function (res) {
+                        if (res.data.code == '200') {
+                            _this.$notify({
+                                title: '更新成功',
+                                message: '新增编辑成功',
+                                type: 'success',
+                                duration: 2000,
+                                onClose: function onClose() {
+                                    location.reload();
+                                }
+                            });
+                        } else if (res.data.code !== '200') {
+                            _this.$notify({
+                                title: '保存失败',
+                                message: res.data.err_msg,
+                                type: 'error',
+
+                                duration: 2000,
+                                onClose: function onClose() {
+                                    location.reload();
+                                }
+                            });
+                        }
                     });
                 } else {
                     return false;
@@ -124346,7 +124444,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$refs[formName].resetFields();
         },
         handleCategory: function handleCategory(data) {
-            console.log(data);
+            this.addItemForm.category = data;
+        },
+        handleSendPath: function handleSendPath(data) {
+            this.url = data.url_path;
         }
     },
     created: function created() {
@@ -127811,7 +127912,7 @@ var routes = [{
 },
 //user admin end route
 {
-    name: 'user-admin', path: '/user-admin', meta: { requireAuth: true }, component: __WEBPACK_IMPORTED_MODULE_11__components_frontAdmin_admin_vue___default.a,
+    path: '/user-admin', meta: { requireAuth: true }, component: __WEBPACK_IMPORTED_MODULE_11__components_frontAdmin_admin_vue___default.a,
     children: [{
         name: 'user-admin-setting',
         path: '',
