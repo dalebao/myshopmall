@@ -1,13 +1,13 @@
 <template>
     <el-row>
         <el-col :span="8">
-        <high-score></high-score>
+            <high-score></high-score>
         </el-col>
         <el-col :span="16">
-            <el-tabs type="border-card" style="margin-right:10px;margin-left: 10px;"
+            <el-tabs type="border-card" style="margin-right:10px;"
                      v-loading.fullscreen.lock="loading">
                 <el-tab-pane :label="item.name">
-                    <el-row>
+                    <el-row :gutter="10">
                         <el-col :span="12">
                             <img :src="item.img_url" alt="" style="width: 100%;display: block;">
                         </el-col>
@@ -16,19 +16,29 @@
                                 <el-card class="box-card">
                                     <div slot="header" class="text item">
                                         <div style="margin-bottom: 20px;">
-                                            <h1>价格：<span>{{item.now_price}}元</span></h1>
+                                            <h3>价格：<span>{{item.now_price}}元</span></h3>
                                         </div>
                                         <hr>
                                         <div style="margin: 20px 0;">
                                             <div style="float: left;">
-                                                <h1>数量：</h1>
+                                                <h3>数量：</h3>
                                             </div>
                                             <Input-number :max="item.number" :min="1" v-model="number"></Input-number>
+                                        </div>
+                                        <hr>
+
+                                        <div style="margin: 10px 0;">
+                                            <el-col :span="4" v-for="tag in item.tag">
+                                                <Tag>
+                                                    {{tag}}
+                                                </Tag>
+                                            </el-col>
                                         </div>
                                     </div>
                                     <div class="clearfix">
                                         <span style="line-height: 36px;">总价：{{item.now_price*number}}</span>
-                                        <el-button style="float: right;" type="primary" @click="newOrder">生成订单</el-button>
+                                        <el-button style="float: right;" type="primary" @click="newOrder">生成订单
+                                        </el-button>
                                     </div>
                                 </el-card>
                             </div>
@@ -36,7 +46,7 @@
                     </el-row>
                     <Tabs value="item-description">
                         <Tab-pane label="商品详情" name="item-description">
-                            <div class="item-description"  v-html="item.description">
+                            <div class="item-description" v-html="item.description">
                             </div>
                         </Tab-pane>
                         <Tab-pane label="商品评价" name="item-comment">
@@ -53,7 +63,7 @@
     import HighScore from './highScore.vue'
     import Comment from './comment.vue'
     export default{
-        components: {HighScore,Comment},
+        components: {HighScore, Comment},
         data() {
             return {
                 item: [],
@@ -81,12 +91,12 @@
                     })
             },
             handleChange(price) {
-                console.log(this.number)
+//                console.log(this.number)
                 this.total = this.number * price;
-                console.log(this.total)
+//                console.log(this.total)
             },
             newOrder(){
-                this.$router.push({name:'newOrder',params:{itemId:this.$route.params.itemId,itemNum:this.number}})
+                this.$router.push({name: 'newOrder', params: {itemId: this.$route.params.itemId, itemNum: this.number}})
             }
         }
     }

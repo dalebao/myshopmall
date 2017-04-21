@@ -41,6 +41,7 @@ class ItemController extends Controller
             } else {
                 $data['img_url'] = "http://shopmall.app/upload/" . $data['image']['0']['url'];
             }
+            $data['tag'] = json_decode($data['tag']);
 
         return $data;
     }

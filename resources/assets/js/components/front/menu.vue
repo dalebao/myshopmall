@@ -49,7 +49,6 @@
                             </el-button>
                         </el-menu-item>
                     </el-submenu>
-                    <el-menu-item index="5">订单详情</el-menu-item>
                     <el-menu-item index="/admin-login" v-if="!admin">我是管理员</el-menu-item>
                     <el-menu-item index="/haso" v-if="admin">进入管理员后台</el-menu-item>
 

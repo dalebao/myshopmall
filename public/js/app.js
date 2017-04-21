@@ -71576,8 +71576,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }],
     staticStyle: {
-      "margin-right": "10px",
-      "margin-left": "10px"
+      "margin-right": "10px"
     },
     attrs: {
       "type": "border-card"
@@ -71586,7 +71585,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "label": _vm.item.name
     }
-  }, [_c('el-row', [_c('el-col', {
+  }, [_c('el-row', {
+    attrs: {
+      "gutter": 10
+    }
+  }, [_c('el-col', {
     attrs: {
       "span": 12
     }
@@ -71616,7 +71619,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticStyle: {
       "margin-bottom": "20px"
     }
-  }, [_c('h1', [_vm._v("价格："), _c('span', [_vm._v(_vm._s(_vm.item.now_price) + "元")])])]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
+  }, [_c('h3', [_vm._v("价格："), _c('span', [_vm._v(_vm._s(_vm.item.now_price) + "元")])])]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
     staticStyle: {
       "margin": "20px 0"
     }
@@ -71624,7 +71627,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticStyle: {
       "float": "left"
     }
-  }, [_c('h1', [_vm._v("数量：")])]), _vm._v(" "), _c('Input-number', {
+  }, [_c('h3', [_vm._v("数量：")])]), _vm._v(" "), _c('Input-number', {
     attrs: {
       "max": _vm.item.number,
       "min": 1
@@ -71635,7 +71638,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.number = $$v
       }
     }
-  })], 1)]), _vm._v(" "), _c('div', {
+  })], 1), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
+    staticStyle: {
+      "margin": "10px 0"
+    }
+  }, _vm._l((_vm.item.tag), function(tag) {
+    return _c('el-col', {
+      attrs: {
+        "span": 4
+      }
+    }, [_c('Tag', [_vm._v("\n                                                " + _vm._s(tag) + "\n                                            ")])], 1)
+  }))]), _vm._v(" "), _c('div', {
     staticClass: "clearfix"
   }, [_c('span', {
     staticStyle: {
@@ -71651,7 +71664,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.newOrder
     }
-  }, [_vm._v("生成订单")])], 1)])], 1)])], 1), _vm._v(" "), _c('Tabs', {
+  }, [_vm._v("生成订单\n                                    ")])], 1)])], 1)])], 1), _vm._v(" "), _c('Tabs', {
     attrs: {
       "value": "item-description"
     }
@@ -73448,11 +73461,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.handleLogout
     }
-  }, [_vm._v("\n                            退出登录\n                        ")])], 1) : _vm._e()], 2), _vm._v(" "), _c('el-menu-item', {
-    attrs: {
-      "index": "5"
-    }
-  }, [_vm._v("订单详情")]), _vm._v(" "), (!_vm.admin) ? _c('el-menu-item', {
+  }, [_vm._v("\n                            退出登录\n                        ")])], 1) : _vm._e()], 2), _vm._v(" "), (!_vm.admin) ? _c('el-menu-item', {
     attrs: {
       "index": "/admin-login"
     }
@@ -125569,6 +125578,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -125603,9 +125622,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         handleChange: function handleChange(price) {
-            console.log(this.number);
+            //                console.log(this.number)
             this.total = this.number * price;
-            console.log(this.total);
+            //                console.log(this.total)
         },
         newOrder: function newOrder() {
             this.$router.push({ name: 'newOrder', params: { itemId: this.$route.params.itemId, itemNum: this.number } });
@@ -125846,7 +125865,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
