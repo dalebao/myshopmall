@@ -9,7 +9,7 @@
                 <el-tab-pane :label="item.name">
                     <el-row>
                         <el-col :span="12">
-                            <img :src="img" alt="" style="width: 100%;display: block;">
+                            <img :src="item.img_url" alt="" style="width: 100%;display: block;">
                         </el-col>
                         <el-col :span="12">
                             <div style="display:block;">
@@ -60,7 +60,6 @@
                 number: 1,
                 total: 0,
                 id: '',
-                img: 'https://img.alicdn.com/bao/uploaded/i3/TB18vZlKpXXXXbcXpXXXXXXXXXX_!!0-item_pic.jpg_250x250.jpg',
                 loading: true
             }
         },

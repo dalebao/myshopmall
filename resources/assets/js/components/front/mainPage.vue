@@ -9,7 +9,7 @@
             </a>
         </div>
         <div class="main-page-line">
-            <card :items="item_one"></card>
+            <card :items="item_one" :title="title_one"></card>
         </div>
         <div class="main-page-pic">
             <a href="">
@@ -17,12 +17,15 @@
             </a>
         </div>
         <div class="main-page-line">
-            <card :items="item_one"></card>
+            <card :items="item_one" :title="title_two"></card>
         </div>
         <div class="main-page-pic">
             <a href="">
                 <img src="https://img.alicdn.com/tps/TB1lnWUNVXXXXbxXpXXXXXXXXXX-880-70.jpg_q90_.webp" alt="">
             </a>
+        </div>
+        <div class="main-page-line">
+            <card :items="item_one" :title="title_three"></card>
         </div>
     </div>
 
@@ -33,7 +36,12 @@
     export default {
         data(){
             return {
-                item_one: ''
+                item_one: '',
+                title_one: '手机',
+                item_two: '',
+                title_two: '服装',
+                item_three: '',
+                title_three: '鞋子',
             }
         },
         components: {

@@ -71596,7 +71596,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "display": "block"
     },
     attrs: {
-      "src": _vm.img,
+      "src": _vm.item.img_url,
       "alt": ""
     }
   })]), _vm._v(" "), _c('el-col', {
@@ -71691,15 +71691,24 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "main-page-line"
   }, [_c('card', {
     attrs: {
-      "items": _vm.item_one
+      "items": _vm.item_one,
+      "title": _vm.title_one
     }
   })], 1), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
     staticClass: "main-page-line"
   }, [_c('card', {
     attrs: {
-      "items": _vm.item_one
+      "items": _vm.item_one,
+      "title": _vm.title_two
     }
-  })], 1), _vm._v(" "), _vm._m(2)])
+  })], 1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "main-page-line"
+  }, [_c('card', {
+    attrs: {
+      "items": _vm.item_one,
+      "title": _vm.title_three
+    }
+  })], 1)])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "main-page-pic"
@@ -72736,7 +72745,9 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_vm._m(0), _vm._v(" "), _c('el-row', _vm._l((_vm.items), function(item) {
+  return _c('div', [_c('div', [_c('h1', {
+    staticClass: "card-title"
+  }, [_vm._v(_vm._s(_vm.title))])]), _vm._v(" "), _c('el-row', _vm._l((_vm.items), function(item) {
     return _c('el-col', {
       staticClass: "card-body",
       attrs: {
@@ -72751,7 +72762,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_c('img', {
       staticClass: "image",
       attrs: {
-        "src": "https://img.alicdn.com/bao/uploaded/i3/TB18vZlKpXXXXbcXpXXXXXXXXXX_!!0-item_pic.jpg_250x250.jpg"
+        "src": item.img_url
       }
     }), _vm._v(" "), _c('div', {
       staticStyle: {
@@ -72762,8 +72773,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('div', {
       staticClass: "bottom clearfix"
     }, [_c('span', {
-      staticClass: "iconfont icon-costincluded"
-    }, [_vm._v(_vm._s(item.now_price) + "元")]), _vm._v(" "), _c('span', {
       staticClass: "iconfont icon-costincluded"
     }, [_vm._v(_vm._s(item.now_price) + "元")]), _vm._v(" "), _c('el-button', {
       staticClass: "button",
@@ -72777,11 +72786,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_vm._v("购买商品")])], 1)])])], 1)
   }))], 1)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('h1', {
-    staticClass: "card-title"
-  }, [_vm._v("商品分类一")])])
-}]}
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -125137,7 +125142,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = {
-    props: ['items'],
+    props: ['items', 'title'],
     data: function data() {
         return {
             currentDate: new Date()
@@ -125575,7 +125580,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             number: 1,
             total: 0,
             id: '',
-            img: 'https://img.alicdn.com/bao/uploaded/i3/TB18vZlKpXXXXbcXpXXXXXXXXXX_!!0-item_pic.jpg_250x250.jpg',
             loading: true
         };
     },
@@ -125803,13 +125807,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = {
     data: function data() {
         return {
-            item_one: ''
+            item_one: '',
+            title_one: '手机',
+            item_two: '',
+            title_two: '服装',
+            item_three: '',
+            title_three: '鞋子'
         };
     },
 
