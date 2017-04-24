@@ -35,7 +35,7 @@ class OrderController extends Controller
                 $item['new_status'] = '订单已支付';
             };
             //修改快递公司
-            if ($item['kd_company'] == 'CTO') {
+            if ($item['kd_company'] == 'STO') {
                 $item['kd_company'] = '申通快递';
             }
             if ($item['kd_company'] == 'YTO') {

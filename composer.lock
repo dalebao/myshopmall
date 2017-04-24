@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "95999d8c717b12f8006ba24bfe550015",
+    "content-hash": "604691c3fc9cbac1547a1311d4c71bd0",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1591,6 +1591,39 @@
                 "uuid"
             ],
             "time": "2017-03-26T20:37:53+00:00"
+        },
+        {
+            "name": "shawn/kdniao",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ShawnZhang31/kdniao-for-laravel.git",
+                "reference": "4546060b88d7c8ccd5050cdcaeba5da438185a23"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/ShawnZhang31/kdniao-for-laravel/4546060b88d7c8ccd5050cdcaeba5da438185a23.zip",
+                "reference": "4546060b88d7c8ccd5050cdcaeba5da438185a23",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Shawn\\Kdniao\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shawn",
+                    "email": "shawnzhang31@gmail.com"
+                }
+            ],
+            "description": "kdniao service for laravel",
+            "time": "2017-01-23T02:03:57+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

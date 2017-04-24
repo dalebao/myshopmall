@@ -65,14 +65,15 @@
                             width="400"
                             trigger="click">
                         <el-table :data="gridData">
-                            <el-table-column width="150" property="date" label="日期"></el-table-column>
-                            <el-table-column width="100" property="name" label="姓名"></el-table-column>
-                            <el-table-column width="300" property="address" label="地址"></el-table-column>
+                            <el-table-column width="150" property="AcceptTime" label="接受时间"></el-table-column>
+                            <el-table-column width="300" property="AcceptStation" label="站点"></el-table-column>
+                            <el-table-column width="100" property="Remark" label="备注"></el-table-column>
                         </el-table>
                     </el-popover>
 
                     <el-button
                             v-popover:popover4
+                            @click="getKd(scope.$index, data.data)"
                             type="text"
                             size="small">
                         查看物流
@@ -105,6 +106,21 @@
 <script>
     export default {
         methods: {
+            getKd(index, rows){
+                axios.get('/api/front/getKd/' +
+                    this.data.data[index].order_id).then(res => {
+                    if (res.data.Success == false) {
+                        this.$notify({
+                            title: '获取失败',
+                            message: res.data.Reason,
+                            type: 'error'
+                        });
+                    } else {
+                        this.gridData = res.data.Traces
+                    }
+
+                })
+            },
             deleteRow(index, rows) {
                 this.$confirm('此操作将永久删除该订单, 是否继续?', '提示', {
                     confirmButtonText: '确定',
@@ -144,12 +160,12 @@
                         this.data.data[index].order_id + '?status=cancel')
                         .then(res => {
                             this.data = res.data
-                            if (res.code==200){
+                            if (res.code == 200) {
                                 this.$message({
                                     type: 'success',
                                     message: '取消订单成功!'
                                 });
-                            }else {
+                            } else {
                                 this.$message({
                                     type: 'error',
                                     message: res.data.err_msg
@@ -250,29 +266,14 @@
         data() {
             return {
                 data: [],
-                gridData: [{
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }, {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄'
-                }]
+                gridData: []
             }
         },
         created(){
             axios.get('/api/user/new_order').then(res => {
                 this.data = res.data
             })
+
         }
     }
 </script>

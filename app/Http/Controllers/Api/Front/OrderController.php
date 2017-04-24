@@ -27,8 +27,7 @@ class OrderController extends Controller
                     $query->where('order_id', $orderId);
                 }])->first();
         } else {
-
-                $data = Order::select()->where('status', '!=', 'new')->skip($page_size * ($page - 1))->paginate($page_size);
+            $data = Order::select()->where('status', '!=', 'new')->orderBy('created_at','desc')->skip($page_size * ($page - 1))->paginate($page_size);
             foreach ($data as &$item) {
                 //修改订单状态
                 if ($item['status'] == 'new') {
@@ -50,11 +49,14 @@ class OrderController extends Controller
                     $item['new_status'] = '订单已支付';
                 };
                 //修改快递公司
-                if ($item['kd_company'] == 'CTO') {
+                if ($item['kd_company'] == 'STO') {
                     $item['kd_company'] = '申通快递';
                 }
                 if ($item['kd_company'] == 'YTO') {
                     $item['kd_company'] = '圆通快递';
+                }
+                if ($item['kd_company'] == 'SF' || empty($item['kd_company'])) {
+                    $item['kd_company'] = '顺丰快递';
                 }
                 if ($item['kd_company'] == 'SF' || empty($item['kd_company'])) {
                     $item['kd_company'] = '顺丰快递';
@@ -118,22 +120,22 @@ class OrderController extends Controller
                 'code' => 0,
                 'err_msg' => '请先下单'
             ]);
-        } elseif($status == 'payed' && $now_status->status == 'cancel'){
+        } elseif ($status == 'payed' && $now_status->status == 'cancel') {
             return response()->json([
                 'code' => 0,
                 'err_msg' => '订单已取消'
             ]);
-        }elseif ($status == 'payed' && $now_status->status == 'payed'){
+        } elseif ($status == 'payed' && $now_status->status == 'payed') {
             return response()->json([
                 'code' => 0,
                 'err_msg' => '订单已支付'
             ]);
-        } elseif ($status == 'cancel' && $now_status->status == 'payed'){
+        } elseif ($status == 'cancel' && $now_status->status == 'payed') {
             return response()->json([
                 'code' => 0,
                 'err_msg' => '订单已支付'
             ]);
-        }else {
+        } else {
             Order::where('order_id', $id)->update(['status' => $status]);
         }
         return $this->index($request);

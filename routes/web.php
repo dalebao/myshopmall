@@ -48,7 +48,8 @@ Route::group(['middleware' => 'auth:admin', 'prefix' => 'api'], function () {
     Route::resource('order', 'Api\Admin\OrderController');
     //item api controller
     Route::resource('item', 'Api\Admin\ItemController');
-
+    //kd company controller
+    Route::get('getKd/{id}','Api\Admin\KdController@getKd');
 
 
 });
@@ -62,6 +63,8 @@ Route::group(['prefix' => 'api/front'], function () {
     Route::resource('comment', 'Front\CommentController');
     //high score
     Route::resource('high_score','Front\HighScoreController');
+    //kd company controller
+    Route::get('getKd/{id}','Api\Admin\KdController@getKd');
 });
 
 //api for user
