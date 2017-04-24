@@ -19,7 +19,7 @@
                 :default-file-list="defaultList"
                 :on-success="handleSuccess"
                 :format="['jpg','jpeg','png']"
-                :max-size="2048"
+                :max-size="2048*5"
                 :on-format-error="handleFormatError"
                 :on-exceeded-size="handleMaxSize"
                 :before-upload="handleBeforeUpload"
@@ -75,7 +75,7 @@
             handleMaxSize (file) {
                 this.$Notice.warning({
                     title: '超出文件大小限制',
-                    desc: '文件 ' + file.name + ' 太大，不能超过 2M。'
+                    desc: '文件 ' + file.name + ' 太大，不能超过 10M。'
                 });
             },
             handleBeforeUpload () {

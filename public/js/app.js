@@ -71710,14 +71710,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "main-page-line"
   }, [_c('card', {
     attrs: {
-      "items": _vm.item_one,
+      "items": _vm.item_two,
       "title": _vm.title_two
     }
   })], 1), _vm._v(" "), _vm._m(2), _vm._v(" "), _c('div', {
     staticClass: "main-page-line"
   }, [_c('card', {
     attrs: {
-      "items": _vm.item_one,
+      "items": _vm.item_three,
       "title": _vm.title_three
     }
   })], 1)])
@@ -72028,7 +72028,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.submitForm('addItemForm')
       }
     }
-  }, [_vm._v("立即创建")]), _vm._v(" "), _c('el-button', {
+  }, [_vm._v("立即更新")]), _vm._v(" "), _c('el-button', {
     on: {
       "click": function($event) {
         _vm.resetForm('addItemForm')
@@ -72782,6 +72782,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_c('img', {
       staticClass: "image",
+      staticStyle: {
+        "width": "414px",
+        "height": "414px"
+      },
       attrs: {
         "src": item.img_url
       }
@@ -73099,7 +73103,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "default-file-list": _vm.defaultList,
       "on-success": _vm.handleSuccess,
       "format": ['jpg', 'jpeg', 'png'],
-      "max-size": 2048,
+      "max-size": 2048 * 5,
       "on-format-error": _vm.handleFormatError,
       "on-exceeded-size": _vm.handleMaxSize,
       "before-upload": _vm.handleBeforeUpload,
@@ -123968,7 +123972,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         handleMaxSize: function handleMaxSize(file) {
             this.$Notice.warning({
                 title: '超出文件大小限制',
-                desc: '文件 ' + file.name + ' 太大，不能超过 2M。'
+                desc: '文件 ' + file.name + ' 太大，不能超过 10M。'
             });
         },
         handleBeforeUpload: function handleBeforeUpload() {
@@ -124390,7 +124394,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             url: '',
             rules: {
-                name: [{ required: true, message: '请输入商品名称', trigger: 'blur' }, { min: 3, max: 36, message: '长度在 3 到 36 个字符', trigger: 'blur' }],
+                name: [{ required: true, message: '请输入商品名称', trigger: 'blur' }, { min: 3, max: 100, message: '长度在 3 到 100 个字符', trigger: 'blur' }],
                 number: [{ type: 'number', message: '请输入数字', trigger: 'blur' }],
                 tag: [{ type: 'array', required: true, message: '请至少选择一个标签', trigger: 'change' }],
                 description: [{ required: true, message: '请填写商品描述', trigger: 'blur' }]
@@ -125872,9 +125876,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         axios.get('/api/front/item', {
-            params: {}
+            params: { category_fa: 'mobile' }
         }).then(function (res) {
             _this.item_one = res.data;
+        });
+        axios.get('/api/front/item', {
+            params: { category_fa: 'cloth' }
+        }).then(function (res) {
+            _this.item_two = res.data;
+        });
+        axios.get('/api/front/item', {
+            params: { category_fa: 'shoes' }
+        }).then(function (res) {
+            _this.item_three = res.data;
         });
     }
 };

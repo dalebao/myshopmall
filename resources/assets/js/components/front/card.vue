@@ -6,7 +6,7 @@
         <el-row>
             <el-col :span="7" v-for="item in items" class="card-body">
                 <el-card :body-style="{ padding: '0px' }">
-                    <img :src="item.img_url"
+                    <img :src="item.img_url" style="width: 414px;height: 414px;"
                          class="image">
                     <div style="padding: 14px;">
                         <p class="item_title">{{item.name}}</p>

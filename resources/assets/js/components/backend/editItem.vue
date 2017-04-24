@@ -54,7 +54,7 @@
         </el-form-item>
 
         <el-form-item>
-            <el-button type="primary" @click="submitForm('addItemForm')">立即创建</el-button>
+            <el-button type="primary" @click="submitForm('addItemForm')">立即更新</el-button>
             <el-button @click="resetForm('addItemForm')">重置</el-button>
         </el-form-item>
     </el-form>
@@ -88,7 +88,7 @@
                 rules: {
                     name: [
                         {required: true, message: '请输入商品名称', trigger: 'blur'},
-                        {min: 3, max: 36, message: '长度在 3 到 36 个字符', trigger: 'blur'}
+                        {min: 3, max: 100, message: '长度在 3 到 100 个字符', trigger: 'blur'}
                     ],
                     number: [
                         {type: 'number', message: '请输入数字', trigger: 'blur'}

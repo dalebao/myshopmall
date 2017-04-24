@@ -42,8 +42,14 @@ class ItemController extends Controller
     {
         $item = Item::select()->where('id', $id)->with('image')->first();
         $item['cate'] = json_decode($item['cate']);
-        $item['tag'] = json_decode($item['tag']);
-        $item['category'] = [$item['cate']->category_fa, $item['cate']->category_son];
+        if (isset($item['tag'])) {
+            $item['tag'] = json_decode($item['tag']);
+        } else {
+            $item['tag'] = [];
+        }
+        if (isset($item['cate']->category_fa) && isset($item['cate']->category_son)) {
+            $item['category'] = [$item['cate']->category_fa, $item['cate']->category_son];
+        }
         if ($item['is_show']) {
             $item['is_show'] = true;
         } else {
@@ -62,7 +68,7 @@ class ItemController extends Controller
         $cost_price = $request->data['cost_price'];
         $category = json_encode($request->data['category']);
         $tag = json_encode($request->data['tag']);
-        $is_show = $request->data['recommend'];
+        $is_show = $request->data['is_show'];
 
         $url = $request->url;
         if (isset($url)) {
@@ -84,15 +90,16 @@ class ItemController extends Controller
                 'is_show' => $is_show
             ]);
 
-
-            Image::updateOrCreate([
-                'url' => $url,
-                'item_id' => $id
-            ], [
-                'url' => $url,
-                'name' => $url_name,
-                'item_id' => $id,
-            ]);
+            if (isset($url)) {
+                Image::updateOrCreate([
+                    'url' => $url,
+                    'item_id' => $id
+                ], [
+                    'url' => $url,
+                    'name' => $url_name,
+                    'item_id' => $id,
+                ]);
+            }
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json([

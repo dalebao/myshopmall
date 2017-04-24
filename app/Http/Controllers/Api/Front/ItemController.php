@@ -17,7 +17,15 @@ class ItemController extends Controller
         empty($params['page_size']) ? $params['page_size'] = 6 : $params['page_size'];
 
         if (empty($params['cate'])) {
-            $data = Item::select('id', 'name', 'now_price')->where('is_show', '1')->OrderBy(DB::raw('RAND()'))->with('image')->take($params['page_size'])->get();
+            $category_fa = empty($request->category_fa) ? null : $request->category_fa;
+            $category_father = json_encode($category_fa);
+            $data = Item::select('id', 'name', 'now_price', 'cate')->where('is_show', '1')
+                ->OrderBy(DB::raw('RAND()'))
+                ->with('image')
+                ->where('cate', 'like', "%" . ($category_father) . "%")
+                ->take($params['page_size'])
+                ->get();
+
             foreach ($data as &$item) {
 //                dd(isset($item['image']['0']));
                 if (empty($item['image']['0'])) {
@@ -31,7 +39,7 @@ class ItemController extends Controller
             $category = $request->category;
             $where = [];
             if (isset($category)) {
-                $where[] = ['cate','like',"%".($category)."%"];
+                $where[] = ['cate', 'like', "%" . ($category) . "%"];
             }
             $data = Item::select('id', 'name', 'now_price')->where($where)->OrderBy(DB::raw('RAND()'))->skip($params['page_size'] * ($params['page'] - 1))->paginate($params['page_size']);
             foreach ($data as &$item) {

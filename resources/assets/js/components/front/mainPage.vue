@@ -17,7 +17,7 @@
             </a>
         </div>
         <div class="main-page-line">
-            <card :items="item_one" :title="title_two"></card>
+            <card :items="item_two" :title="title_two"></card>
         </div>
         <div class="main-page-pic">
             <a href="">
@@ -25,7 +25,7 @@
             </a>
         </div>
         <div class="main-page-line">
-            <card :items="item_one" :title="title_three"></card>
+            <card :items="item_three" :title="title_three"></card>
         </div>
     </div>
 
@@ -50,9 +50,19 @@
         },
         created(){
             axios.get('/api/front/item', {
-                params: {}
+                params: {category_fa:'mobile'}
             }).then(res => {
                 this.item_one = res.data
+            });
+            axios.get('/api/front/item', {
+                params: {category_fa:'cloth'}
+            }).then(res => {
+                this.item_two = res.data
+            });
+            axios.get('/api/front/item', {
+                params: {category_fa:'shoes'}
+            }).then(res => {
+                this.item_three = res.data
             });
 
         }
