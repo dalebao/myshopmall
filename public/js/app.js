@@ -61647,7 +61647,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.block {\n    text-align: right;\n    margin: 20px;\n}\n", ""]);
 
 // exports
 
@@ -61681,20 +61681,7 @@ exports.push([module.i, "\n.main-page-line {\n    margin-top: 10px;\n    margin-
 
 
 /***/ }),
-/* 82 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)();
-// imports
-
-
-// module
-exports.push([module.i, "\n.category-bar {\n    margin-top: 40px;\n    margin-left: 3px;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 82 */,
 /* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -69913,10 +69900,6 @@ module.exports = Component.exports
 /* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
-/* styles */
-__webpack_require__(223)
-
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(256),
@@ -71531,7 +71514,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "span": 8
     }
-  }, [_c('div', [_c('category-bar')], 1), _vm._v(" "), _c('div', {
+  }, [_c('div', [_c('category-bar', {
+    on: {
+      "sendCategory": _vm.handleCategory
+    }
+  })], 1), _vm._v(" "), _c('div', {
     staticClass: "feedback-bar"
   }, [_c('high-score')], 1)]), _vm._v(" "), _c('el-col', {
     attrs: {
@@ -71539,9 +71526,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('card', {
     attrs: {
-      "items": _vm.items
+      "items": _vm.items.data
     }
-  }), _vm._v(" "), _c('paginate')], 1)], 1)], 1)
+  }), _vm._v(" "), _c('div', {
+    staticClass: "block"
+  }, [_c('el-pagination', {
+    attrs: {
+      "current-page": _vm.items.current_page,
+      "page-size": _vm.page_size,
+      "layout": "total, prev, pager, next, jumper",
+      "total": _vm.items.total
+    },
+    on: {
+      "size-change": _vm.handleSizeChange,
+      "current-change": _vm.handleCurrentChange
+    }
+  })], 1)], 1)], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -71828,27 +71828,31 @@ if (false) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "category-bar"
-  }, [_c('el-input', {
+    staticStyle: {
+      "height": "300px"
+    }
+  }, [_c('el-row', {
     attrs: {
-      "placeholder": "输入关键字进行过滤"
+      "gutter": 20
+    }
+  }, [_c('el-col', {
+    attrs: {
+      "span": 12
+    }
+  }, [_c('h3', [_vm._v("点击分类进行搜索")])]), _vm._v(" "), _c('el-col', {
+    attrs: {
+      "span": 10
+    }
+  }, [_c('el-cascader', {
+    attrs: {
+      "placeholder": "试试搜索：鞋子",
+      "options": _vm.options,
+      "filterable": ""
     },
-    model: {
-      value: (_vm.filterText),
-      callback: function($$v) {
-        _vm.filterText = $$v
-      }
+    on: {
+      "change": _vm.handleChange
     }
-  }), _vm._v(" "), _c('el-tree', {
-    ref: "tree2",
-    staticClass: "filter-tree",
-    attrs: {
-      "data": _vm.data2,
-      "props": _vm.defaultProps,
-      "accordion": "",
-      "filter-node-method": _vm.filterNode
-    }
-  })], 1)
+  })], 1)], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -99821,32 +99825,7 @@ if(false) {
 }
 
 /***/ }),
-/* 223 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(82);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("67f8bc2c", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../node_modules/.0.26.2@css-loader/index.js!../../../../../node_modules/.10.3.0@vue-loader/lib/style-rewriter.js?id=data-v-52b5b6d4!../../../../../node_modules/.10.3.0@vue-loader/lib/selector.js?type=styles&index=0!./category-bar.vue", function() {
-     var newContent = require("!!../../../../../node_modules/.0.26.2@css-loader/index.js!../../../../../node_modules/.10.3.0@vue-loader/lib/style-rewriter.js?id=data-v-52b5b6d4!../../../../../node_modules/.10.3.0@vue-loader/lib/selector.js?type=styles&index=0!./category-bar.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
+/* 223 */,
 /* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -125237,55 +125216,60 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = {
-    watch: {
-        filterText: function filterText(val) {
-            this.$refs.tree2.filter(val);
-        }
+    data: function data() {
+        return {
+            item_id: 'false',
+            options: [{
+                value: 'mobile',
+                label: '手机',
+                children: [{
+                    value: 'xiaomi',
+                    label: '小米'
+                }, {
+                    value: 'iphone',
+                    label: 'iPhone'
+                }, {
+                    value: 'huawei',
+                    label: '华为'
+                }]
+            }, {
+                value: 'cloth',
+                label: '服装',
+                children: [{
+                    value: 'man',
+                    label: '男装'
+                }, {
+                    value: 'male',
+                    label: '女装'
+                }, {
+                    value: 'child',
+                    label: '童装'
+                }]
+            }, {
+                value: 'shoes',
+                label: '鞋子',
+                children: [{
+                    value: 'man',
+                    label: '男鞋'
+                }, {
+                    value: 'male',
+                    label: '女鞋'
+                }, {
+                    value: 'child',
+                    label: '儿童鞋'
+                }]
+            }]
+        };
     },
 
     methods: {
-        filterNode: function filterNode(value, data) {
-            if (!value) return true;
-            return data.label.indexOf(value) !== -1;
-        }
-    },
+        handleChange: function handleChange(value) {
+            this.$emit('sendCategory', {
 
-    data: function data() {
-        return {
-            filterText: '',
-            data2: [{
-                id: 1,
-                label: '一级 1',
-                children: [{
-                    id: 4,
-                    label: '二级 1-1'
-                }]
-            }, {
-                id: 2,
-                label: '一级 2',
-                children: [{
-                    id: 5,
-                    label: '二级 2-1'
-                }, {
-                    id: 6,
-                    label: '二级 2-2'
-                }]
-            }, {
-                id: 3,
-                label: '一级 3',
-                children: [{
-                    id: 7,
-                    label: '二级 3-1'
-                }, {
-                    id: 8,
-                    label: '二级 3-2'
-                }]
-            }],
-            defaultProps: {
-                children: 'children',
-                label: 'label'
-            }
-        };
+                category_fa: value['0'],
+                category_son: value['1']
+            });
+        }
     }
 };
 
@@ -125328,6 +125312,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -125337,27 +125329,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = {
     data: function data() {
         return {
-            items: ''
+            items: '',
+            category: '',
+            page: 1,
+            page_size: 20
         };
     },
 
     components: {
         Card: __WEBPACK_IMPORTED_MODULE_0__card_vue___default.a,
         CategoryBar: __WEBPACK_IMPORTED_MODULE_1__category_bar_vue___default.a,
-        FeedBackBar: __WEBPACK_IMPORTED_MODULE_2__feedback_bar_vue___default.a,
         Paginate: __WEBPACK_IMPORTED_MODULE_3__utils_paginate_vue___default.a,
         HighScore: __WEBPACK_IMPORTED_MODULE_4__highScore_vue___default.a
     },
+    methods: {
+        handleCategory: function handleCategory(data) {
+            var _this = this;
+
+            console.log(data);
+            axios.get('/api/front/item', {
+                params: {
+                    cate: 1,
+                    page_size: this.page_size,
+                    category: data
+                }
+            }).then(function (res) {
+                _this.items = res.data;
+            });
+        },
+        handleSizeChange: function handleSizeChange(val) {
+            console.log('\u6BCF\u9875 ' + val + ' \u6761');
+        },
+        handleCurrentChange: function handleCurrentChange(val) {
+            this.currentPage = val;
+            console.log('\u5F53\u524D\u9875: ' + val);
+        }
+    },
     created: function created() {
-        var _this = this;
+        var _this2 = this;
 
         axios.get('/api/front/item', {
             params: {
                 cate: 1,
-                page_size: 20
+                page_size: this.page_size
             }
         }).then(function (res) {
-            _this.items = res.data.data;
+            _this2.items = res.data;
         });
     }
 };

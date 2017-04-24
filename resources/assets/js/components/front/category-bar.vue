@@ -1,80 +1,80 @@
 <template>
-    <div class="category-bar">
-        <el-input
-                placeholder="输入关键字进行过滤"
-                v-model="filterText">
-        </el-input>
-
-        <el-tree
-                class="filter-tree"
-                :data="data2"
-                :props="defaultProps"
-                accordion
-                :filter-node-method="filterNode"
-                ref="tree2">
-        </el-tree>
-
+    <div style="height: 300px;">
+        <el-row :gutter="20">
+            <el-col :span="12">
+                <h3>点击分类进行搜索</h3>
+            </el-col>
+            <el-col :span="10">
+                <el-cascader
+                        placeholder="试试搜索：鞋子"
+                        :options="options"
+                        filterable
+                        @change="handleChange"
+                ></el-cascader>
+            </el-col>
+        </el-row>
     </div>
 </template>
 
+
 <script>
     export default {
-        watch: {
-            filterText(val) {
-                this.$refs.tree2.filter(val);
-            }
-        },
-
-        methods: {
-            filterNode(value, data) {
-                if (!value) return true;
-                return data.label.indexOf(value) !== -1;
-            }
-        },
-
-        data() {
+        data()
+        {
             return {
-                filterText: '',
-                data2: [{
-                    id: 1,
-                    label: '一级 1',
+                item_id: 'false',
+                options: [{
+                    value: 'mobile',
+                    label: '手机',
                     children: [{
-                        id: 4,
-                        label: '二级 1-1'
+                        value: 'xiaomi',
+                        label: '小米'
+                    }, {
+                        value: 'iphone',
+                        label: 'iPhone'
+                    }, {
+                        value: 'huawei',
+                        label: '华为'
                     }]
                 }, {
-                    id: 2,
-                    label: '一级 2',
+                    value: 'cloth',
+                    label: '服装',
                     children: [{
-                        id: 5,
-                        label: '二级 2-1'
+                        value: 'man',
+                        label: '男装'
                     }, {
-                        id: 6,
-                        label: '二级 2-2'
+                        value: 'male',
+                        label: '女装'
+                    }, {
+                        value: 'child',
+                        label: '童装'
                     }]
                 }, {
-                    id: 3,
-                    label: '一级 3',
+                    value: 'shoes',
+                    label: '鞋子',
                     children: [{
-                        id: 7,
-                        label: '二级 3-1'
+                        value: 'man',
+                        label: '男鞋'
                     }, {
-                        id: 8,
-                        label: '二级 3-2'
+                        value: 'male',
+                        label: '女鞋'
+                    }, {
+                        value: 'child',
+                        label: '儿童鞋'
                     }]
                 }],
-                defaultProps: {
-                    children: 'children',
-                    label: 'label'
-                }
-            };
+            }
         }
-    };
-</script>
+        ,
+        methods: {
+            handleChange(value)
+            {
+                this.$emit('sendCategory', {
 
-<style>
-    .category-bar {
-        margin-top: 40px;
-        margin-left: 3px;
+                    category_fa: value['0'],
+                    category_son: value['1']
+                })
+            }
+        }
     }
-</style>
+</script>
