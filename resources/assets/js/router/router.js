@@ -24,6 +24,7 @@ import ItemList from '../components/backend/listItem.vue'
 import OrderList from '../components/backend/orderList.vue'
 import ItemAdd from '../components/backend/itemAdd.vue'
 import ItemEdit from '../components/backend/itemEdit.vue'
+import ItemProfit from '../components/backend/itemProfit.vue'
 
 
 const routes = [
@@ -82,6 +83,9 @@ const routes = [
             },
             {
                 name:'order_list',path:'order_list',meta: {requireAdminAuth: true},component:OrderList
+            },
+            {
+                name:'item_profit',path:'item_profit',meta: {requireAdminAuth: true},component:ItemProfit
             }
         ]
     },

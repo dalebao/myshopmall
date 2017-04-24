@@ -50,7 +50,8 @@ Route::group(['middleware' => 'auth:admin', 'prefix' => 'api'], function () {
     Route::resource('item', 'Api\Admin\ItemController');
     //kd company controller
     Route::get('getKd/{id}','Api\Admin\KdController@getKd');
-
+    //profit controller
+    Route::get('showProfit','Api\Admin\ProfitController@showProfit');
 
 });
 

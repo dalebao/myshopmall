@@ -4,8 +4,8 @@
             <el-menu theme="dark" class="el-menu-demo" mode="horizontal">
                 <el-submenu index="2">
                     <template slot="title"><span class="iconfont icon-wxbbiaowang"></span> {{admin}} 的工作台</template>
-                    <el-menu-item index="2-1">设置</el-menu-item>
-                    <el-menu-item index="2-2">选项2</el-menu-item>
+                    <!--<el-menu-item index="2-1">设置</el-menu-item>-->
+                    <!--<el-menu-item index="2-2">选项2</el-menu-item>-->
                     <el-menu-item index="">退出</el-menu-item>
                 </el-submenu>
             </el-menu>

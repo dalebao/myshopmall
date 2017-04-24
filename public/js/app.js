@@ -71093,14 +71093,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "iconfont icon-wxbbiaowang"
   }), _vm._v(" " + _vm._s(_vm.admin) + " 的工作台")]), _vm._v(" "), _c('el-menu-item', {
     attrs: {
-      "index": "2-1"
-    }
-  }, [_vm._v("设置")]), _vm._v(" "), _c('el-menu-item', {
-    attrs: {
-      "index": "2-2"
-    }
-  }, [_vm._v("选项2")]), _vm._v(" "), _c('el-menu-item', {
-    attrs: {
       "index": ""
     }
   }, [_vm._v("退出")])], 2)], 1)], 1), _vm._v(" "), _c('div', {
@@ -73346,7 +73338,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "el-icon-message"
   }), _vm._v("订单列表")]), _vm._v(" "), _c('el-menu-item', {
     attrs: {
-      "index": "/haso/order_profit"
+      "index": "/haso/item_profit"
     }
   }, [_c('i', {
     staticClass: "el-icon-message"
@@ -127997,6 +127989,8 @@ window.axios.defaults.headers.common = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_backend_itemAdd_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__components_backend_itemAdd_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_backend_itemEdit_vue__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_backend_itemEdit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19__components_backend_itemEdit_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_backend_itemProfit_vue__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_backend_itemProfit_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20__components_backend_itemProfit_vue__);
 /**
  * Created by baoxulong on 2017/3/3.
  */
@@ -128004,6 +127998,7 @@ window.axios.defaults.headers.common = {
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
+
 
 
 
@@ -128062,6 +128057,8 @@ var routes = [{
         name: 'item_edit', path: 'item_edit/:itemId', meta: { requireAdminAuth: true }, component: __WEBPACK_IMPORTED_MODULE_19__components_backend_itemEdit_vue___default.a
     }, {
         name: 'order_list', path: 'order_list', meta: { requireAdminAuth: true }, component: __WEBPACK_IMPORTED_MODULE_17__components_backend_orderList_vue___default.a
+    }, {
+        name: 'item_profit', path: 'item_profit', meta: { requireAdminAuth: true }, component: __WEBPACK_IMPORTED_MODULE_20__components_backend_itemProfit_vue___default.a
     }]
 },
 //admin login page
@@ -128135,6 +128132,178 @@ router.beforeEach(function (to, from, next) {
 __webpack_require__(47);
 module.exports = __webpack_require__(46);
 
+
+/***/ }),
+/* 278 */,
+/* 279 */,
+/* 280 */,
+/* 281 */,
+/* 282 */,
+/* 283 */,
+/* 284 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(286),
+  /* template */
+  __webpack_require__(285),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/baoxulong/Documents/Code/GitFiles/myshopmall/resources/assets/js/components/backend/itemProfit.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] itemProfit.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-04c79108", Component.options)
+  } else {
+    hotAPI.reload("data-v-04c79108", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 285 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('el-table', {
+    staticStyle: {
+      "width": "100%"
+    },
+    attrs: {
+      "data": _vm.profit,
+      "height": "400",
+      "border": ""
+    }
+  }, [_c('el-table-column', {
+    attrs: {
+      "prop": "order_id",
+      "label": "订单号",
+      "width": "180"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "one_profit",
+      "label": "单件利润",
+      "width": "180"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "total_profit",
+      "label": "订单利润",
+      "width": "180"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "user",
+      "label": "买家",
+      "width": "180"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "item_title",
+      "label": "商品"
+    }
+  })], 1), _vm._v(" "), _c('div', {
+    staticStyle: {
+      "margin": "10px"
+    }
+  }, [_c('div', {
+    staticStyle: {
+      "float": "left"
+    }
+  }, [_c('h3', [_vm._v("总订单数：" + _vm._s(_vm.number) + "条   ")])]), _vm._v(" "), _c('div', [_c('h3', [_vm._v("总利润：" + _vm._s(_vm.total) + "元")])])])], 1)
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-loader/node_modules/vue-hot-reload-api").rerender("data-v-04c79108", module.exports)
+  }
+}
+
+/***/ }),
+/* 286 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    data: function data() {
+        return {
+            profit: [],
+            total: '',
+            number: ''
+        };
+    },
+    created: function created() {
+        var _this = this;
+
+        axios.get('/api/showProfit').then(function (res) {
+            _this.profit = res.data.data;
+            _this.total = res.data.total_profit;
+            _this.number = res.data.total_number;
+        });
+    }
+};
 
 /***/ })
 /******/ ]);
