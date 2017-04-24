@@ -48,6 +48,9 @@ class OrderController extends Controller
                 if ($item['status'] == 'payed') {
                     $item['new_status'] = '订单已支付';
                 };
+                if ($item['status']=='finished'){
+                    $item['new_status'] = '订单已完成';
+                }
                 //修改快递公司
                 if ($item['kd_company'] == 'STO') {
                     $item['kd_company'] = '申通快递';

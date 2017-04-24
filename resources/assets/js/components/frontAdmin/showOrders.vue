@@ -45,7 +45,7 @@
             <el-table-column
                     fixed="right"
                     label="操作"
-                    width="240">
+                    width="260">
                 <template scope="scope">
                     <el-button
                             @click.native.prevent="deleteRow(scope.$index,data.data)"
@@ -62,7 +62,7 @@
                     <el-popover
                             ref="popover4"
                             placement="right"
-                            width="400"
+                            width="420"
                             trigger="click">
                         <el-table :data="gridData">
                             <el-table-column width="150" property="AcceptTime" label="接受时间"></el-table-column>
@@ -83,6 +83,12 @@
                             type="text"
                             size="small">
                         付款
+                    </el-button>
+                    <el-button
+                            @click="finish(scope.$index, data.data)"
+                            type="text"
+                            size="small">
+                        收获
                     </el-button>
                 </template>
             </el-table-column>
@@ -259,6 +265,51 @@
                         message: '已取消支付'
                     });
                 });
+
+            },
+            finish(index, rows) {
+                if (this.data.data[index].status != 'send'){
+                    this.$message({
+                        type: 'info',
+                        message: '订单未发货或已完成'
+                    });
+                }else {
+                    this.$confirm('您将确认收获完成订单，是否继续?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+                        axios.put('/api/user/new_order/' +
+                            this.data.data[index].order_id + "?status=finished").then(res => {
+                            if (res.code != 0) {
+                                this.data = res.data
+                                this.$notify({
+                                    title: '收获成功',
+                                    message: '订单收获成功',
+                                    type: 'success'
+                                });
+                            } else {
+                                this.$notify({
+                                    title: '收获失败',
+                                    message: res.data.err_msg,
+                                    type: 'error'
+                                });
+                            }
+                        }).catch(err => {
+                            this.$notify({
+                                title: '收获失败',
+                                message: res.data.err_msg,
+                                type: 'error'
+                            });
+                        })
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消收获'
+                        });
+                    });
+                }
+
 
             },
 

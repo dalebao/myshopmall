@@ -72652,7 +72652,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "fixed": "right",
       "label": "操作",
-      "width": "240"
+      "width": "260"
     },
     scopedSlots: _vm._u([
       ["default", function(scope) {
@@ -72682,7 +72682,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           ref: "popover4",
           attrs: {
             "placement": "right",
-            "width": "400",
+            "width": "420",
             "trigger": "click"
           }
         }, [_c('el-table', {
@@ -72732,7 +72732,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
               _vm.payMoney(scope.$index, _vm.data.data)
             }
           }
-        }, [_vm._v("\n                    付款\n                ")])]
+        }, [_vm._v("\n                    付款\n                ")]), _vm._v(" "), _c('el-button', {
+          attrs: {
+            "type": "text",
+            "size": "small"
+          },
+          on: {
+            "click": function($event) {
+              _vm.finish(scope.$index, _vm.data.data)
+            }
+          }
+        }, [_vm._v("\n                    收获\n                ")])]
       }]
     ])
   })], 1), _vm._v(" "), _c('el-pagination', {
@@ -127109,6 +127119,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
     methods: {
@@ -127272,6 +127288,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     message: '已取消支付'
                 });
             });
+        },
+        finish: function finish(index, rows) {
+            var _this9 = this;
+
+            if (this.data.data[index].status != 'send') {
+                this.$message({
+                    type: 'info',
+                    message: '订单未发货或已完成'
+                });
+            } else {
+                this.$confirm('您将确认收获完成订单，是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(function () {
+                    axios.put('/api/user/new_order/' + _this9.data.data[index].order_id + "?status=finished").then(function (res) {
+                        if (res.code != 0) {
+                            _this9.data = res.data;
+                            _this9.$notify({
+                                title: '收获成功',
+                                message: '订单收获成功',
+                                type: 'success'
+                            });
+                        } else {
+                            _this9.$notify({
+                                title: '收获失败',
+                                message: res.data.err_msg,
+                                type: 'error'
+                            });
+                        }
+                    }).catch(function (err) {
+                        _this9.$notify({
+                            title: '收获失败',
+                            message: res.data.err_msg,
+                            type: 'error'
+                        });
+                    });
+                }).catch(function () {
+                    _this9.$message({
+                        type: 'info',
+                        message: '已取消收获'
+                    });
+                });
+            }
         }
     },
     data: function data() {
@@ -127281,10 +127341,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     created: function created() {
-        var _this9 = this;
+        var _this10 = this;
 
         axios.get('/api/user/new_order').then(function (res) {
-            _this9.data = res.data;
+            _this10.data = res.data;
         });
     }
 };
