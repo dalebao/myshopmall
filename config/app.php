@@ -168,6 +168,7 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Shawn\Kdniao\KdniaoServiceProvider::class,
+//        Intervention\Image\ImageServiceProvider::class,
 
 
         /*
@@ -227,9 +228,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Kdniao'=>Shawn\Kdniao\Facades\Kdniao::class,
-
-
-    ],
+        'Kdniao' => Shawn\Kdniao\Facades\Kdniao::class,
+//        'Image' => Intervention\Image\Facades\Image::class
+    ]
 
 ];

@@ -19,7 +19,7 @@
                 :default-file-list="defaultList"
                 :on-success="handleSuccess"
                 :format="['jpg','jpeg','png']"
-                :max-size="2048*5"
+                :max-size="2048"
                 :on-format-error="handleFormatError"
                 :on-exceeded-size="handleMaxSize"
                 :before-upload="handleBeforeUpload"
@@ -33,7 +33,7 @@
             </div>
         </Upload>
         <Modal title="查看图片" v-model="visible">
-            <img :src="'http://shopmall.app/upload/' + imgName" v-if="visible" style="width: 100%">
+            <img :src="'http://www.baoxulong.com/upload/' + imgName" v-if="visible" style="width: 100%">
         </Modal>
     </div>
 </template>
@@ -60,7 +60,7 @@
             },
             handleSuccess (res, file) {
                 // 因为上传过程为实例，这里模拟添加 url
-                file.url = 'http://shopmall.app/upload/' + res;
+                file.url = 'http://www.baoxulong.com/upload/' + res;
                 file.name = res;
                 this.$emit('sendPath', {
                     url_path: file.name
@@ -75,7 +75,7 @@
             handleMaxSize (file) {
                 this.$Notice.warning({
                     title: '超出文件大小限制',
-                    desc: '文件 ' + file.name + ' 太大，不能超过 10M。'
+                    desc: '文件 ' + file.name + ' 太大，不能超过 2M。'
                 });
             },
             handleBeforeUpload () {

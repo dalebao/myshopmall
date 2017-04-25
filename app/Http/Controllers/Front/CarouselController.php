@@ -12,7 +12,7 @@ class CarouselController extends Controller
     {
         $data = Carousel::all();
         foreach ($data as &$item) {
-            $item['item_url'] = "http://shopmall.app/detail/".$item['item_id'];
+            $item['item_url'] = "http://www.baoxulong.com/detail/".$item['item_id'];
         }
         return $data;
     }

@@ -29,9 +29,9 @@ class ItemController extends Controller
             foreach ($data as &$item) {
 //                dd(isset($item['image']['0']));
                 if (empty($item['image']['0'])) {
-                    $item['img_url'] = "https://pbs.twimg.com/profile_images/808475349671493632/nvi7WJf4_400x400.jpg";
+                    $item['img_url'] = env('APP_URL')."/upload/img/default.jpg";
                 } else {
-                    $item['img_url'] = "http://shopmall.app/upload/" . $item['image']['0']['url'];
+                    $item['img_url'] = env('APP_URL')."/upload/" . $item['image']['0']['url'];
                 }
             }
             return $data;
@@ -44,9 +44,9 @@ class ItemController extends Controller
             $data = Item::select('id', 'name', 'now_price')->where($where)->OrderBy(DB::raw('RAND()'))->skip($params['page_size'] * ($params['page'] - 1))->paginate($params['page_size']);
             foreach ($data as &$item) {
                 if (empty($item['image']['0'])) {
-                    $item['img_url'] = "https://pbs.twimg.com/profile_images/808475349671493632/nvi7WJf4_400x400.jpg";
+                    $item['img_url'] = env('APP_URL')."/upload/img/default.jpg";
                 } else {
-                    $item['img_url'] = "http://shopmall.app/upload/" . $item['image']['0']['url'];
+                    $item['img_url'] = env('APP_URL')."/upload/" . $item['image']['0']['url'];
                 }
             }
             return $data;
@@ -58,9 +58,9 @@ class ItemController extends Controller
     {
         $data = Item::select()->where('id', $id)->with('image')->first();
         if (empty($data['image']['0'])) {
-            $data['img_url'] = 'https://pbs.twimg.com/profile_images/808475349671493632/nvi7WJf4_400x400.jpg';
+            $data['img_url'] = env('APP_URL')."/upload/img/default.jpg";
         } else {
-            $data['img_url'] = "http://shopmall.app/upload/" . $data['image']['0']['url'];
+            $data['img_url'] = env('APP_URL')."/upload/" . $data['image']['0']['url'];
         }
         $data['tag'] = json_decode($data['tag']);
 

@@ -5,19 +5,14 @@
                 <div class="grid-content bg-purple">
                     <el-menu-item index="/index">商城首页</el-menu-item>
                     <el-menu-item index="/category">商品分类</el-menu-item>
-                    <el-menu-item index="/3">商品分类</el-menu-item>
                 </div>
             </el-col>
 
             <el-col :span="3">
-                <div class="nav-input">
-                    <el-input v-model="input" placeholder="搜索商品"></el-input>
-                </div>
+
             </el-col>
             <el-col :span="3">
-                <div class="nav-search-btn">
-                    <el-button type="primary" icon="search">搜索</el-button>
-                </div>
+
             </el-col>
             <el-col :span="6" :offset="6">
                 <div class="grid-content bg-purple">

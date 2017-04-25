@@ -14,15 +14,17 @@ class CreateItemTable extends Migration
     public function up()
     {
         Schema::create('items', function (Blueprint $table) {
-                $table->increments('id');
-                $table->string('name');
-                $table->text('description');
-                $table->integer('number');
-                $table->decimal('cost_price',8,2);
-                $table->decimal('now_price',8,2);
-                $table->integer('cate_id');
-                $table->timestamp('deleted_at')->nullable();
-                $table->timestamps();
+            $table->increments('id');
+            $table->string('name');
+            $table->text('description');
+            $table->integer('number');
+            $table->decimal('cost_price', 8, 2);
+            $table->decimal('now_price', 8, 2);
+            $table->string('cate');
+            $table->string('tag');
+            $table->string('is_show');
+            $table->timestamp('deleted_at')->nullable();
+            $table->timestamps();
         });
     }
 

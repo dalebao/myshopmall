@@ -6,7 +6,7 @@
                     <template slot="title"><span class="iconfont icon-wxbbiaowang"></span> {{admin}} 的工作台</template>
                     <!--<el-menu-item index="2-1">设置</el-menu-item>-->
                     <!--<el-menu-item index="2-2">选项2</el-menu-item>-->
-                    <el-menu-item index="">退出</el-menu-item>
+                    <el-menu-item index="" @click="handleLogout">退出</el-menu-item>
                 </el-submenu>
             </el-menu>
         </div>
@@ -39,10 +39,39 @@
                 admin: ''
             }
         },
+        methods: {
+            handleLogout(){
+                axios.post('admin/logout').then(res => {
+                    if (res.data.code == '200') {
+                        sessionStorage.clear()
+                        this.$notify({
+                            title: '退出成功',
+                            message: '感谢使用',
+                            type: 'success',
+                            duration: 2000,
+                            onClose(){
+                                location.reload()
+                            }
+                        })
+                    } else {
+                        this.$notify.error({
+                            title: '操作失败',
+                            message: '退出失败',
+                            duration: 2000,
+                            onClose(){
+                                location.reload()
+                            }
+                        })
+                    }
+                })
+            }
+        },
+
         components: {
             AdminMenu
         },
-        created(){
+        created()
+        {
             this.admin = sessionStorage.getItem('admin-name');
         }
     }
@@ -70,8 +99,6 @@
         background-color: #ffc0cb;
 
     }
-
-
 
     .router_view {
         margin: 10px;

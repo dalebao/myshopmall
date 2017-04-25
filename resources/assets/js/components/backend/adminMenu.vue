@@ -24,7 +24,7 @@
     export default{
         data(){
             return {
-                active:"1"
+                active:"/haso/order_list"
             }
         },
         methods: {
