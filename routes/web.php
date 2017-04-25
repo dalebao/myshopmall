@@ -17,7 +17,8 @@ Auth::routes();
 
 //获取用户登录信息
 Route::get('/user', function () {
-    return Auth::user();
+    $id = Auth::user()->id;
+    return \App\User::with('userInfo')->where('id', $id)->first();
 });
 
 
@@ -49,9 +50,9 @@ Route::group(['middleware' => 'auth:admin', 'prefix' => 'api'], function () {
     //item api controller
     Route::resource('item', 'Api\Admin\ItemController');
     //kd company controller
-    Route::get('getKd/{id}','Api\Admin\KdController@getKd');
+    Route::get('getKd/{id}', 'Api\Admin\KdController@getKd');
     //profit controller
-    Route::get('showProfit','Api\Admin\ProfitController@showProfit');
+    Route::get('showProfit', 'Api\Admin\ProfitController@showProfit');
 
 });
 
@@ -63,9 +64,9 @@ Route::group(['prefix' => 'api/front'], function () {
     //comment
     Route::resource('comment', 'Front\CommentController');
     //high score
-    Route::resource('high_score','Front\HighScoreController');
+    Route::resource('high_score', 'Front\HighScoreController');
     //kd company controller
-    Route::get('getKd/{id}','Api\Admin\KdController@getKd');
+    Route::get('getKd/{id}', 'Api\Admin\KdController@getKd');
 });
 
 //api for user

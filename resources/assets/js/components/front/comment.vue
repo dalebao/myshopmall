@@ -39,7 +39,7 @@
         data(){
             return {
                 form: {
-                    name: 'isisisisi',
+                    name: '',
                     is_anonymous: true,
                     score: null,
                     comment: null,
@@ -72,26 +72,47 @@
                     axios.post('/api/user/comment', {
                         data: this.form,
                         item_id: this.item_id
+                    }).then(res => {
+                            if (res.data.code != 0) {
+                                this.data = res.data
+                                this.$message({
+                                    type: 'success',
+                                    message: '评论发表成功!'
+                                })
+                                location.reload()
+                            } else {
+                                this.$message({
+                                    type: 'error',
+                                    message: res.data.err_msg
+                                });
+                            }
+                        }
+                    ).catch(err => {
+                        this.$message({
+                            type: 'error',
+                            message: '发布失败'
+                        });
                     });
                 }
             }
         },
-        created(){
-            console.log(sessionStorage.getItem('user-name'))
+        created()
+        {
             axios.get('/api/front/comment/' + this.$route.params.itemId).then(res => {
                 this.msg = res.data
             })
             this.form.item_id = this.$route.params.itemId
-            console.log(this.$route.params.itemId)
             if (sessionStorage.getItem('user-name') == null || sessionStorage.getItem('user-name') == "undefined") {
                 this.form.name = "请先登陆！"
             } else {
                 this.form.name = sessionStorage.getItem('user-name')
+                this.form.nickname = sessionStorage.getItem('user-nickname')
             }
             if (sessionStorage.getItem('user-name') == null || sessionStorage.getItem('user-name') == "undefined") {
                 this.form.nickname = "请先登陆！"
             } else {
-                this.form.nickname = sessionStorage.getItem('user-name')
+                this.form.nickname = sessionStorage.getItem('user-nickname')
+                this.form.name = sessionStorage.getItem('user-name')
             }
         }
     }

@@ -44,12 +44,15 @@ class CommentController extends Controller
                 'err_msg' => $e->getMessage(),
             ]);
         }
-
+        return response()->json([
+            'code' => 200,
+            'msg' => 'success'
+        ]);
     }
 
     public function show($id)
     {
-        Comment::select()->where('item_id', $id)->with()->get();
+        Comment::select()->where('item_id', $id)->with('user')->get();
     }
 
 }

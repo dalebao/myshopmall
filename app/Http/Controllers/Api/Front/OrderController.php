@@ -27,7 +27,7 @@ class OrderController extends Controller
                     $query->where('order_id', $orderId);
                 }])->first();
         } else {
-            $data = Order::select()->where('status', '!=', 'new')->orderBy('created_at','desc')->skip($page_size * ($page - 1))->paginate($page_size);
+            $data = Order::select()->where('status', '!=', 'new')->orderBy('created_at', 'desc')->skip($page_size * ($page - 1))->paginate($page_size);
             foreach ($data as &$item) {
                 //修改订单状态
                 if ($item['status'] == 'new') {
@@ -48,7 +48,7 @@ class OrderController extends Controller
                 if ($item['status'] == 'payed') {
                     $item['new_status'] = '订单已支付';
                 };
-                if ($item['status']=='finished'){
+                if ($item['status'] == 'finished') {
                     $item['new_status'] = '订单已完成';
                 }
                 //修改快递公司
@@ -140,7 +140,7 @@ class OrderController extends Controller
             ]);
         } else {
             Order::where('order_id', $id)->update(['status' => $status]);
+            return $this->index($request);
         }
-        return $this->index($request);
     }
 }

@@ -1884,8 +1884,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 type: 'warning'
             }).then(function () {
                 axios.put('/api/user/new_order/' + _this3.data.data[index].order_id + '?status=cancel').then(function (res) {
-                    _this3.data = res.data;
-                    if (res.code == 200) {
+                    if (res.data.code != 0) {
+                        _this3.data = res.data;
                         _this3.$message({
                             type: 'success',
                             message: '取消订单成功!'
@@ -1964,7 +1964,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 type: 'warning'
             }).then(function () {
                 axios.put('/api/user/new_order/' + _this8.data.data[index].order_id + "?status=payed").then(function (res) {
-                    if (res.code != 0) {
+                    if (res.data.code != 0) {
                         _this8.data = res.data;
                         _this8.$notify({
                             title: '支付成功',

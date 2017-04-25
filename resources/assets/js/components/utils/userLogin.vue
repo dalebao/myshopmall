@@ -46,6 +46,7 @@
                             sessionStorage.setItem('user-id', res.data.id)
                             sessionStorage.setItem('user-email', res.data.email)
                             sessionStorage.setItem('user-name', res.data.name)
+                            sessionStorage.setItem('user-nickname',res.data.user_info[0].nickname)
                             this.$notify({
                                 title: '登录成功',
                                 message: '欢迎登录',

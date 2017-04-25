@@ -165,8 +165,8 @@
                     axios.put('/api/user/new_order/' +
                         this.data.data[index].order_id + '?status=cancel')
                         .then(res => {
-                            this.data = res.data
-                            if (res.code == 200) {
+                            if (res.data.code != 0) {
+                                this.data = res.data
                                 this.$message({
                                     type: 'success',
                                     message: '取消订单成功!'
@@ -238,7 +238,7 @@
                 }).then(() => {
                     axios.put('/api/user/new_order/' +
                         this.data.data[index].order_id + "?status=payed").then(res => {
-                        if (res.code != 0) {
+                        if (res.data.code != 0) {
                             this.data = res.data
                             this.$notify({
                                 title: '支付成功',
@@ -268,12 +268,12 @@
 
             },
             finish(index, rows) {
-                if (this.data.data[index].status != 'send'){
+                if (this.data.data[index].status != 'send') {
                     this.$message({
                         type: 'info',
                         message: '订单未发货或已完成'
                     });
-                }else {
+                } else {
                     this.$confirm('您将确认收获完成订单，是否继续?', '提示', {
                         confirmButtonText: '确定',
                         cancelButtonText: '取消',
