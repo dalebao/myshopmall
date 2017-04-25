@@ -21,7 +21,8 @@
                             layout="total, prev, pager, next, jumper"
                             :total="items.total">
                     </el-pagination>
-                </div>            </el-col>
+                </div>
+            </el-col>
         </el-row>
 
     </div>
@@ -67,8 +68,17 @@
                 console.log(`每页 ${val} 条`);
             },
             handleCurrentChange(val) {
-                this.currentPage = val;
-                console.log(`当前页: ${val}`);
+                console.log(123)
+                axios.get('/api/front/item', {
+                    params: {
+                        page: val,
+                        cate: 1,
+                        category: this.category,
+                        page_size: this.page_size
+                    }
+                }).then(res => {
+                    this.items = res.data
+                })
             }
         },
         created(){
