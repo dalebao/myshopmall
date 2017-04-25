@@ -1,4 +1,8 @@
 {
+  "manager/group-backendAdmin.js": "manager/group-backendAdmin.js",
+  "manager/group-index.js": "manager/group-index.js",
+  "manager/group-login.js": "manager/group-login.js",
+  "manager/group-frontAdmin.js": "manager/group-frontAdmin.js",
   "/js/app.js": "/js/app.js",
   "/css/app.css": "/css/app.css"
 }

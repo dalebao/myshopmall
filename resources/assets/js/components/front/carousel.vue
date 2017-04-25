@@ -20,7 +20,7 @@
                 this.fullscreenLoading = true;
                 setTimeout(() => {
                     this.fullscreenLoading = false;
-                }, 500);
+                }, 1000);
             }
         },
         created(){

@@ -6,26 +6,50 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-import Index from '../components/front/index.vue'
-import Detail from '../components/front/detail.vue'
-import NewOrder from '../components/front/newOrder.vue'
-import UserLogin from '../components/utils/userLogin.vue'
-import AdminLogin from '../components/utils/adminLogin.vue'
-import UserRegister from '../components/utils/userRegister.vue'
-import AdminRegister from '../components/utils/adminRegister.vue'
-import MainPage from '../components/front/mainPage.vue'
-import Category from '../components/front/category.vue'
-import UserAdmin from '../components/frontAdmin/admin.vue'
-import UserSetting from '../components/frontAdmin/UserSetting.vue'
-import ShowOrders from '../components/frontAdmin/showOrders.vue'
-import BackEndIndex from '../components/backend/index.vue'
-import Dash from '../components/backend/dash.vue'
-import ItemList from '../components/backend/listItem.vue'
-import OrderList from '../components/backend/orderList.vue'
-import ItemAdd from '../components/backend/itemAdd.vue'
-import ItemEdit from '../components/backend/itemEdit.vue'
-import ItemProfit from '../components/backend/itemProfit.vue'
+// import Detail from '../components/front/detail.vue'
+// import NewOrder from '../components/front/newOrder.vue'
+const Index = r => require.ensure(['../components/front/index.vue'], () => r(require('../components/front/index.vue')), 'group-index')
+const Detail = r => require.ensure(['../components/front/detail.vue'], () => r(require('../components/front/detail.vue')), 'group-index')
+const NewOrder = r => require.ensure(['../components/front/newOrder.vue'], () => r(require('../components/front/newOrder.vue')), 'group-index')
+const MainPage = r => require.ensure(['../components/front/mainPage.vue'], () => r(require('../components/front/mainPage.vue')), 'group-index')
+const Category = r => require.ensure(['../components/front/category.vue'], () => r(require('../components/front/category.vue')), 'group-index')
 
+const UserLogin = r => require.ensure(['../components/utils/userLogin.vue'], () => r(require('../components/utils/userLogin.vue')), 'group-login')
+const AdminLogin = r => require.ensure(['../components/utils/adminLogin.vue'], () => r(require('../components/utils/adminLogin.vue')), 'group-login')
+const UserRegister = r => require.ensure(['../components/utils/userRegister.vue'], () => r(require('../components/utils/userRegister.vue')), 'group-login')
+const AdminRegister = r => require.ensure(['../components/utils/adminRegister.vue'], () => r(require('../components/utils/adminRegister.vue')), 'group-login')
+
+
+const UserAdmin = r => require.ensure(['../components/frontAdmin/admin.vue'], () => r(require('../components/frontAdmin/admin.vue')), 'group-frontAdmin')
+const UserSetting = r => require.ensure(['../components/frontAdmin/UserSetting.vue'], () => r(require('../components/frontAdmin/UserSetting.vue')), 'group-frontAdmin')
+const ShowOrders = r => require.ensure(['../components/frontAdmin/showOrders.vue'], () => r(require('../components/frontAdmin/showOrders.vue')), 'group-frontAdmin')
+
+
+const BackEndIndex = r => require.ensure(['../components/backend/index.vue'], () => r(require('../components/backend/index.vue')), 'group-backendAdmin')
+const Dash = r => require.ensure(['../components/backend/dash.vue'], () => r(require('../components/backend/dash.vue')), 'group-backendAdmin')
+const ItemList = r => require.ensure(['../components/backend/listItem.vue'], () => r(require('../components/backend/listItem.vue')), 'group-backendAdmin')
+const OrderList = r => require.ensure(['../components/backend/orderList.vue'], () => r(require('../components/backend/orderList.vue')), 'group-backendAdmin')
+const ItemAdd = r => require.ensure(['../components/backend/itemAdd.vue'], () => r(require('../components/backend/itemAdd.vue')), 'group-backendAdmin')
+const ItemEdit = r => require.ensure(['../components/backend/itemEdit.vue'], () => r(require('../components/backend/itemEdit.vue')), 'group-backendAdmin')
+const ItemProfit = r => require.ensure(['../components/backend/itemProfit.vue'], () => r(require('../components/backend/itemProfit.vue')), 'group-backendAdmin')
+
+
+// import UserAdmin from '../components/frontAdmin/admin.vue'
+// import UserSetting from '../components/frontAdmin/UserSetting.vue'
+// import ShowOrders from '../components/frontAdmin/showOrders.vue'
+// import BackEndIndex from '../components/backend/index.vue'
+// import Dash from '../components/backend/dash.vue'
+// import ItemList from '../components/backend/listItem.vue'
+// import OrderList from '../components/backend/orderList.vue'
+// import ItemAdd from '../components/backend/itemAdd.vue'
+// import ItemEdit from '../components/backend/itemEdit.vue'
+// import ItemProfit from '../components/backend/itemProfit.vue'
+// import UserLogin from '../components/utils/userLogin.vue'
+// import AdminLogin from '../components/utils/adminLogin.vue'
+// import UserRegister from '../components/utils/userRegister.vue'
+// import AdminRegister from '../components/utils/adminRegister.vue'
+// import MainPage from '../components/front/mainPage.vue'
+// import Category from '../components/front/category.vue'
 
 const routes = [
     {
@@ -48,7 +72,7 @@ const routes = [
     },
     //user admin end route
     {
-         path: '/user-admin', meta: {requireAuth: true}, component: UserAdmin,
+        path: '/user-admin', meta: {requireAuth: true}, component: UserAdmin,
         children: [
             {
                 name: 'user-admin-setting',
@@ -60,7 +84,7 @@ const routes = [
                 name: 'user-admin-showOrders',
                 path: 'show_orders',
                 component: ShowOrders, meta: {requireAuth: true},
-                alias:'/user-admin/show-orders'
+                alias: '/user-admin/show-orders'
             }
 
         ]
@@ -82,10 +106,10 @@ const routes = [
                 name: 'item_edit', path: 'item_edit/:itemId', meta: {requireAdminAuth: true}, component: ItemEdit
             },
             {
-                name:'order_list',path:'order_list',meta: {requireAdminAuth: true},component:OrderList
+                name: 'order_list', path: 'order_list', meta: {requireAdminAuth: true}, component: OrderList
             },
             {
-                name:'item_profit',path:'item_profit',meta: {requireAdminAuth: true},component:ItemProfit
+                name: 'item_profit', path: 'item_profit', meta: {requireAdminAuth: true}, component: ItemProfit
             }
         ]
     },
